@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LokalRisteriet.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+        x:Class="LokalRisteriet.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="LokalRisteriet">
+
+
+    <!--Styles--> 
+<Window.Styles>
+
+</Window.Styles>
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+
+    <!--Main Grid-->
+	<Grid Background="#edf0f5" RowDefinitions="50,*,50">
+
+
+        <!--Top Bar-->
+        <Grid Grid.Row="0" Background="#121212">
+
+			<StackPanel>
+				<Label 
+                    Foreground="White"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					VerticalContentAlignment="Center"
+					VerticalAlignment="Center"
+					FontSize="30"
+					>Lokalristeriet
+                    				
+				</Label>
+			</StackPanel>
+			
+		</Grid>
+
+        <!--View Bar-->
+
+        <UserControl x:Name="UserMiddleControl" Grid.Row="1"></UserControl>
+
+
+        <!--Bottom Bar-->
+        <Grid Grid.Row="2" Background="#66452a" ColumnDefinitions="70,100" >
+			<Button Grid.Column="0" x:Name="MainViewBtn" Click="MainView_Button">Tilbage</Button>
+
+
+		</Grid>
+
+
+
+    </Grid>
+
+
+</Window>

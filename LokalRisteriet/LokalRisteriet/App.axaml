@@ -1,0 +1,31 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:LokalRisteriet"
+             x:Class="LokalRisteriet.App">
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme Mode="Light"/>
+
+        <Style Selector="Button">
+
+            <Setter Property="CornerRadius" Value="20"></Setter>
+            <Setter Property="Background" Value="#32efb9"></Setter>
+            <Setter Property="Foreground" Value="#282826"></Setter>
+
+        </Style>
+
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+
+            <Setter Property="CornerRadius" Value="20"></Setter>
+            <Setter Property="Background" Value="#282826"></Setter>
+            <Setter Property="TextBlock.Foreground" Value="#32efb9"></Setter>
+
+
+        </Style>
+
+
+    </Application.Styles>
+</Application>
