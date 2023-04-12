@@ -28,4 +28,8 @@
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.5.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="AddBookingView.axaml" />
+  </ItemGroup>
 </Project>

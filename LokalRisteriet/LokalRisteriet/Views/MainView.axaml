@@ -26,22 +26,26 @@
                 </ListBox.ItemTemplate>
 
                 <ListBoxItem>
-                    <Grid ColumnDefinitions="*,*,*">
+                    <Grid ColumnDefinitions="*,*,*,*">
 
                         <Label Grid.Column="0">Booking Nummer: 1</Label>
                         <Label Grid.Column="1">Booket til: Rasmus Jaspersen</Label>
 
 						<Label Grid.Column="2">d. 30-03-2023</Label>
+						<Label Grid.Column="3" Background="Green" CornerRadius="20" Foreground="White" HorizontalContentAlignment="Center"> Opgaver Fuldført</Label>
+
 
 					</Grid>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <Grid ColumnDefinitions="*,*,*">
+                    <Grid ColumnDefinitions="*,*,*,*">
 
                         <Label Grid.Column="0">Booking Nummer: 2</Label>
                         <Label Grid.Column="1">Booket til: Adil Joakimsen</Label>
 
                         <Label Grid.Column="2">d. 02-04-2023</Label>
+
+						<Label Grid.Column="3" Background="Red" Foreground="White" CornerRadius="20" HorizontalContentAlignment="Center"> Opgaver Mangler</Label>
 
                     </Grid>
                 </ListBoxItem>
@@ -51,9 +55,10 @@
             <Grid Grid.Row="1" RowDefinitions="*" VerticalAlignment="Top" >
             <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="50,10,50,0" >
                 <Button Click="Booking_Button2" >Se Booking</Button>
-                <Button>Tilføj Booking</Button>
+                <Button Click="AddBookingButton">Tilføj Booking</Button>
                 <Button>Rediger Booking</Button>
 </StackPanel>
+				
                 
             </Grid>
         </Grid>

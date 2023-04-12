@@ -26,6 +26,18 @@
 
         </Style>
 
+			<Style Selector="TextBox">
+				<Setter Property="CornerRadius" Value="20"></Setter>
+			</Style>
+
+			<Style Selector="DatePicker">
+				<Setter Property="CornerRadius" Value="20"></Setter>
+			</Style>
+
+			<Style Selector="TimePicker">
+				<Setter Property="CornerRadius" Value="20"></Setter>
+			</Style>
+
 
     </Application.Styles>
 </Application>

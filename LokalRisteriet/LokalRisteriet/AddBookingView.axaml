@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="LokalRisteriet.AddBookingView">
+
+	
+	
+	
+<!--Navn, Email, Dato, Starttidspunkt, slut tidspunkt, pris, Antal personale 18-/18+-->
+
+	<StackPanel Spacing="3" VerticalAlignment="Top" HorizontalAlignment="Center" >
+
+
+		<Label HorizontalContentAlignment="Center" FontSize="30" >Ny Booking</Label>
+		<Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*" Margin="50">
+
+			<!--Navn-->
+			<Label Grid.Column="0" Grid.Row="0">Navn</Label>
+			<TextBox Grid.Column="1" Grid.Row="0" Watermark="Indtast Navn"></TextBox>
+			
+			<!--E-Mail-->
+			<Label Grid.Column="0" Grid.Row="1">Email</Label>
+			<TextBox Grid.Column="1" Grid.Row="1" Watermark="Indtast Email"></TextBox>
+
+			<!--Vælg Dato-->
+			<Label Grid.Column="0" Grid.Row="2" >Vælg Dato </Label>
+			<DatePicker Grid.Column="1" Grid.Row="2" ></DatePicker>
+
+			<!--Vælg Start Tidspunkt-->
+			<Label Grid.Column="0" Grid.Row="3">Vælg Start tidspunkt </Label>
+			<TimePicker Grid.Column="1" Grid.Row="3"  ></TimePicker>
+
+			<!--Vælg Slut Tidspunkt-->
+			<Label Grid.Column="0" Grid.Row="4">Vælg Slut tidspunkt </Label>
+			<TimePicker Grid.Column="1" Grid.Row="4"  ></TimePicker>
+
+			<!--Vælg Ekstra Personale-->
+			<Label Grid.Column="0" Grid.Row="5">Ekstra Personale</Label>
+			<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
+				<TextBox Watermark="Indtast Antal Personale" ></TextBox>
+				<CheckBox>Over 18?</CheckBox>
+			</StackPanel>
+
+			<!--Pris-->
+			<Label Grid.Column="0" Grid.Row="6">Pris</Label>
+			<TextBox Grid.Column="1" Grid.Row="6" Watermark="Indtast Pris"></TextBox>
+			
+			
+
+		</Grid>
+
+		<Button>Gem Booking</Button>
+		<Button>Reserver Booking</Button>
+
+
+
+
+
+
+
+
+	</StackPanel>
+</UserControl>

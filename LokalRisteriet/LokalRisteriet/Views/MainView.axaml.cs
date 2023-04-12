@@ -12,6 +12,7 @@ namespace LokalRisteriet.Views
         MainViewVM MainViewVm = new MainViewVM();
         
         public event EventHandler BookingViewEvent;
+        public event EventHandler AddBookingViewEvent;
 
         public MainView()
         {
@@ -26,6 +27,13 @@ namespace LokalRisteriet.Views
         {
 
             BookingViewEvent?.Invoke(this, EventArgs.Empty);
+
+        }
+
+        private void AddBookingButton(object sender, RoutedEventArgs e)
+        {
+
+            AddBookingViewEvent?.Invoke(this, EventArgs.Empty);
 
         }
 
