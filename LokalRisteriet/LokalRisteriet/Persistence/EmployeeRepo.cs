@@ -28,7 +28,8 @@ namespace LokalRisteriet.Persistence
                         int id = int.Parse(dr["EmployeeId"].ToString());
                         string name = dr["EmployeeName"].ToString();
                         bool adult = bool.Parse(dr["EmployeeAdult"].ToString());
-                        Employee employee = new Employee(id, name, adult);
+                        Employee employee = new Employee(name, adult);
+                        employee.EmployeeID = id;
                         _employees.Add(employee);
                     }
                 }
@@ -47,7 +48,7 @@ namespace LokalRisteriet.Persistence
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO Employee(EmployeeName, EmployeeAdult) VALUES(@name, @adult)", connection);
-                cmd.Parameters.AddWithValue("@name", employee.Name);
+                cmd.Parameters.AddWithValue("@name", employee.EmployeeName);
                 cmd.Parameters.AddWithValue("@adult", employee.IsAdult);
                 cmd.ExecuteNonQuery();
             }
@@ -61,7 +62,7 @@ namespace LokalRisteriet.Persistence
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE Employee SET EmployeeName = @name, EmployeeAdult = @adult WHERE EmployeeID = @id", connection);
-                cmd.Parameters.AddWithValue("@name", employee.Name);
+                cmd.Parameters.AddWithValue("@name", employee.EmployeeName);
                 cmd.Parameters.AddWithValue("@adult", employee.IsAdult);
                 cmd.Parameters.AddWithValue("@id", employee.EmployeeID);
                 cmd.ExecuteNonQuery();
@@ -82,7 +83,7 @@ namespace LokalRisteriet.Persistence
 
         public Employee GetEmployeeByName(string employeeName)
         {
-            return _employees.Find(e => e.Name == employeeName);
+            return _employees.Find(e => e.EmployeeName == employeeName);
 
         }
 

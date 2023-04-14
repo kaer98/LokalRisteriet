@@ -3,7 +3,7 @@ namespace LokalRisteriet.Models
 {
     public class Employee
     {
-        public string Name { get; private set; }
+        public string EmployeeName { get; set; }
         public double Price
         {
             // Return 400 if employee is over 18 else 200
@@ -20,10 +20,9 @@ namespace LokalRisteriet.Models
         }
 
 
-        public Employee(int id, string name, bool isAdult)
+        public Employee(string name, bool isAdult)
         {
-            _employeeID = id;
-            Name = name;
+            EmployeeName = name;
             IsAdult = isAdult;
         }
     }

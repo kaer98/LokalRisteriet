@@ -27,7 +27,7 @@ namespace LokalRisteriet.ViewModels
             _addOnRepo.deleteAddOn(addOn);
         }
 
-        public List<AddOn> GetAddOns(AddOn addOn)
+        public List<AddOn> GetAddOns()
         {
             return _addOnRepo.GetAllAddOns();
         }
@@ -35,6 +35,11 @@ namespace LokalRisteriet.ViewModels
         public void UpdateAddOn(AddOn addOn)
         {
             _addOnRepo.updateAddOn(addOn);
+        }
+
+        public AddOn GetAddOnByID(int id)
+        {
+            return _addOnRepo.GetAddOnByID(id);
         }
 
     }

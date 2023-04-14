@@ -3,7 +3,7 @@ namespace LokalRisteriet.Models
 {
     public class AddOn
     {
-        public string Name { get; private set; }
+        public string AddOnName { get; set; }
         public double Price { get; private set; }
         private int _addOnID;
         private int _addOnBookingID;
@@ -21,12 +21,10 @@ namespace LokalRisteriet.Models
         }
 
 
-        public AddOn(int addOnID, string name, double price, int addOnBookingID)
+        public AddOn(string name, double price)
         {
-            _addOnID = addOnID;
-            Name = name;
+            AddOnName = name;
             Price = price;
-            _addOnBookingID = addOnBookingID;
         }
     }
 }

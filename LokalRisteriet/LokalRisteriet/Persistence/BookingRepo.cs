@@ -35,10 +35,14 @@ namespace LokalRisteriet.Persistence
                         rooms.Add(room1);
                         rooms.Add(room2);
                         List<Employee> employees = new List<Employee>();
-                        Employee employee1 = new Employee(int.Parse(dr["EmployeeID"].ToString()), dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee2 = new Employee(int.Parse(dr["EmployeeID"].ToString()), dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee3 = new Employee(int.Parse(dr["EmployeeID"].ToString()), dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee4 = new Employee(int.Parse(dr["EmployeeID"].ToString()), dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee1 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee2 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee3 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee4 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        employee1.EmployeeID = int.Parse(dr["BookingEmployee1"].ToString());
+                        employee2.EmployeeID = int.Parse(dr["BookingEmployee2"].ToString());
+                        employee3.EmployeeID = int.Parse(dr["BookingEmployee3"].ToString());
+                        employee4.EmployeeID = int.Parse(dr["BookingEmployee4"].ToString());
                         employees.Add(employee1);
                         employees.Add(employee2);
                         employees.Add(employee3);
@@ -53,7 +57,13 @@ namespace LokalRisteriet.Persistence
                         double bookingPrice = double.Parse(dr["BookingPrice"].ToString());
                         bool bookingReserved = bool.Parse(dr["BookingReserved"].ToString());
                         string bookingNote = dr["BookingNote"].ToString();
-                        Booking booking = new Booking(bookingID, bookingtype, bookingNote, rooms, employees, addOns, bookingStart, bookingEnd, bookingDuration, bookingCustomerID, bookingAmountOfGuests, bookingPrice, bookingReserved);
+                        Booking booking = new Booking(bookingtype, bookingNote, rooms, bookingStart, bookingEnd, bookingAmountOfGuests, bookingReserved);
+                        booking.BookingCustomerID = bookingCustomerID;
+                        booking.BookingPrice= bookingPrice;
+                        booking.BookingEmployees = employees;
+                        booking.BookingAddOns = addOns;
+                        booking.BookingDuration= bookingDuration;
+                        booking.BookingID= bookingID;
 
                         _bookings.Add(booking);
                     }
@@ -69,22 +79,87 @@ namespace LokalRisteriet.Persistence
 
         public void AddBooking(Booking booking)
         {
+            while (booking.BookingRooms.Count < 2)
+            {
+                booking.BookingRooms.Add(null);
+            }
+
+            while (booking.BookingEmployees.Count < 4)
+            {
+                booking.BookingEmployees.Add(null);
+            }
             _bookings.Add(booking);
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployee1, BookingEmployee2, BookingEmployee3, BookingEmployee4, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployee1, @BookingEmployee2, @BookingEmployee3, @BookingEmployee4, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote)", connection);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
-                cmd.Parameters.AddWithValue("@BookingRoom1", booking.BookingRooms[0].RoomName);
-                cmd.Parameters.AddWithValue("@BookingRoom2", booking.BookingRooms[1].RoomName);
-                cmd.Parameters.AddWithValue("@BookingEmployee1", booking.BookingEmployees[0].EmployeeID);
-                cmd.Parameters.AddWithValue("@BookingEmployee2", booking.BookingEmployees[1].EmployeeID);
-                cmd.Parameters.AddWithValue("@BookingEmployee3", booking.BookingEmployees[2].EmployeeID);
-                cmd.Parameters.AddWithValue("@BookingEmployee4", booking.BookingEmployees[3].EmployeeID);
+                if (booking.BookingRooms[0] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom1", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom1", booking.BookingRooms[0].RoomName);
+                }
+
+                if (booking.BookingRooms[1] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom2", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom2", booking.BookingRooms[1].RoomName);
+                }
+
+                if (booking.BookingEmployees[0] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee1", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee1", booking.BookingEmployees[0].EmployeeID);
+                }
+
+                if (booking.BookingEmployees[1] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee2", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee2", booking.BookingEmployees[1].EmployeeID);
+                }
+
+
+                if (booking.BookingEmployees[2] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee3", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee3", booking.BookingEmployees[2].EmployeeID);
+                }
+
+                if (booking.BookingEmployees[3] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee4", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee4", booking.BookingEmployees[3].EmployeeID);
+                }
+
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
                 cmd.Parameters.AddWithValue("@BookingEnd", booking.BookingEnd);
                 cmd.Parameters.AddWithValue("@BookingDuration", booking.BookingDuration);
-                cmd.Parameters.AddWithValue("@BookingCustomerID", booking.BookingCustomerID);
+                if (booking.BookingCustomerID == 0)
+                {
+                    cmd.Parameters.AddWithValue("@BookingCustomerID", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingCustomerID", booking.BookingCustomerID);
+                }
                 cmd.Parameters.AddWithValue("@BookingAmountOfGuests", booking.BookingAmountOfGuests);
                 cmd.Parameters.AddWithValue("@BookingPrice", booking.BookingPrice);
                 cmd.Parameters.AddWithValue("@BookingReserved", booking.BookingReserved);
@@ -103,16 +178,72 @@ namespace LokalRisteriet.Persistence
                 SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployee1=@BookingEmployee1, BookingEmployee2=@BookingEmployee2, BookingEmployee3=@BookingEmployee3, BookingEmployee4=@BookingEmployee4, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote WHERE BookingID=@BookingID", connection);
                 cmd.Parameters.AddWithValue("@BookingID", booking.BookingID);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
-                cmd.Parameters.AddWithValue("@BookingRoom1", booking.BookingRooms[0].RoomName);
-                cmd.Parameters.AddWithValue("@BookingRoom2", booking.BookingRooms[1].RoomName);
-                cmd.Parameters.AddWithValue("@BookingEmployee1", booking.BookingEmployees[0].EmployeeID);
-                cmd.Parameters.AddWithValue("@BookingEmployee2", booking.BookingEmployees[1].EmployeeID);
-                cmd.Parameters.AddWithValue("@BookingEmployee3", booking.BookingEmployees[2].EmployeeID);
-                cmd.Parameters.AddWithValue("@BookingEmployee4", booking.BookingEmployees[3].EmployeeID);
+                if (booking.BookingRooms[0] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom1", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom1", booking.BookingRooms[0].RoomName);
+                }
+
+                if (booking.BookingRooms[1] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom2", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingRoom2", booking.BookingRooms[1].RoomName);
+                }
+
+                if (booking.BookingEmployees[0] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee1", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee1", booking.BookingEmployees[0].EmployeeID);
+                }
+
+                if (booking.BookingEmployees[1] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee2", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee2", booking.BookingEmployees[1].EmployeeID);
+                }
+
+
+                if (booking.BookingEmployees[2] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee3", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee3", booking.BookingEmployees[2].EmployeeID);
+                }
+
+                if (booking.BookingEmployees[3] == null)
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee4", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingEmployee4", booking.BookingEmployees[3].EmployeeID);
+                }
+
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
                 cmd.Parameters.AddWithValue("@BookingEnd", booking.BookingEnd);
                 cmd.Parameters.AddWithValue("@BookingDuration", booking.BookingDuration);
-                cmd.Parameters.AddWithValue("@BookingCustomerID", booking.BookingCustomerID);
+                if (booking.BookingCustomerID == 0)
+                {
+                    cmd.Parameters.AddWithValue("@BookingCustomerID", DBNull.Value);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BookingCustomerID", booking.BookingCustomerID);
+                }
                 cmd.Parameters.AddWithValue("@BookingAmountOfGuests", booking.BookingAmountOfGuests);
                 cmd.Parameters.AddWithValue("@BookingPrice", booking.BookingPrice);
                 cmd.Parameters.AddWithValue("@BookingReserved", booking.BookingReserved);

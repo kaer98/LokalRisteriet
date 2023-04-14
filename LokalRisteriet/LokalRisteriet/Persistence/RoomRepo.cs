@@ -26,7 +26,9 @@ namespace LokalRisteriet.Persistence
                     {
                         string name = dr["RoomName"].ToString();
                         int capacity = int.Parse(dr["RoomCapacity"].ToString());
+                        int roomID = int.Parse(dr["RoomID"].ToString());
                         Room room = new Room(name, capacity);
+                        room.RoomID = roomID;
                         _rooms.Add(room);
                     }
                 }
@@ -65,14 +67,15 @@ namespace LokalRisteriet.Persistence
 
         public void UpdateRoom(Room room)
         {
-            int i = _rooms.FindIndex(r => r.RoomName == room.RoomName);
+            int i = _rooms.FindIndex(r => r.RoomID == room.RoomID);
             _rooms[i] = room;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Room SET RoomName = @name, RoomCapacity = @capacity WHERE RoomName = @name", connection);
+                SqlCommand cmd = new SqlCommand("UPDATE Room SET RoomName = @name, RoomCapacity = @capacity WHERE RoomID = @roomID", connection);
                 cmd.Parameters.AddWithValue("@name", room.RoomName);
                 cmd.Parameters.AddWithValue("@capacity", room.Capacity);
+                cmd.Parameters.AddWithValue("@roomID", room.RoomID);
                 cmd.ExecuteNonQuery();
             }
         }

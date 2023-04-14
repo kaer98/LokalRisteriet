@@ -66,7 +66,7 @@ namespace LokalRisteriet.Models
             set { _tasks = value; }
         }
 
-        public List<AddOn> BookingAddOn
+        public List<AddOn> BookingAddOns
         {
             get { return _addOns; }
             set { _addOns = value; }
@@ -120,21 +120,17 @@ namespace LokalRisteriet.Models
         }
 
 
-        public Booking(int bookingid, string bookingtype, string bookingnote , List<Room> rooms, List<Employee> employees, List<AddOn> addOns, DateTime startDateTime, DateTime endDateTime, TimeSpan duration, int customerID, double price, double amountOfGuests, bool reserved)
+        public Booking(string bookingtype, string bookingnote , List<Room> rooms, DateTime startDateTime, DateTime endDateTime, double amountOfGuests, bool reserved)
         {
-            _bookingid = bookingid;
             _bookingtype = bookingtype;
             _bookingnote = bookingnote;
             _rooms = rooms;
-            _employees = employees;
-            _addOns = addOns;
             _startDateTime = startDateTime;
             _endDateTime = endDateTime;
-            _duration = duration;
-            _customerID = customerID;
-            _price = price;
+            _duration = endDateTime - startDateTime;
             _amountOfGuests = amountOfGuests;
             _reserved = reserved;
+            _employees = new List<Employee>(4);
         }
     }
 }

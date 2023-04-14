@@ -37,7 +37,8 @@ namespace LokalRisteriet.Persistence
                             task.TaskIsDone = true;
                         }
                         
-                        Employee employee = new Employee(employeeID,employeeName,employeeAdult);
+                        Employee employee = new Employee(employeeName,employeeAdult);
+                        employee.EmployeeID = employeeID;
                         task.TaskEmployee = employee;
                         _tasks.Add(task);
                     }
@@ -76,11 +77,21 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskEmployee = @TaskEmployee WHERE TaskId = @TaskId", connection);
-                cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
-                cmd.Parameters.AddWithValue("@TaskEmployee", task.TaskEmployee.EmployeeID);
-                cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
-                cmd.ExecuteNonQuery();
+                if (task.TaskEmployee == null)
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskEmployee = NULL WHERE TaskId = @TaskId", connection);
+                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                    cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskEmployee = @TaskEmployee WHERE TaskId = @TaskId", connection);
+                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                    cmd.Parameters.AddWithValue("@TaskEmployee", task.TaskEmployee.EmployeeID);
+                    cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
+                    cmd.ExecuteNonQuery();
+                }
             }
 
         }
