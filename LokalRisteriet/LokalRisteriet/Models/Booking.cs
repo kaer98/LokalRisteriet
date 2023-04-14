@@ -11,6 +11,7 @@ namespace LokalRisteriet.Models
     {
         private string _bookingid;
         private string _bookingtype;
+        private string _bookingnote;
         private string _room;
         private string _employee;
         private string _task;
@@ -35,6 +36,11 @@ namespace LokalRisteriet.Models
             set { _bookingtype = value; }
         }
 
+        public string bookingnote
+        {
+            get { return _bookingnote; }
+            set { _bookingnote = value; }
+        }
 
         public string room
         {
@@ -104,10 +110,11 @@ namespace LokalRisteriet.Models
             set { _amountofpeople = value; }
         }
 
-        public Booking(string bookingid, string bookingtype, string room, string employee, string task, string addon, DateTime startdatetime, DateTime enddatetime, int duration, string customerid, double price, double amountofpeople)
+        public Booking(string bookingid, string bookingtype, string bookingnote , string room, string employee, string task, string addon, DateTime startdatetime, DateTime enddatetime, int duration, string customerid, double price, double amountofpeople)
         {
             _bookingid = bookingid;
             _bookingtype = bookingtype;
+            _bookingnote = bookingnote;
             _room = room;
             _employee = employee;
             _task = task;
