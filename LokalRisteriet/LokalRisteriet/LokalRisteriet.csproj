@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Commands\MainWindowCommands\" />
     <Folder Include="Commands\BookingInfoViewCommands\" />
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
     <None Remove=".gitignore" />
   </ItemGroup>
