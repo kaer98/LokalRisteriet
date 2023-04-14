@@ -1,7 +1,7 @@
 ﻿
 namespace LokalRisteriet.Models
 {
-    internal class Task
+    public class Task
     {
         public string Name { get; private set; }
         public bool IsDone { get; set; }

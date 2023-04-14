@@ -1,7 +1,7 @@
 ﻿
 namespace LokalRisteriet.Models
 {
-    internal class Room
+    public class Room
     {
         public string Name { get; private set; }
         public int Capacity { get; private set; }

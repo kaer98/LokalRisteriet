@@ -1,7 +1,7 @@
 ﻿
 namespace LokalRisteriet.Models
 {
-    internal class Employee
+    public class Employee
     {
         public string Name { get; private set; }
         public double Price

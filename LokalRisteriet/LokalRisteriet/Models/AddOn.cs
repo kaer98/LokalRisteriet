@@ -1,7 +1,7 @@
 ﻿
 namespace LokalRisteriet.Models
 {
-    internal class AddOn
+    public class AddOn
     {
         public string Name { get; private set; }
         public double Price { get; private set; }
