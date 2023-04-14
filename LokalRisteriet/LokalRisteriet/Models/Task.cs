@@ -5,13 +5,12 @@ namespace LokalRisteriet.Models
     {
         public string Name { get; private set; }
         public bool IsDone { get; set; }
-        public string EmployeeName { get; set; }
+        public Employee TaskEmployee { get; set; }
 
-        public Task(string name, bool isDone, string employeeName)
-        { 
+        public Task(string name)
+        {
             Name = name;
-            IsDone = isDone;
-            EmployeeName = employeeName;
+            IsDone = false;
         }
     }
 }

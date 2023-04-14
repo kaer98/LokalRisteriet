@@ -22,7 +22,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Booking INNER JOIN Room ON Booking.BookingRoom1=Room.RoomName INNER JOIN Room on Booking.BookingRoom2=Room.RoomName INNER JOIN Employee on Booking.Employee1=EmployeeID INNER JOIN Employee on Booking.Employee2=EmployeeID INNER JOIN Employee on Booking.Employee3=EmployeeID INNER JOIN Employee on Booking.Employee4=EmployeeID INNER JOIN AddOn ON Booking.BookingID=AddOn.AddOnBookingID", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Booking INNER JOIN Room ON Booking.BookingRoom1=Room.RoomName AND Booking.BookingRoom2=Room.RoomName INNER JOIN Employee on Booking.BookingEmployee1=EmployeeID and Booking.BookingEmployee2=EmployeeID AND Booking.BookingEmployee3=EmployeeID And Booking.BookingEmployee4=EmployeeID INNER JOIN AddOn ON Booking.BookingID=AddOn.AddOnBookingID;", connection);
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
@@ -35,10 +35,10 @@ namespace LokalRisteriet.Persistence
                         rooms.Add(room1);
                         rooms.Add(room2);
                         List<Employee> employees = new List<Employee>();
-                        Employee employee1 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee2 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee3 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee4 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee1 = new Employee(int.Parse(dr["EmployeeID"].ToString()),dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee2 = new Employee(int.Parse(dr["EmployeeID"].ToString()),dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee3 = new Employee(int.Parse(dr["EmployeeID"].ToString()),dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                        Employee employee4 = new Employee(int.Parse(dr["EmployeeID"].ToString()),dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
                         employees.Add(employee1);
                         employees.Add(employee2);
                         employees.Add(employee3);

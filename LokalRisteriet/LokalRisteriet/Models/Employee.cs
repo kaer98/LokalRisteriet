@@ -7,14 +7,24 @@ namespace LokalRisteriet.Models
         public double Price
         {
             // Return 400 if employee is over 18 else 200
-            get => IsOverEightteen ? 400.0 : 200.0;
+            get => IsAdult ? 400.0 : 200.0;
         }
-        public bool IsOverEightteen { get; private set; }
+        public bool IsAdult { get; private set; }
 
-        public Employee(string name, bool isOverEightteen)
+        private int _employeeID;
+
+        public int EmployeeID
         {
+            get { return _employeeID; }
+            set { _employeeID = value; }
+        }
+
+
+        public Employee(int id, string name, bool isAdult)
+        {
+            _employeeID = id;
             Name = name;
-            IsOverEightteen = isOverEightteen;
+            IsAdult = isAdult;
         }
     }
 }
