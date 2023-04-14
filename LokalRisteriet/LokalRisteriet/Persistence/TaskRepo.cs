@@ -85,6 +85,10 @@ namespace LokalRisteriet.Persistence
 
         }
 
+        public List<Task> GetAllTasks()
+        {
+            return _tasks;
+        }
 
 
     }

@@ -35,7 +35,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public List<Employee> GetEmployees()
+        public List<Employee> GetAllEmployees()
         {
             return _employees;
         }
