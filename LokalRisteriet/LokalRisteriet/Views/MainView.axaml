@@ -11,10 +11,42 @@
        
 
         <!--Middle (Main) Bar-->
-        <Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="*,*">
+        <Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="Auto,*">
+
+			<Grid.Styles>
+				<Style Selector="Calendar:checked">
+					<Setter Property="Background" Value="Red"></Setter>
+				</Style>
+			</Grid.Styles>
 
 
-            <ListBox Grid.Row="0" Background="#e1e5ea" BorderBrush="#121212" BorderThickness="4"  Margin="50,20,50,0" CornerRadius="20">
+			<Grid Grid.Row="0" ColumnDefinitions="Auto,*">
+				<Calendar Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center" Height="400"  VerticalAlignment="Center" SelectionMode="SingleDate">
+				</Calendar>
+
+				<ListBox Grid.Column="1" Background="#e1e5ea" BorderBrush="#121212" BorderThickness="4"  Margin="50,20,50,0" CornerRadius="20">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+
+
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+					<ListBoxItem>d. 25-05-2023: Booket til Hr. Jørgen Jørgensen</ListBoxItem>
+
+                       
+             
+
+            </ListBox>
+			</Grid>
+
+
+
+			
+            <!--<ListBox Grid.Row="0" Background="#e1e5ea" BorderBrush="#121212" BorderThickness="4"  Margin="50,20,50,0" CornerRadius="20">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -50,7 +82,7 @@
                     </Grid>
                 </ListBoxItem>
 
-            </ListBox>
+            </ListBox>-->
 
             <Grid Grid.Row="1" RowDefinitions="*" VerticalAlignment="Top" >
             <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="50,10,50,0" >
