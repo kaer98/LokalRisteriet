@@ -113,7 +113,7 @@ namespace LokalRisteriet.Models
             get { return _amountOfGuests; }
             set { _amountOfGuests = value; }
         }
-        public bool Reserved
+        public bool BookingReserved
         {
             get { return _reserved; }
             set { _reserved = value; }

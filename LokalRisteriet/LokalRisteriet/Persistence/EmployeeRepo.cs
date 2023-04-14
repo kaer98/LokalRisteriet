@@ -34,5 +34,57 @@ namespace LokalRisteriet.Persistence
                 }
             }
         }
+
+        public List<Employee> GetEmployees()
+        {
+            return _employees;
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            _employees.Add(employee);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Employee(EmployeeName, EmployeeAdult) VALUES(@name, @adult)", connection);
+                cmd.Parameters.AddWithValue("@name", employee.Name);
+                cmd.Parameters.AddWithValue("@adult", employee.IsAdult);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            int i = _employees.FindIndex(e => e.EmployeeID == employee.EmployeeID);
+            _employees[i] = employee;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE Employee SET EmployeeName = @name, EmployeeAdult = @adult WHERE EmployeeID = @id", connection);
+                cmd.Parameters.AddWithValue("@name", employee.Name);
+                cmd.Parameters.AddWithValue("@adult", employee.IsAdult);
+                cmd.Parameters.AddWithValue("@id", employee.EmployeeID);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteEmployee(Employee employee)
+        {
+            _employees.Remove(employee);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Employee WHERE EmployeeID = @id", connection);
+                cmd.Parameters.AddWithValue("@id", employee.EmployeeID);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public Employee GetEmployeeByName(string employeeName)
+        {
+            return _employees.Find(e => e.Name == employeeName);
+
+        }
+
     }
 }

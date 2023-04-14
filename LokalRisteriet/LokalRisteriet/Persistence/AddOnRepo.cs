@@ -35,5 +35,66 @@ namespace LokalRisteriet.Persistence
             }
         }
 
+        public void addAddOn(AddOn addOn)
+        {
+            _addOns.Add(addOn);
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO AddOn (AddOnName, AddOnPrice, AddOnBookingId) VALUES (@name, @price, @bookingID)", connection);
+                cmd.Parameters.AddWithValue("@name", addOn.Name);
+                cmd.Parameters.AddWithValue("@price", addOn.Price);
+                cmd.Parameters.AddWithValue("@bookingID", addOn.AddOnBookingID);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public List<AddOn> GetAllAddOns()
+        {
+            return _addOns;
+        }
+
+        public void DeleteAddOnByID(int id)
+        {
+            AddOn addOn = _addOns.Find(a => a.AddOnID == id);
+            _addOns.Remove(addOn);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM AddOn WHERE AddOnId = @id", connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void deleteAddOn(AddOn addOn)
+        {
+            _addOns.Remove(addOn);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM AddOn WHERE AddOnId = @id", connection);
+                cmd.Parameters.AddWithValue("@id", addOn.AddOnID);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void updateAddOn(AddOn addOn)
+        {
+            int i =_addOns.FindIndex(a => a.AddOnID == addOn.AddOnID);
+            _addOns[i] = addOn;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE AddOn SET AddOnName = @name, AddOnPrice = @price, AddOnBookingId = @bookingID WHERE AddOnId = @id", connection);
+                cmd.Parameters.AddWithValue("@name", addOn.Name);
+                cmd.Parameters.AddWithValue("@price", addOn.Price);
+                cmd.Parameters.AddWithValue("@bookingID", addOn.AddOnBookingID);
+                cmd.Parameters.AddWithValue("@id", addOn.AddOnID);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

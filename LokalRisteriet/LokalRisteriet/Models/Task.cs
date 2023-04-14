@@ -3,14 +3,15 @@ namespace LokalRisteriet.Models
 {
     public class Task
     {
-        public string Name { get; private set; }
-        public bool IsDone { get; set; }
+        public string TaskName { get; private set; }
+        public int TaskID { get; set; }
+        public bool TaskIsDone { get; set; }
         public Employee TaskEmployee { get; set; }
 
         public Task(string name)
         {
-            Name = name;
-            IsDone = false;
+            TaskName = name;
+            TaskIsDone = false;
         }
     }
 }

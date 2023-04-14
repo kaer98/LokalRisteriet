@@ -34,7 +34,7 @@ namespace LokalRisteriet.Persistence
                         Task task = new Task(name);
                         if (employeeID != 0)
                         {
-                            task.IsDone = true;
+                            task.TaskIsDone = true;
                         }
                         
                         Employee employee = new Employee(employeeID,employeeName,employeeAdult);
@@ -44,6 +44,48 @@ namespace LokalRisteriet.Persistence
                 }
             }
         }
+
+        public void AddTask(Task task)
+        {
+            _tasks.Add(task);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName) VALUES(@TaskName)", connection);
+                cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteTask(Task task)
+        {
+            _tasks.Remove(task);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Task WHERE TaskId = @TaskId", connection);
+                cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateTask(Task task)
+        {
+            int i =_tasks.FindIndex(t => t.TaskID == task.TaskID);
+            _tasks[i] = task;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskEmployee = @TaskEmployee WHERE TaskId = @TaskId", connection);
+                cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                cmd.Parameters.AddWithValue("@TaskEmployee", task.TaskEmployee.EmployeeID);
+                cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
+                cmd.ExecuteNonQuery();
+            }
+
+        }
+
+
 
     }
 }

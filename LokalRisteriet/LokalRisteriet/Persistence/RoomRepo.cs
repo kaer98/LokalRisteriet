@@ -33,5 +33,50 @@ namespace LokalRisteriet.Persistence
             }
         }
 
+        public void AddRoom(Room room)
+        {
+            _rooms.Add(room);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Room (RoomName, RoomCapacity) VALUES (@name, @capacity)", connection);
+                cmd.Parameters.AddWithValue("@name", room.RoomName);
+                cmd.Parameters.AddWithValue("@capacity", room.Capacity);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public List<Room> GetAllRooms()
+        {
+            return _rooms;
+        }
+
+        public void DeleteRoom(Room room)
+        {
+            _rooms.Remove(room);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Room WHERE RoomName = @name", connection);
+                cmd.Parameters.AddWithValue("@name", room.RoomName);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateRoom(Room room)
+        {
+            int i = _rooms.FindIndex(r => r.RoomName == room.RoomName);
+            _rooms[i] = room;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE Room SET RoomName = @name, RoomCapacity = @capacity WHERE RoomName = @name", connection);
+                cmd.Parameters.AddWithValue("@name", room.RoomName);
+                cmd.Parameters.AddWithValue("@capacity", room.Capacity);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
     }
 }
