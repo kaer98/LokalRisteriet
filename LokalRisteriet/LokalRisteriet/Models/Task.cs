@@ -15,5 +15,6 @@ namespace LokalRisteriet.Models
             TaskName = name;
             TaskIsDone = false;
         }
+        public Task() { }
     }
 }

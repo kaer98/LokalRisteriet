@@ -71,8 +71,8 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Room WHERE RoomName = @name", connection);
-                cmd.Parameters.AddWithValue("@name", room.RoomName);
+                SqlCommand cmd = new SqlCommand("DELETE FROM Room WHERE RoomID = @RoomID", connection);
+                cmd.Parameters.AddWithValue("@RoomID", room.RoomID);
                 cmd.ExecuteNonQuery();
             }
         }

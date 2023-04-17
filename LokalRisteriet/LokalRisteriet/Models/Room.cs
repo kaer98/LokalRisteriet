@@ -13,5 +13,7 @@ namespace LokalRisteriet.Models
             RoomName = name;
             Capacity = capacity;
         }
+
+        public Room() { }
     }
 }

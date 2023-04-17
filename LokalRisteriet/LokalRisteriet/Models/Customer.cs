@@ -19,5 +19,6 @@ namespace LokalRisteriet.Models
             CustomerPhoneNo = customerPhoneNo;
             CustomerEmail = customerEmail;
         }
+        public Customer() { }
     }
 }

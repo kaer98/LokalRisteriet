@@ -36,7 +36,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Booking INNER JOIN Room ON Booking.BookingRoom1=Room.RoomName AND Booking.BookingRoom2=Room.RoomName INNER JOIN Employee on Booking.BookingEmployee1=EmployeeID and Booking.BookingEmployee2=EmployeeID AND Booking.BookingEmployee3=EmployeeID And Booking.BookingEmployee4=EmployeeID INNER JOIN AddOn ON Booking.BookingID=AddOn.AddOnBookingID;", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Booking", connection);
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
@@ -47,15 +47,28 @@ namespace LokalRisteriet.Persistence
                         List<Room> rooms = new List<Room>();
                         for (int i = 1; i <= 2; i++)
                         {
-                            Room room = new Room(dr[$"BookingRoom{i}"].ToString(), int.Parse((string)dr["RoomCapacity"].ToString()));
-                            rooms.Add(room);
-                        }
+                            int id = 0;
+                            if (dr[$"BookingRoom{i}"] != DBNull.Value)
+                            {
+                                string s = dr[$"BookingRoom{i}"].ToString();
+                                id = int.Parse(dr[$"BookingRoom{i}"].ToString());
+
+                            }
+                            Room room = new Room();
+                            room.RoomID = id;
+                                rooms.Add(room);
+                          }
 
                         List<Employee> employees = new List<Employee>();
                         for (int i = 1; i <= 4; i++)
                         {
-                            Employee employee = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                            employee.EmployeeID = int.Parse(dr[$"BookingEmployee{i}"].ToString());
+                            Employee employee = new Employee();
+                            int id = 0;
+                            if (dr[$"BookingEmployee{i}"] != DBNull.Value)
+                            {
+                                id = int.Parse(dr[$"BookingEmployee{i}"].ToString());
+                            }
+                            employee.EmployeeID = id;
                             employees.Add(employee);
                         }
 
@@ -64,7 +77,11 @@ namespace LokalRisteriet.Persistence
                         DateTime bookingStart = DateTime.Parse(dr["BookingStart"].ToString());
                         DateTime bookingEnd = DateTime.Parse(dr["BookingEnd"].ToString());
                         TimeSpan bookingDuration = TimeSpan.Parse(dr["BookingDuration"].ToString());
-                        int bookingCustomerID = int.Parse(dr["BookingCustomerID"].ToString());
+                        int bookingCustomerID = 0;
+                        if (dr["BookingCustomerID"] != DBNull.Value)
+                        {
+                            bookingCustomerID = int.Parse(dr["BookingCustomerID"].ToString());
+                        }
                         int bookingAmountOfGuests = int.Parse(dr["BookingAmountOfGuests"].ToString());
                         double bookingPrice = double.Parse(dr["BookingPrice"].ToString());
                         bool bookingReserved = bool.Parse(dr["BookingReserved"].ToString());
@@ -112,7 +129,7 @@ namespace LokalRisteriet.Persistence
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue($"@BookingRoom{i}", booking.BookingRooms[i - 1].RoomName);
+                        cmd.Parameters.AddWithValue($"@BookingRoom{i}", booking.BookingRooms[i - 1].RoomID);
                     }
                 }
 
@@ -168,7 +185,7 @@ namespace LokalRisteriet.Persistence
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue($"@BookingRoom{n}", booking.BookingRooms[n - 1].RoomName);
+                        cmd.Parameters.AddWithValue($"@BookingRoom{n}", booking.BookingRooms[n - 1].RoomID);
                     }
                 }
 

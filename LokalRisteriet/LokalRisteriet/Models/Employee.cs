@@ -25,5 +25,6 @@ namespace LokalRisteriet.Models
             EmployeeName = name;
             IsAdult = isAdult;
         }
+        public Employee() { }
     }
 }
