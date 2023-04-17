@@ -86,10 +86,7 @@ namespace LokalRisteriet.Persistence
 
         }
 
-        public List<Booking> GetAllBookings()
-        {
-            return _bookings;
-        }
+        public List<Booking> GetAllBookings() => _bookings;
 
         public Booking AddBooking(Booking booking)
         {
