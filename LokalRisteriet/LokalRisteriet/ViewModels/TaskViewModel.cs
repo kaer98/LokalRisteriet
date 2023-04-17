@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
 using Task = LokalRisteriet.Models.Task;
 
@@ -35,6 +36,11 @@ namespace LokalRisteriet.ViewModels
         public void UpdateTask(Task task)
         {
             _taskRepo.UpdateTask(task);
+        }
+
+        public void AddTaskFromBooking(Booking booking)
+        {
+            _taskRepo.AddTasksFromBooking(booking);
         }
     }
 }

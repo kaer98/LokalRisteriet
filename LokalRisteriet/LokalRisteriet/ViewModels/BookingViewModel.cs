@@ -17,9 +17,9 @@ namespace LokalRisteriet.ViewModels
             _bookingRepo = new BookingRepo();
         }
 
-        public void AddBooking(Booking booking)
+        public Booking AddBooking(Booking booking)
         {
-            _bookingRepo.AddBooking(booking);
+           return _bookingRepo.AddBooking(booking);
         }
 
         public void DeleteBooking(Booking booking)

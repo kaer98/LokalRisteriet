@@ -14,10 +14,27 @@ namespace LokalRisteriet.Persistence
     public class BookingRepo 
     {
         private List<Booking> _bookings;
+        private int nextID = 0;
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
 
         public BookingRepo()
         {
+            using(SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('Booking') + IDENT_INCR('Booking') AS NextID", connection);
+                using(SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = int.Parse(dr["NextID"].ToString());
+                        if (id > nextID)
+                        {
+                            nextID = id;
+                        }
+                    }
+                }
+            }
             _bookings = new List<Booking>();
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -77,7 +94,7 @@ namespace LokalRisteriet.Persistence
             return _bookings;
         }
 
-        public void AddBooking(Booking booking)
+        public Booking AddBooking(Booking booking)
         {
             while (booking.BookingRooms.Count < 2)
             {
@@ -166,6 +183,8 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
                 cmd.ExecuteNonQuery();
             }
+            booking.BookingID = nextID;
+            return booking;
         }
 
         public void UpdateBooking(Booking booking)
@@ -250,6 +269,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
                 cmd.ExecuteNonQuery();
             }
+            
         }
 
         public void DeleteBookingByID(int bookingID)

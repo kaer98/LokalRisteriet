@@ -12,13 +12,37 @@ namespace LRTests
         {
             //Arrange
             Task task = new Task("Test");
+            TaskViewModel taskViewModel = new TaskViewModel();
 
             //Act
-            TaskViewModel taskViewModel = new TaskViewModel();
+
             taskViewModel.AddTask(task);
 
             //Assert
             Assert.AreEqual(task, taskViewModel.GetTasks().Last());
+
+        }
+        [TestMethod]
+        public void TestAddTaskToBooking()
+        {
+            //Arrange
+            Task task = new Task("Test");
+            List<Room> rooms = new List<Room>() { new Room("test", 10) };
+            List<Employee> employees = new List<Employee>() { new Employee("test", true) };
+            DateTime start = new DateTime(2023, 04, 09, 13, 30, 0);
+            DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
+            Booking booking = new Booking("konfirmation", "sørger selv for drikkelse", rooms, start, end, 1, false);
+            BookingViewModel bookingViewModel = new BookingViewModel();
+            TaskViewModel taskViewModel = new TaskViewModel();
+
+            //Act
+            
+            booking = bookingViewModel.AddBooking(booking);
+            booking.BookingAddTask(task);
+            taskViewModel.AddTaskFromBooking(booking);
+
+            //Assert
+            Assert.AreEqual(task , taskViewModel.GetTasks().Last());
 
         }
 

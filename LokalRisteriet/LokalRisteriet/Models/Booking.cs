@@ -119,6 +119,12 @@ namespace LokalRisteriet.Models
             set { _reserved = value; }
         }
 
+        public void BookingAddTask(Task task)
+        {
+            task.TaskBookingID = BookingID;
+            _tasks.Add(task);
+        }
+
 
         public Booking(string bookingtype, string bookingnote , List<Room> rooms, DateTime startDateTime, DateTime endDateTime, double amountOfGuests, bool reserved)
         {
@@ -131,6 +137,9 @@ namespace LokalRisteriet.Models
             _amountOfGuests = amountOfGuests;
             _reserved = reserved;
             _employees = new List<Employee>(4);
+            _tasks = new List<Task>();
+            _addOns = new List<AddOn>();
+
         }
     }
 }

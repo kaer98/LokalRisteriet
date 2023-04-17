@@ -31,6 +31,7 @@ namespace LokalRisteriet.Persistence
                         int employeeID = int.Parse(dr["TaskEmployee"].ToString());
                         string employeeName = dr["EmployeeName"].ToString();
                         bool employeeAdult = bool.Parse(dr["EmployeeAdult"].ToString());
+                        int bookingID = int.Parse(dr["TaskBookingID"].ToString());
                         Task task = new Task(name);
                         if (employeeID != 0)
                         {
@@ -38,8 +39,10 @@ namespace LokalRisteriet.Persistence
                         }
                         
                         Employee employee = new Employee(employeeName,employeeAdult);
+
                         employee.EmployeeID = employeeID;
                         task.TaskEmployee = employee;
+                        task.TaskBookingID = bookingID;
                         _tasks.Add(task);
                     }
                 }
@@ -52,9 +55,21 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName) VALUES(@TaskName)", connection);
-                cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
-                cmd.ExecuteNonQuery();
+                if (task.TaskEmployee == null)
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID) VALUES(@TaskName, @TaskBookingID)", connection);
+                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                    cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
+                    cmd.ExecuteNonQuery();
+                }
+                else 
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName,TaskEmployee, TaskBookingID) Values(@TaskName, @TaskEmployee, @TaskBookingID)", connection);
+                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                    cmd.Parameters.AddWithValue("@TaskEmployee", task.TaskEmployee.EmployeeID);
+                    cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -101,6 +116,14 @@ namespace LokalRisteriet.Persistence
             return _tasks;
         }
 
+        public void AddTasksFromBooking(Booking booking)
+        {
+            foreach (Task t in booking.BookingTasks)
+            {
+                t.TaskBookingID = booking.BookingID;
+                AddTask(t);
+            }
+        }
 
     }
 }

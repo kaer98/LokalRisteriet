@@ -8,6 +8,8 @@ namespace LokalRisteriet.Models
         public bool TaskIsDone { get; set; }
         public Employee TaskEmployee { get; set; }
 
+        public int TaskBookingID { get; set; }
+
         public Task(string name)
         {
             TaskName = name;
