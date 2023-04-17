@@ -10,10 +10,27 @@ namespace LokalRisteriet.Persistence
         //private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         private List<Room> _rooms;
+        private int nextID = 0;
 
         public RoomRepo()
         {
             _rooms = new List<Room>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('Room') + IDENT_INCR('Room') AS NextID", connection);
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = int.Parse(dr["NextID"].ToString());
+                        if (id > nextID)
+                        {
+                            nextID = id;
+                        }
+                    }
+                }
+            }
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();

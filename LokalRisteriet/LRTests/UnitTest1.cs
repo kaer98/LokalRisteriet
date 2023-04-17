@@ -263,6 +263,54 @@ namespace LRTests
             //Assert
             Assert.AreEqual(booking, bookingViewModel.GetBookings().Last());
         }
+
+        [TestMethod]
+        public void TestAddCustomer()
+        {
+            //Arrange
+            Customer customer = new Customer("jens", "12345687", "jens@mogens.dk");
+            CustomerViewModel customerViewModel = new CustomerViewModel();
+
+            //Act
+            customerViewModel.AddCustomer(customer);
+
+            //Assert
+            Assert.AreEqual(customer, customerViewModel.GetAllCustomers().Last());
+        }
+
+        [TestMethod]
+        public void TestRemoveCustomer()
+        {
+            //Arrange
+            Customer customer = new Customer("jens", "12312312", "jens@mogens.dk");
+            CustomerViewModel customerViewModel = new CustomerViewModel();
+            int count = customerViewModel.GetAllCustomers().Count();
+
+            //Act
+            customerViewModel.AddCustomer(customer);
+            customerViewModel.DeleteCustomer(customer);
+
+            //Assert
+            Assert.AreEqual(count, customerViewModel.GetAllCustomers().Count());
+        }
+
+        [TestMethod]
+        public void TestUpdateCustomer()
+        {
+            //Arrange
+            Customer customer = new Customer("jens", "12312312", "jens@mogens.dk");
+            CustomerViewModel customerViewModel = new CustomerViewModel();
+
+            //Act
+            int i = customerViewModel.AddCustomer(customer);
+            customer.CustomerId = i;
+            customer.CustomerName = "test";
+            customerViewModel.UpdateCustomer(customer);
+
+            //Assert
+            Assert.AreEqual(customer,customerViewModel.GetAllCustomers().Last());
+
+        }
         
     }
 }

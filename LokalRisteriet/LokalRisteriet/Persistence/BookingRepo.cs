@@ -175,7 +175,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
                 cmd.ExecuteNonQuery();
             }
-            booking.BookingID = nextID;
+            booking.BookingID = nextID++;
             return booking;
         }
 

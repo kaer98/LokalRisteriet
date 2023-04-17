@@ -20,9 +20,9 @@ namespace LokalRisteriet.ViewModels
         {
             return _customerRepo.GetAllCustomers;
         }
-        public void AddCustomer(Customer customer)
+        public int AddCustomer(Customer customer)
         {
-            _customerRepo.AddCustomer(customer);
+           return _customerRepo.AddCustomer(customer);
         }
         public void UpdateCustomer(Customer customer)
         {
