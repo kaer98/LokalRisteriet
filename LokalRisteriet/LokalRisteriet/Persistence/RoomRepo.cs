@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
 
@@ -10,7 +7,7 @@ namespace LokalRisteriet.Persistence
 {
     public class RoomRepo
     {
-        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
+        private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
         private List<Room> _rooms;
 
         public RoomRepo()
