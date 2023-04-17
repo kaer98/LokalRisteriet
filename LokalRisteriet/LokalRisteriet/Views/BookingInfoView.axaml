@@ -8,7 +8,7 @@
 
 
 
-<Grid Background="#f6f6f6" RowDefinitions="*,*">
+<Grid Background="#f6f6f6" RowDefinitions="*,*,30">
 
 
 	<Grid Grid.Row="0" ColumnDefinitions="*,*" RowDefinitions="30,*"   >
@@ -22,9 +22,29 @@
 				
 			</ListBox.ItemTemplate>
 
-			<ListBoxItem>Coca-Cola 1.5 Liter</ListBoxItem>
-			<ListBoxItem>Kaffe</ListBoxItem>
-			<ListBoxItem>Kildevand</ListBoxItem>
+			<ListBoxItem>
+				<Grid ColumnDefinitions="*">
+					<Label>Cola</Label>
+					<CheckBox HorizontalAlignment="Right"></CheckBox>
+				</Grid>
+				
+			</ListBoxItem>
+
+
+			<ListBoxItem>
+				<Grid ColumnDefinitions="*">
+					<Label>Kaffe</Label>
+					<CheckBox HorizontalAlignment="Right"></CheckBox>
+				</Grid>
+
+			</ListBoxItem>
+			<ListBoxItem>
+				<Grid ColumnDefinitions="*">
+					<Label>Vand</Label>
+					<CheckBox HorizontalAlignment="Right"></CheckBox>
+				</Grid>
+
+			</ListBoxItem>
 
 
 
@@ -34,9 +54,27 @@
 
 			</ListBox.ItemTemplate>
 
-			<ListBoxItem>Rengøring af Glas</ListBoxItem>
-			<ListBoxItem>Servering</ListBoxItem>
-			<ListBoxItem>Ekstra Rengøring</ListBoxItem>
+			<ListBoxItem>
+				<Grid ColumnDefinitions="*">
+					<Label>Rengøring af glas</Label>
+					<CheckBox HorizontalAlignment="Right"></CheckBox>
+				</Grid>
+
+			</ListBoxItem>
+			<ListBoxItem>
+				<Grid ColumnDefinitions="*">
+					<Label>Servering</Label>
+					<CheckBox HorizontalAlignment="Right"></CheckBox>
+				</Grid>
+
+			</ListBoxItem>
+			<ListBoxItem>
+				<Grid ColumnDefinitions="*">
+					<Label>Ekstra rengøring</Label>
+					<CheckBox HorizontalAlignment="Right"></CheckBox>
+				</Grid>
+
+			</ListBoxItem>
 
 		</ListBox>
 
@@ -44,9 +82,9 @@
 	<StackPanel Grid.Row="1" Margin="10,0,0,0" Spacing="5" Orientation="Horizontal" VerticalAlignment="Top">
     <Button  Margin="0,0,0,0" >Tilføj produkter</Button>
         <Button  Margin="0,0,0,0" >Tilføj Tasks</Button>
-        <Label x:Name="Lbl1"></Label>
 
 	</StackPanel>
+	<Label Grid.Row="2" Content="*Navn*, *Email*, *Tlf Nummer*"></Label>
 
 </Grid>
 
