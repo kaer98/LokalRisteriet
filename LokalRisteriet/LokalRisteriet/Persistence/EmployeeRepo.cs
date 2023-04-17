@@ -33,10 +33,8 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public List<Employee> GetAllEmployees()
-        {
-            return _employees;
-        }
+        public List<Employee> GetAllEmployees() => _employees;
+
 
         public void AddEmployee(Employee employee)
         {
@@ -78,11 +76,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public Employee GetEmployeeByName(string employeeName)
-        {
-            return _employees.Find(e => e.EmployeeName == employeeName);
-
-        }
+        public Employee GetEmployeeByName(string employeeName) => _employees.Find(e => e.EmployeeName == employeeName);
 
     }
 }

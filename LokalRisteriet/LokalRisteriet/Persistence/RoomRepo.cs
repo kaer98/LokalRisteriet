@@ -46,10 +46,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public List<Room> GetAllRooms()
-        {
-            return _rooms;
-        }
+        public List<Room> GetAllRooms() => _rooms;
 
         public void DeleteRoom(Room room)
         {

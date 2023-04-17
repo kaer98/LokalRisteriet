@@ -68,10 +68,8 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public List<AddOn> GetAllAddOns()
-        {
-            return _addOns;
-        }
+        public List<AddOn> GetAllAddOns() => _addOns;
+
 
         public void DeleteAddOnByID(int id)
         {
@@ -114,10 +112,6 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public AddOn GetAddOnByID(int id)
-        {
-            return _addOns.Find(a => a.AddOnID == id);
-        }
-
+        public AddOn GetAddOnByID(int id) => _addOns.Find(a => a.AddOnID == id);
     }
 }
