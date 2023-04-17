@@ -61,7 +61,7 @@ namespace LokalRisteriet.Persistence
                 }
                 else if (task.TaskBookingID != 0 && task.TaskEmployee==null) 
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName,TaskEmployee, TaskBookingID) Values(@TaskName, @TaskEmployee, @TaskBookingID)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID) Values(@TaskName, @TaskBookingID)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
                     cmd.ExecuteNonQuery();
