@@ -114,10 +114,7 @@ namespace LokalRisteriet.Persistence
 
         }
 
-        public List<Task> GetAllTasks()
-        {
-            return _tasks;
-        }
+        public List<Task> GetAllTasks() => _tasks;
 
         public void AddTasksFromBooking(Booking booking)
         {
