@@ -46,24 +46,22 @@ namespace LokalRisteriet.Persistence
                     {
                         int bookingID = int.Parse((string)dr["BookingID"].ToString());
                         string bookingtype = dr["BookingType"].ToString();
+
                         List<Room> rooms = new List<Room>();
-                        Room room1 = new Room(dr["BookingRoom1"].ToString(), int.Parse((string)dr["RoomCapacity"].ToString()));
-                        Room room2 = new Room(dr["BookingRoom2"].ToString(), int.Parse((string)dr["RoomCapacity"].ToString()));
-                        rooms.Add(room1);
-                        rooms.Add(room2);
+                        for (int i = 1; i <= 2; i++)
+                        {
+                            Room room = new Room(dr[$"BookingRoom{i}"].ToString(), int.Parse((string)dr["RoomCapacity"].ToString()));
+                            rooms.Add(room);
+                        }
+
                         List<Employee> employees = new List<Employee>();
-                        Employee employee1 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee2 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee3 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        Employee employee4 = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
-                        employee1.EmployeeID = int.Parse(dr["BookingEmployee1"].ToString());
-                        employee2.EmployeeID = int.Parse(dr["BookingEmployee2"].ToString());
-                        employee3.EmployeeID = int.Parse(dr["BookingEmployee3"].ToString());
-                        employee4.EmployeeID = int.Parse(dr["BookingEmployee4"].ToString());
-                        employees.Add(employee1);
-                        employees.Add(employee2);
-                        employees.Add(employee3);
-                        employees.Add(employee4);
+                        for (int i = 1; i <= 4; i++)
+                        {
+                            Employee employee = new Employee(dr["EmployeeName"].ToString(), bool.Parse(dr["EmployeeAdult"].ToString()));
+                            employee.EmployeeID = int.Parse(dr[$"BookingEmployee{i}"].ToString());
+                            employees.Add(employee);
+                        }
+
                         List<AddOn> addOns = new List<AddOn>();
 
                         DateTime bookingStart = DateTime.Parse(dr["BookingStart"].ToString());
