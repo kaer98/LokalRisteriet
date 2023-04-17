@@ -12,8 +12,8 @@
         <Style Selector="Button">
 
             <Setter Property="CornerRadius" Value="20"></Setter>
-            <Setter Property="Background" Value="#32efb9"></Setter>
-            <Setter Property="Foreground" Value="#282826"></Setter>
+            <Setter Property="Background" Value="#008752"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
 
         </Style>
 
@@ -21,7 +21,8 @@
 
             <Setter Property="CornerRadius" Value="20"></Setter>
             <Setter Property="Background" Value="#282826"></Setter>
-            <Setter Property="TextBlock.Foreground" Value="#32efb9"></Setter>
+            <Setter Property="TextBlock.Foreground" Value="White"></Setter>
+			
 
 
         </Style>
