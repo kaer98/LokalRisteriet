@@ -13,12 +13,29 @@ namespace LokalRisteriet.Persistence
     public class CustomerRepo
     {
         private List<Customer> _customers;
-        private string connectionsString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
-
+        private int nextID = 0;
+        //private string connectionsString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         public CustomerRepo()
         { 
          _customers = new List<Customer>();
-            using (SqlConnection sqlConnection = new SqlConnection(connectionsString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('Customer') + IDENT_INCR('Customer') AS NextID", connection);
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = int.Parse(dr["NextID"].ToString());
+                        if (id > nextID)
+                        {
+                            nextID = id;
+                        }
+                    }
+                }
+            }
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Customer", sqlConnection);
@@ -30,7 +47,8 @@ namespace LokalRisteriet.Persistence
                         string customerPhoneNo = dr["CustomerPhoneNO"].ToString();
                         int customerID = int.Parse(dr["CustomerID"].ToString());
                         string customerEmail = dr["CustomerEmail"].ToString();
-                        Customer customer = new Customer(customerID, name, customerPhoneNo, customerEmail);
+                        Customer customer = new Customer(name, customerPhoneNo, customerEmail);
+                        customer.CustomerId = customerID;
                         _customers.Add(customer);
                     }
                  }
@@ -38,10 +56,10 @@ namespace LokalRisteriet.Persistence
         }
         public List<Customer> GetAllCustomers => _customers;
 
-        public void AddCustomer(Customer customer)
+        public int AddCustomer(Customer customer)
         {
             _customers.Add(customer);
-            using (SqlConnection sqlConnection = new SqlConnection(connectionsString))
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO Customer(CustomerName, CustomerPhoneNO, CustomerEmail) VALUES(@name, @phoneNO, @eMail)", sqlConnection);
@@ -50,13 +68,14 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@eMail", customer.CustomerEmail);
                 cmd.ExecuteNonQuery();
             }
+            return nextID++;
         }
 
         public void UpdateCustomer(Customer customer)
         {
             int i  = _customers.FindIndex(c => c.CustomerId == customer.CustomerId);
             _customers[i] = customer;
-            using(SqlConnection sqlConnection = new SqlConnection(connectionsString))
+            using(SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE Customer Set CustomerName = @name,CustomerEmail = @customerEmail, CustomerPhoneNo = @customerPhoneNo WHERE CustomerID = @id", sqlConnection);
@@ -71,7 +90,7 @@ namespace LokalRisteriet.Persistence
         public void DeleteCustomer(Customer customer)
         {
             _customers.Remove(customer);
-            using (SqlConnection connection = new SqlConnection(connectionsString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("DELETE FROM Customer WHERE CustomerID = @id", connection);

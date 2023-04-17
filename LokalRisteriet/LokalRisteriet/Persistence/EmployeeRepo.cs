@@ -7,12 +7,30 @@ namespace LokalRisteriet.Persistence
 {
     public class EmployeeRepo
     {
-        private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        //  private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         private List<Employee> _employees;
+        private int nextID = 0;
 
         public EmployeeRepo()
         {
             _employees = new List<Employee>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('Employee') + IDENT_INCR('Employee') AS NextID", connection);
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = int.Parse(dr["NextID"].ToString());
+                        if (id > nextID)
+                        {
+                            nextID = id;
+                        }
+                    }
+                }
+            }
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -32,10 +50,8 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public List<Employee> GetAllEmployees()
-        {
-            return _employees;
-        }
+        public List<Employee> GetAllEmployees() => _employees;
+
 
         public void AddEmployee(Employee employee)
         {
@@ -77,11 +93,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public Employee GetEmployeeByName(string employeeName)
-        {
-            return _employees.Find(e => e.EmployeeName == employeeName);
-
-        }
+        public Employee GetEmployeeByName(string employeeName) => _employees.Find(e => e.EmployeeName == employeeName);
 
     }
 }

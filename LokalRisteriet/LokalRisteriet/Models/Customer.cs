@@ -13,9 +13,8 @@ namespace LokalRisteriet.Models
         public string CustomerPhoneNo { get; set; }
         public string CustomerEmail { get; set; }
 
-        public Customer(int customerId, string customerName, string customerPhoneNo, string customerEmail)
+        public Customer(string customerName, string customerPhoneNo, string customerEmail)
         {
-            CustomerId = customerId;
             CustomerName = customerName;
             CustomerPhoneNo = customerPhoneNo;
             CustomerEmail = customerEmail;

@@ -7,12 +7,30 @@ namespace LokalRisteriet.Persistence
 {
     public class AddOnRepo
     {
-        private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        //private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         private List<AddOn> _addOns;
+        private int nextID = 0;
 
         public AddOnRepo()
         {
             _addOns = new List<AddOn>();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('AddOn') + IDENT_INCR('AddOn') AS NextID", connection);
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = int.Parse(dr["NextID"].ToString());
+                        if (id > nextID)
+                        {
+                            nextID = id;
+                        }
+                    }
+                }
+            }
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -67,10 +85,8 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public List<AddOn> GetAllAddOns()
-        {
-            return _addOns;
-        }
+        public List<AddOn> GetAllAddOns() => _addOns;
+
 
         public void DeleteAddOnByID(int id)
         {
@@ -113,10 +129,6 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public AddOn GetAddOnByID(int id)
-        {
-            return _addOns.Find(a => a.AddOnID == id);
-        }
-
+        public AddOn GetAddOnByID(int id) => _addOns.Find(a => a.AddOnID == id);
     }
 }

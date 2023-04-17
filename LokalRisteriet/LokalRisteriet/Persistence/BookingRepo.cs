@@ -10,8 +10,9 @@ namespace LokalRisteriet.Persistence
     {
         private List<Booking> _bookings;
         private int nextID = 0;
-        private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
 
+        // private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
 
         public BookingRepo()
         {
@@ -102,59 +103,29 @@ namespace LokalRisteriet.Persistence
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployee1, BookingEmployee2, BookingEmployee3, BookingEmployee4, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployee1, @BookingEmployee2, @BookingEmployee3, @BookingEmployee4, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote)", connection);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
-                if (booking.BookingRooms[0] == null)
+
+                for (int i = 1; i <= 2; i++)
                 {
-                    cmd.Parameters.AddWithValue("@BookingRoom1", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingRoom1", booking.BookingRooms[0].RoomName);
+                    if (booking.BookingRooms[i - 1] is null)
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingRoom{i}", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingRoom{i}", booking.BookingRooms[i - 1].RoomName);
+                    }
                 }
 
-                if (booking.BookingRooms[1] == null)
+                for (int i = 1; i <= 4; i++)
                 {
-                    cmd.Parameters.AddWithValue("@BookingRoom2", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingRoom2", booking.BookingRooms[1].RoomName);
-                }
-
-                if (booking.BookingEmployees[0] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee1", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee1", booking.BookingEmployees[0].EmployeeID);
-                }
-
-                if (booking.BookingEmployees[1] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee2", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee2", booking.BookingEmployees[1].EmployeeID);
-                }
-
-
-                if (booking.BookingEmployees[2] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee3", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee3", booking.BookingEmployees[2].EmployeeID);
-                }
-
-                if (booking.BookingEmployees[3] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee4", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee4", booking.BookingEmployees[3].EmployeeID);
+                    if (booking.BookingEmployees[i - 1] is null)
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingEmployee{i}", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingEmployee{i}", booking.BookingEmployees[i - 1].EmployeeID);
+                    }
                 }
 
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
@@ -174,7 +145,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
                 cmd.ExecuteNonQuery();
             }
-            booking.BookingID = nextID;
+            booking.BookingID = nextID++;
             return booking;
         }
 
@@ -188,59 +159,29 @@ namespace LokalRisteriet.Persistence
                 SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployee1=@BookingEmployee1, BookingEmployee2=@BookingEmployee2, BookingEmployee3=@BookingEmployee3, BookingEmployee4=@BookingEmployee4, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote WHERE BookingID=@BookingID", connection);
                 cmd.Parameters.AddWithValue("@BookingID", booking.BookingID);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
-                if (booking.BookingRooms[0] == null)
+
+                for (int n = 1; n <= 2; n++)
                 {
-                    cmd.Parameters.AddWithValue("@BookingRoom1", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingRoom1", booking.BookingRooms[0].RoomName);
+                    if (booking.BookingRooms[n - 1] is null)
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingRoom{n}", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingRoom{n}", booking.BookingRooms[n - 1].RoomName);
+                    }
                 }
 
-                if (booking.BookingRooms[1] == null)
+                for (int n = 1; n <= 4; n++)
                 {
-                    cmd.Parameters.AddWithValue("@BookingRoom2", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingRoom2", booking.BookingRooms[1].RoomName);
-                }
-
-                if (booking.BookingEmployees[0] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee1", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee1", booking.BookingEmployees[0].EmployeeID);
-                }
-
-                if (booking.BookingEmployees[1] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee2", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee2", booking.BookingEmployees[1].EmployeeID);
-                }
-
-
-                if (booking.BookingEmployees[2] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee3", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee3", booking.BookingEmployees[2].EmployeeID);
-                }
-
-                if (booking.BookingEmployees[3] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee4", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee4", booking.BookingEmployees[3].EmployeeID);
+                    if (booking.BookingEmployees[n - 1] is null)
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingEmployee{n}", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingEmployee{n}", booking.BookingEmployees[n - 1].EmployeeID);
+                    }
                 }
 
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
