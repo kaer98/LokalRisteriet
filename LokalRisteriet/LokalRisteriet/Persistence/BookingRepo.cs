@@ -103,59 +103,29 @@ namespace LokalRisteriet.Persistence
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployee1, BookingEmployee2, BookingEmployee3, BookingEmployee4, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployee1, @BookingEmployee2, @BookingEmployee3, @BookingEmployee4, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote)", connection);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
-                if (booking.BookingRooms[0] == null)
+
+                for (int i = 1; i <= 2; i++)
                 {
-                    cmd.Parameters.AddWithValue("@BookingRoom1", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingRoom1", booking.BookingRooms[0].RoomName);
+                    if (booking.BookingRooms[i - 1] is null)
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingRoom{i}", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingRoom{i}", booking.BookingRooms[i - 1].RoomName);
+                    }
                 }
 
-                if (booking.BookingRooms[1] == null)
+                for (int i = 1; i <= 4; i++)
                 {
-                    cmd.Parameters.AddWithValue("@BookingRoom2", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingRoom2", booking.BookingRooms[1].RoomName);
-                }
-
-                if (booking.BookingEmployees[0] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee1", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee1", booking.BookingEmployees[0].EmployeeID);
-                }
-
-                if (booking.BookingEmployees[1] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee2", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee2", booking.BookingEmployees[1].EmployeeID);
-                }
-
-
-                if (booking.BookingEmployees[2] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee3", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee3", booking.BookingEmployees[2].EmployeeID);
-                }
-
-                if (booking.BookingEmployees[3] == null)
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee4", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BookingEmployee4", booking.BookingEmployees[3].EmployeeID);
+                    if (booking.BookingEmployees[i - 1] is null)
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingEmployee{i}", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue($"@BookingEmployee{i}", booking.BookingEmployees[i - 1].EmployeeID);
+                    }
                 }
 
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
