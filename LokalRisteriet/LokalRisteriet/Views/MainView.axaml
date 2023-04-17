@@ -2,15 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:LokalRisteriet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="LokalRisteriet.Views.MainView">
 
+
+
     <Grid Background="#edf0f5" RowDefinitions="*" >
 
-
-       
-
-        <!--Middle (Main) Bar-->
+	
+		<!--Middle (Main) Bar-->
         <Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="Auto,*">
 
 			<Grid.Styles>
@@ -24,18 +25,19 @@
 				<Calendar Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center" Height="400"  VerticalAlignment="Center" SelectionMode="SingleDate">
 				</Calendar>
 
-				<ListBox Grid.Column="1" Background="#e1e5ea" BorderBrush="#121212" BorderThickness="4"  Margin="50,20,50,0" CornerRadius="20">
+				<ListBox Grid.Column="1" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#121212" BorderThickness="4"  Margin="50,20,50,0" CornerRadius="20">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
 
+						<Grid ColumnDefinitions="Auto,*">
+							<Label Grid.Column="0" Foreground="Black">Type:</Label>
+							<Label Grid.Column="1" Content="{Binding BookingType}" Foreground="Black"></Label>
+						</Grid>
 
-
-                        </Grid>
+                       
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
-					<ListBoxItem>d. 25-05-2023: Booket til Hr. Jørgen Jørgensen</ListBoxItem>
 
                        
              

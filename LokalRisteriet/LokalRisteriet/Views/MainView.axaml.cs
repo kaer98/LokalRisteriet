@@ -3,6 +3,7 @@ using Avalonia.Interactivity;
 using LokalRisteriet.ViewModels;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Avalonia.Collections;
 
 namespace LokalRisteriet.Views
 {

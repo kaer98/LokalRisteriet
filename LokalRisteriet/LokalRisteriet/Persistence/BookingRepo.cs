@@ -10,7 +10,6 @@ namespace LokalRisteriet.Persistence
     {
         private List<Booking> _bookings;
         private int nextID = 0;
-
         private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
 
 

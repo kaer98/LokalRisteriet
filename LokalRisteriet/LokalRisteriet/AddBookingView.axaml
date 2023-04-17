@@ -10,11 +10,11 @@
 	
 <!--Navn, Email, Dato, Starttidspunkt, slut tidspunkt, pris, Antal personale 18-/18+-->
 
-	<StackPanel Spacing="3" VerticalAlignment="Top" HorizontalAlignment="Center" >
+	<StackPanel Spacing="1" VerticalAlignment="Top" HorizontalAlignment="Center" >
 
 
 		<Label HorizontalContentAlignment="Center" FontSize="30" >Ny Booking</Label>
-		<Grid ColumnDefinitions="*,*">
+		<Grid ColumnDefinitions="Auto,*">
 			
 		
 		<Grid Grid.Column="0" ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*,*" Margin="50">
