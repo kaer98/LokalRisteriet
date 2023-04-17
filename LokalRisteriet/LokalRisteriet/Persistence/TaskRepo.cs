@@ -9,7 +9,8 @@ namespace LokalRisteriet.Persistence
     public class TaskRepo
     {
 
-        private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        //private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         private List<Task> _tasks;
 
         public TaskRepo()
@@ -52,19 +53,24 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                if (task.TaskEmployee == null)
+                if (task.TaskEmployee == null && task.TaskBookingID == 0)
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID) VALUES(@TaskName, @TaskBookingID)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName) VALUES(@TaskName)", connection);
+                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                    cmd.ExecuteNonQuery();
+                }
+                else if (task.TaskBookingID != 0 && task.TaskEmployee==null) 
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName,TaskEmployee, TaskBookingID) Values(@TaskName, @TaskEmployee, @TaskBookingID)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
                     cmd.ExecuteNonQuery();
                 }
-                else 
+                else if (task.TaskEmployee != null && task.TaskBookingID == 0)
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName,TaskEmployee, TaskBookingID) Values(@TaskName, @TaskEmployee, @TaskBookingID)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskEmployee) Values(@TaskName, @TaskEmployee)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskEmployee", task.TaskEmployee.EmployeeID);
-                    cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
                     cmd.ExecuteNonQuery();
                 }
             }

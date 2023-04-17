@@ -11,8 +11,8 @@ namespace LokalRisteriet.Persistence
         private List<Booking> _bookings;
         private int nextID = 0;
 
-        private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
-
+        // private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
 
         public BookingRepo()
         {
