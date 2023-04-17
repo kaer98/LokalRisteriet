@@ -9,12 +9,10 @@ namespace LokalRisteriet.Persistence
     public class BookingRepo 
     {
         private List<Booking> _bookings;
-<<<<<<< HEAD
         private int nextID = 0;
-        private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
-=======
+
         private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
->>>>>>> remotes/origin/config
+
 
         public BookingRepo()
         {
