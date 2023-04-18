@@ -26,5 +26,7 @@ namespace LokalRisteriet.Models
             AddOnName = name;
             Price = price;
         }
+
+        public AddOn() { }
     }
 }

@@ -27,7 +27,10 @@ namespace LRTests
         {
             //Arrange
             Task task = new Task("Test");
-            List<Room> rooms = new List<Room>() { new Room("test", 10) };
+            List<Room> rooms = new List<Room>();
+            Room room = new Room("test", 10);
+            room.RoomID = 6;
+            rooms.Add(room);
             List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13, 30, 0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
@@ -213,7 +216,10 @@ namespace LRTests
         {
 
             //Arrange
-            List<Room> rooms = new List<Room>(){new Room("test",10)};
+            List<Room> rooms = new List<Room>();
+            Room room = new Room("test", 10);
+            room.RoomID = 6;
+            rooms.Add(room);
             List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13,30,0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
@@ -232,7 +238,10 @@ namespace LRTests
         public void TestRemoveBooking()
         {
             //Arrange
-            List<Room> rooms = new List<Room>() { new Room("test", 10) };
+            List<Room> rooms = new List<Room>();
+            Room room = new Room("test", 10);
+            room.RoomID = 6;
+            rooms.Add(room);
             List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13, 30, 0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
@@ -250,7 +259,10 @@ namespace LRTests
         public void TestUpdateBooking()
         {
             //Arrange
-            List<Room> rooms = new List<Room>() { new Room("test", 10) };
+            List<Room> rooms = new List<Room>();
+            Room room = new Room("test", 10);
+            room.RoomID = 6;
+            rooms.Add(room);
             List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13, 30, 0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);

@@ -4,6 +4,9 @@ using LokalRisteriet.ViewModels;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Avalonia.Collections;
+using LokalRisteriet.Models;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace LokalRisteriet.Views
 {
@@ -19,6 +22,9 @@ namespace LokalRisteriet.Views
         {
             InitializeComponent();
             DataContext = MainViewVm;
+            BookingViewModel bookingViewModel = new BookingViewModel();
+            
+            DataContext = bookingViewModel;
 
             
 
