@@ -11,7 +11,7 @@
 <Grid Background="#f6f6f6" RowDefinitions="*,*,30">
 
 
-	<Grid Grid.Row="0" ColumnDefinitions="*,*" RowDefinitions="30,*"   >
+	<Grid Grid.Row="0" ColumnDefinitions="300,*" RowDefinitions="30,*"   >
 
 
         <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Produkter til bookingen</Label>
@@ -84,7 +84,6 @@
         <Button  Margin="0,0,0,0" >Tilføj Tasks</Button>
 
 	</StackPanel>
-	<Label Grid.Row="2" Content="*Navn*, *Email*, *Tlf Nummer*"></Label>
 
 </Grid>
 

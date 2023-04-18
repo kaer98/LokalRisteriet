@@ -28,9 +28,9 @@ namespace LokalRisteriet.ViewModels
 
             Booking booking1 = new Booking("Fødselsdag", "skal bruge lokalet i mindst 5 timer", rooms, DateTime.Now, DateTime.Now, 30, false);
 
-            
 
-            Bookings.Add(booking1);
+
+            //Bookings.Add(rooms);
             
        
 
