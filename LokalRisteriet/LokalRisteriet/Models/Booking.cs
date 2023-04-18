@@ -113,6 +113,9 @@ namespace LokalRisteriet.Models
             set { _reserved = value; }
         }
 
+        public int EmployeesAdult { get => _employeesAdult; set => _employeesAdult = value; }
+        public int EmployeesChild { get => _employeesChild; set => _employeesChild = value; }
+
         public void BookingAddTask(Task task)
         {
             task.TaskBookingID = BookingID;

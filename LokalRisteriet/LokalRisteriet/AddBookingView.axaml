@@ -44,8 +44,12 @@
 			<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Spacing="5">
 				<DropDown Name="dd18" >
 				</DropDown>
-				<TextBox Name="txtStaff" Watermark="Indtast Antal Personale" ></TextBox>
-				<CheckBox Name="cb18">Over 18?</CheckBox>
+				<Label > over 18</Label>
+				<DropDown Name="ddu18" >
+				</DropDown>
+				<Label>Under 18</Label>
+				<!--<TextBox Name="txtStaff" Watermark="Indtast Antal Personale" ></TextBox>
+				<CheckBox Name="cb18">Over 18?</CheckBox>-->
 			</StackPanel>
 
 			<!--Event Type - Skal være en drop down menu-->

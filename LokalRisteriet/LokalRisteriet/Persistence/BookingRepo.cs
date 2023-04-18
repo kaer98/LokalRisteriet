@@ -59,19 +59,6 @@ namespace LokalRisteriet.Persistence
                                 rooms.Add(room);
                           }
 
-                        List<Employee> employees = new List<Employee>();
-                        for (int i = 1; i <= 4; i++)
-                        {
-                            Employee employee = new Employee();
-                            int id = 0;
-                            if (dr[$"BookingEmployee{i}"] != DBNull.Value)
-                            {
-                                id = int.Parse(dr[$"BookingEmployee{i}"].ToString());
-                            }
-                            employee.EmployeeID = id;
-                            employees.Add(employee);
-                        }
-
                         List<AddOn> addOns = new List<AddOn>();
 
                         DateTime bookingStart = DateTime.Parse(dr["BookingStart"].ToString());
@@ -86,12 +73,16 @@ namespace LokalRisteriet.Persistence
                         double bookingPrice = double.Parse(dr["BookingPrice"].ToString());
                         bool bookingReserved = bool.Parse(dr["BookingReserved"].ToString());
                         string bookingNote = dr["BookingNote"].ToString();
+                        int bookingEmployeeAdult = int.Parse(dr["BookingEmployeeAdult"].ToString());
+                        int bookingEmployeeChild = int.Parse(dr["BookingEmployeeChild"].ToString());
                         Booking booking = new Booking(bookingtype, bookingNote, rooms, bookingStart, bookingEnd, bookingAmountOfGuests, bookingReserved);
                         booking.BookingCustomerID = bookingCustomerID;
                         booking.BookingPrice= bookingPrice;
                         booking.BookingAddOns = addOns;
                         booking.BookingDuration= bookingDuration;
                         booking.BookingID= bookingID;
+                        booking.EmployeesChild = bookingEmployeeChild;
+                        booking.EmployeesAdult = bookingEmployeeAdult;
 
                         _bookings.Add(booking);
                     }
@@ -114,7 +105,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployee1, BookingEmployee2, BookingEmployee3, BookingEmployee4, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployee1, @BookingEmployee2, @BookingEmployee3, @BookingEmployee4, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote)", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployeeAdult, BookingEmployeeChild, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployeeAdult, @BookingEmployeeChild, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote)", connection);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
 
                 for (int i = 1; i <= 2; i++)
@@ -129,18 +120,9 @@ namespace LokalRisteriet.Persistence
                     }
                 }
 
-                for (int i = 1; i <= 4; i++)
-                {
-                    if (booking.BookingEmployees[i - 1] is null)
-                    {
-                        cmd.Parameters.AddWithValue($"@BookingEmployee{i}", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue($"@BookingEmployee{i}", booking.BookingEmployees[i - 1].EmployeeID);
-                    }
-                }
-
+                
+                cmd.Parameters.AddWithValue($"@BookingEmployeeAdult", booking.EmployeesAdult);            
+                cmd.Parameters.AddWithValue($"@BookingEmployeeChild", booking.EmployeesChild);
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
                 cmd.Parameters.AddWithValue("@BookingEnd", booking.BookingEnd);
                 cmd.Parameters.AddWithValue("@BookingDuration", booking.BookingDuration);
@@ -169,7 +151,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployee1=@BookingEmployee1, BookingEmployee2=@BookingEmployee2, BookingEmployee3=@BookingEmployee3, BookingEmployee4=@BookingEmployee4, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote WHERE BookingID=@BookingID", connection);
+                SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployeeAdult=@BookingEmployeeAdult, BookingEmployeeChild=@BookingEmployeeChild, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote WHERE BookingID=@BookingID", connection);
                 cmd.Parameters.AddWithValue("@BookingID", booking.BookingID);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
 
@@ -185,18 +167,8 @@ namespace LokalRisteriet.Persistence
                     }
                 }
 
-                for (int n = 1; n <= 4; n++)
-                {
-                    if (booking.BookingEmployees[n - 1] is null)
-                    {
-                        cmd.Parameters.AddWithValue($"@BookingEmployee{n}", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue($"@BookingEmployee{n}", booking.BookingEmployees[n - 1].EmployeeID);
-                    }
-                }
-
+                cmd.Parameters.AddWithValue("@BookingEmployeeAdult", booking.EmployeesAdult);
+                cmd.Parameters.AddWithValue("@BookingEmployeeChild", booking.EmployeesChild);
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
                 cmd.Parameters.AddWithValue("@BookingEnd", booking.BookingEnd);
                 cmd.Parameters.AddWithValue("@BookingDuration", booking.BookingDuration);

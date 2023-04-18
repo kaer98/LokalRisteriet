@@ -34,8 +34,10 @@ namespace LokalRisteriet
             string bNote = txtNote.Text;
             bool bRoom1 = cbRoom1.IsChecked.Value;
             bool bRoom2 = cbRoom2.IsChecked.Value;
-            bool bOver18 = cb18.IsChecked.Value;
             string bType = txtTyoe.Text;
+            int employeesAdult = dd18.SelectedIndex;
+            int employeesChild = ddu18.SelectedIndex;
+
             
 
             //Booking booking = new Booking(bType, bNote,rooms());

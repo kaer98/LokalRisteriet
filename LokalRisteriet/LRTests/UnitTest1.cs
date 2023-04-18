@@ -220,7 +220,6 @@ namespace LRTests
             Room room = new Room("test", 10);
             room.RoomID = 6;
             rooms.Add(room);
-            List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13,30,0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
             Booking booking = new Booking("konfirmation","sørger selv for drikkelse", rooms,start,end,1,false);
