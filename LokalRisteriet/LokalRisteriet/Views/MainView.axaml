@@ -21,7 +21,7 @@
 			</Grid.Styles>
 
 
-			<Grid Grid.Row="0" ColumnDefinitions="Auto,*">
+			<Grid Grid.Row="0" ColumnDefinitions="Auto,*,*">
 				<Calendar Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center" Height="400"  VerticalAlignment="Center" SelectionMode="SingleDate">
 				</Calendar>
 
@@ -48,7 +48,67 @@
              
 
             </ListBox>
+
+				<Grid Grid.Column="2" RowDefinitions="*,Auto" VerticalAlignment="Center" >
+
+			
+					<Border Grid.Column="2" Grid.Row="0" BorderThickness="2" Height="260" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#e1e5ea" CornerRadius="20" BorderBrush="Black" >
+				<Grid  ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" VerticalAlignment="Center"  >
+
+					
+					<!--Navn-->
+					<Label Grid.Column="0" Grid.Row="0">Navn</Label>
+					<Label Grid.Column="1" Grid.Row="0" >Navn</Label>
+
+					<!--E-Mail-->
+					<Label Grid.Column="0" Grid.Row="1">Email</Label>
+					<Label Grid.Column="1" Grid.Row="1">mail@gmail.com</Label>
+
+					<!--Vælg Dato-->
+					<Label Grid.Column="0" Grid.Row="9" >Dato </Label>
+					<Label Grid.Column="1" Grid.Row="9"> 10-10-23</Label>
+
+					<!--Vælg Start Tidspunkt-->
+					<Label Grid.Column="0" Grid.Row="3">Start Tidspunkt </Label>
+					<Label Grid.Column="1" Grid.Row="3"  >13.35</Label>
+
+					<!--Vælg Slut Tidspunkt-->
+					<Label Grid.Column="0" Grid.Row="4">Slut Tidspunkt </Label>
+					<Label Grid.Column="1" Grid.Row="4"  >15.35</Label>
+
+
+					<!--Vælg Ekstra Personale-->
+					<Label Grid.Column="0" Grid.Row="5">Personale Over 18</Label>
+					<Label Grid.Column="1" Grid.Row="5"  >3</Label>
+					<!--Vælg Ekstra Personale-->
+					<Label Grid.Column="0" Grid.Row="6">Personale Under 18</Label>
+					<Label Grid.Column="1" Grid.Row="6"  >4</Label>
+
+
+					<!--Event Type - Skal være en drop down menu-->
+					<Label Grid.Column="0" Grid.Row="7">Event Type</Label>
+					<Label Grid.Column="1" Grid.Row="7"  >Fødselsdag</Label>
+
+					<!--Antal Gæster-->
+					<Label Grid.Column="0" Grid.Row="8">Antal Gæster</Label>
+					<Label Grid.Column="1" Grid.Row="8"  >69</Label>
+
+
+					<!--Telefonnumer-->
+					<Label Grid.Column="0" Grid.Row="2">Telefon</Label>
+					<Label Grid.Column="1" Grid.Row="2"  >21 33 32 88</Label>
+
+
+				</Grid>
+				</Border>
+
+					<Border Margin="0,10,0,0" Grid.Column="2" Grid.Row="1" BorderThickness="2" Height="100" HorizontalAlignment="Left" Width="250" VerticalAlignment="Bottom" Background="#e1e5ea" CornerRadius="20" BorderBrush="Black" >
+
+						<Label  VerticalAlignment="Top"  HorizontalAlignment="Left" > De kommer med 30 gæster og 20 af dem </Label>
+					</Border>
+				</Grid>
 			</Grid>
+				
 
 
 
