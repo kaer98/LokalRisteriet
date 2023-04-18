@@ -84,7 +84,7 @@
 		</Grid>
 
 		<!--Vi har brug for en pop up (Pris) besked når vi trykker på Aftal Booking-->
-		<Button Name="btnCreateBooking">Aftal Booking</Button> 
+		<Button Click="btnCreateBooking">Aftal Booking</Button> 
 		
 		<!--Vi har brug for en pop up (Depositum) besked når vi trykker på Reserver Booking-->
 		<Button Background="#4498e7" >Reserver Booking</Button>

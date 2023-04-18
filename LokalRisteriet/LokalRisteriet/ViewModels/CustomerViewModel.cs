@@ -11,10 +11,11 @@ namespace LokalRisteriet.ViewModels
     public class CustomerViewModel
     {
         private CustomerRepo _customerRepo;
+        private int nextid;
         public CustomerViewModel()
         { 
             _customerRepo = new CustomerRepo();         
-
+            nextid = _customerRepo.GetNextID();
         }
         public List<Customer> GetAllCustomers()
         {
@@ -31,6 +32,27 @@ namespace LokalRisteriet.ViewModels
         public void DeleteCustomer(Customer customer)
         {
             _customerRepo.DeleteCustomer(customer);
+        }
+
+        public Customer GetCustomerByEmail(string mail)
+        {
+            bool found = false;
+            Customer customer = null;
+            foreach (Customer c in _customerRepo.GetAllCustomers)
+            {
+                if (c.CustomerEmail == mail)
+                {
+                    found = true;
+                    customer = c;
+                }
+            }
+
+
+            return customer;
+        }
+        public int GetNextID()
+        {
+            return nextid;
         }
 
     }

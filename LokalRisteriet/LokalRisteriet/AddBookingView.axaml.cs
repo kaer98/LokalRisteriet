@@ -4,6 +4,7 @@ using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace LokalRisteriet
 {
@@ -19,11 +20,13 @@ namespace LokalRisteriet
              bookingViewModel = new BookingViewModel();
              roomViewModel = new RoomViewModel();
              customerViewModel = new CustomerViewModel();
+            dd18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+            ddu18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 
 
         }
 
-        private void btnCreateBooking1(object sender, RoutedEventArgs e)
+        private void btnCreateBooking(object sender, RoutedEventArgs e)
         {
             string bName = txtName.Text;
             string bPhone = txtPhoneNo.Text;
@@ -37,10 +40,20 @@ namespace LokalRisteriet
             string bType = txtTyoe.Text;
             int employeesAdult = dd18.SelectedIndex;
             int employeesChild = ddu18.SelectedIndex;
+            Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
+            if (customer == null)
+            {
+                Customer c = new Customer(bName, bPhone, bEmail);
+                c.CustomerId = customerViewModel.GetNextID();
+                customerViewModel.AddCustomer(c);
 
+                customer = c;
+            }
             
 
-            //Booking booking = new Booking(bType, bNote,rooms());
+            Booking booking = new Booking(bType, bNote,rooms(), bTimeStart,bTimeEnd,bNoOfPeople,false);
+            booking.BookingCustomerID = customer.CustomerId;
+            bookingViewModel.AddBooking(booking);
         }
 
 
