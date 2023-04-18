@@ -11,6 +11,7 @@
     <Folder Include="Commands\MainWindowCommands\" />
     <Folder Include="Commands\BookingInfoViewCommands\" />
     <AvaloniaResource Include="Assets\**" />
+    <Compile Remove="Models\Employee.cs" />
     <None Remove=".gitignore" />
   </ItemGroup>
 

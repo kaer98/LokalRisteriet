@@ -17,60 +17,70 @@
 		<Grid ColumnDefinitions="Auto,*">
 			
 		
-		<Grid Grid.Column="0" ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*,*,*,*,*" Margin="50">
+		<Grid Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="50">
 
 			<!--Navn-->
 			<Label Grid.Column="0" Grid.Row="0">Navn</Label>
-			<TextBox Grid.Column="1" Grid.Row="0" Watermark="Indtast Navn"></TextBox>
+			<TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Watermark="Indtast Navn"></TextBox>
 			
 			<!--E-Mail-->
-			<Label Grid.Column="0" Grid.Row="1">Email</Label>
-			<TextBox Grid.Column="1" Grid.Row="1" Watermark="Indtast Email"></TextBox>
+			<Label  Grid.Column="0" Grid.Row="1">Email</Label>
+			<TextBox Name="txtEmail" Grid.Column="1" Grid.Row="1" Watermark="Indtast Email"></TextBox>
 
 			<!--Vælg Dato-->
 			<Label Grid.Column="0" Grid.Row="8" >Vælg Dato </Label>
-			<DatePicker Grid.Column="1" Grid.Row="8"></DatePicker>
+			<DatePicker Name="dPDate" Grid.Column="1" Grid.Row="8"></DatePicker>
 
 			<!--Vælg Start Tidspunkt-->
 			<Label Grid.Column="0" Grid.Row="3">Vælg Start tidspunkt </Label>
-			<TimePicker Grid.Column="1" Grid.Row="3"  ></TimePicker>
+			<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3"  ></TimePicker>
 
 			<!--Vælg Slut Tidspunkt-->
 			<Label Grid.Column="0" Grid.Row="4">Vælg Slut tidspunkt </Label>
-			<TimePicker Grid.Column="1" Grid.Row="4"  ></TimePicker>
+			<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4"  ></TimePicker>
 
 			<!--Vælg Ekstra Personale-->
 			<Label Grid.Column="0" Grid.Row="5">Ekstra Personale</Label>
 			<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Spacing="5">
-				<TextBox Watermark="Indtast Antal Personale" ></TextBox>
-				<CheckBox>Over 18?</CheckBox>
+				<DropDown Name="dd18" >
+				</DropDown>
+				<TextBox Name="txtStaff" Watermark="Indtast Antal Personale" ></TextBox>
+				<CheckBox Name="cb18">Over 18?</CheckBox>
 			</StackPanel>
 
 			<!--Event Type - Skal være en drop down menu-->
 			<Label Grid.Column="0" Grid.Row="6">Event Type</Label>
-			<TextBox Grid.Column="1" Grid.Row="6" Watermark="Indtast Type"></TextBox>
+			<TextBox Name="txtTyoe" Grid.Column="1" Grid.Row="6" Watermark="Indtast Type"></TextBox>
 
 			<!--Antal Gæster-->
 			<Label Grid.Column="0" Grid.Row="7">Antal Gæster</Label>
-			<TextBox  Grid.Column="1" Grid.Row="7" Watermark="Indtast Antalt"></TextBox>
+			<TextBox Name="txtGuest"  Grid.Column="1" Grid.Row="7" Watermark="Indtast Antalt"></TextBox>
 
 			<!--Telefonnumer-->
 			<Label Grid.Column="0" Grid.Row="2">Telefon</Label>
-			<TextBox  Grid.Column="1" Grid.Row="2" Watermark="Indtast Telefonnummer"></TextBox>
-		
+			<TextBox Name="txtPhoneNo"  Grid.Column="1" Grid.Row="2" Watermark="Indtast Telefonnummer"></TextBox>
 			
+			<!--Vælg Lokaler-->
+			<Label Grid.Column="0" Grid.Row="9"	>Vælg Lokaler</Label>
+			<StackPanel	Grid.Column="1" Grid.Row="9" Orientation="Horizontal" Spacing="5">
+				<CheckBox Name="cbRoom1">Lokale1</CheckBox>
+				<CheckBox Name="cbRoom2">Lokale2</CheckBox>
+			</StackPanel>
+			
+
+
 		</Grid>
 
 			<Grid Grid.Column="1" RowDefinitions="Auto,*">
 				
 				<Label  Grid.Row="0" HorizontalContentAlignment="Center" FontSize="20">Noter</Label>
 
-				<TextBox Grid.Row="1" Width="300" Height="110" Margin="0,20,0,0" VerticalAlignment="Top"  Background="LightGray" BorderBrush="Black" BorderThickness="1"></TextBox>
+				<TextBox Name="txtNote" Grid.Row="1" Width="300" Height="110" Margin="0,20,0,0" VerticalAlignment="Top"  Background="LightGray" BorderBrush="Black" BorderThickness="1"></TextBox>
 			</Grid>
 		</Grid>
 
 		<!--Vi har brug for en pop up (Pris) besked når vi trykker på Aftal Booking-->
-		<Button >Aftal Booking</Button> 
+		<Button Name="btnCreateBooking">Aftal Booking</Button> 
 		
 		<!--Vi har brug for en pop up (Depositum) besked når vi trykker på Reserver Booking-->
 		<Button Background="#4498e7" >Reserver Booking</Button>

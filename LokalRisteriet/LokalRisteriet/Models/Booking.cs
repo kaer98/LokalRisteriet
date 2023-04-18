@@ -14,7 +14,7 @@ namespace LokalRisteriet.Models
         private string _bookingtype;
         private string _bookingnote;
         private List<Room> _rooms;
-        private List<Employee> _employees;
+        private int _employeesAdult, _employeesChild;
         private List<Task> _tasks;
         private List<AddOn> _addOns;
         private DateTime _startDateTime;
@@ -52,12 +52,6 @@ namespace LokalRisteriet.Models
             set { _rooms = value; }
         }
 
-
-        public List<Employee> BookingEmployees
-        {
-            get { return _employees; }
-            set { _employees = value; }
-        }
 
 
         public List<Task> BookingTasks
@@ -136,7 +130,6 @@ namespace LokalRisteriet.Models
             _duration = endDateTime - startDateTime;
             _amountOfGuests = amountOfGuests;
             _reserved = reserved;
-            _employees = new List<Employee>(4);
             _tasks = new List<Task>();
             _addOns = new List<AddOn>();
 

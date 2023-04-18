@@ -89,7 +89,6 @@ namespace LokalRisteriet.Persistence
                         Booking booking = new Booking(bookingtype, bookingNote, rooms, bookingStart, bookingEnd, bookingAmountOfGuests, bookingReserved);
                         booking.BookingCustomerID = bookingCustomerID;
                         booking.BookingPrice= bookingPrice;
-                        booking.BookingEmployees = employees;
                         booking.BookingAddOns = addOns;
                         booking.BookingDuration= bookingDuration;
                         booking.BookingID= bookingID;
@@ -110,10 +109,7 @@ namespace LokalRisteriet.Persistence
                 booking.BookingRooms.Add(null);
             }
 
-            while (booking.BookingEmployees.Count < 4)
-            {
-                booking.BookingEmployees.Add(null);
-            }
+            
             _bookings.Add(booking);
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {

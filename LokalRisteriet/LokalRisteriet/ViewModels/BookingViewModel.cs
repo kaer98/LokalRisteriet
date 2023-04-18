@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,14 @@ namespace LokalRisteriet.ViewModels
     public class BookingViewModel
     {
         private BookingRepo _bookingRepo;
+        private ObservableCollection<Booking> _books;
 
+
+        public ObservableCollection<Booking> Bookings
+        {
+            get { return _books = new ObservableCollection<Booking>(_bookingRepo.GetAllBookings());}
+            set { _books = value; }
+        }
         public BookingViewModel()
         {
             _bookingRepo = new BookingRepo();
