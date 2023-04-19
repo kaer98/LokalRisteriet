@@ -33,4 +33,11 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="AddBookingView.axaml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\AddBookingView.axaml.cs">
+      <DependentUpon>AddBookingView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
