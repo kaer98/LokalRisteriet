@@ -4,6 +4,10 @@
     <option name="projectPerEditor">
       <map>
         <entry key="LokalRisteriet/AddBookingView.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
+        <entry key="LokalRisteriet/App.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
+        <entry key="LokalRisteriet/Views/AddBookingView.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
+        <entry key="LokalRisteriet/Views/BookingInfoView.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
+        <entry key="LokalRisteriet/Views/EditBookingView.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
         <entry key="LokalRisteriet/Views/MainView.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
         <entry key="LokalRisteriet/Views/MainWindow.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
       </map>
