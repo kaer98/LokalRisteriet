@@ -98,6 +98,10 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
+        public int GetNextID()
+        {
+            return nextID;
+        }
 
 
     }
