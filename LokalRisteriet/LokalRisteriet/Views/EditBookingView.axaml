@@ -21,25 +21,25 @@
 
 				<!--Navn-->
 				<Label Grid.Column="0" Grid.Row="0">Navn</Label>
-				<TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Watermark=" Navn"></TextBox>
+				<TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Watermark="Opdater Navn"></TextBox>
 
 				<!--E-Mail-->
 				<Label  Grid.Column="0" Grid.Row="1">Email</Label>
 				<TextBox Name="txtEmail" Grid.Column="1" Grid.Row="1" Watermark="Opdater Email"></TextBox>
 
-				<!--Vælg Dato-->
-				<Label Grid.Column="0" Grid.Row="8" >Vælg Dato </Label>
-				<DatePicker Name="dPDate" Grid.Column="1" Grid.Row="8"></DatePicker>
+				<!--Telefonnumer-->
+				<Label Grid.Column="0" Grid.Row="2">Telefon</Label>
+				<TextBox Name="txtPhoneNo"  Grid.Column="1" Grid.Row="2" Watermark="Opdater Telefonnummer"></TextBox>
 
-				<!--Vælg Start Tidspunkt-->
-				<Label Grid.Column="0" Grid.Row="3">Vælg Start tidspunkt </Label>
+				<!--Opdater Start Tidspunkt-->
+				<Label Grid.Column="0" Grid.Row="3">Opdater Start tidspunkt </Label>
 				<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3"  ></TimePicker>
 
-				<!--Vælg Slut Tidspunkt-->
-				<Label Grid.Column="0" Grid.Row="4">Vælg Slut tidspunkt </Label>
+				<!--Opdater Slut Tidspunkt-->
+				<Label Grid.Column="0" Grid.Row="4">Opdater Slut tidspunkt </Label>
 				<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4"  ></TimePicker>
 
-				<!--Vælg Ekstra Personale-->
+				<!--Opdater Ekstra Personale-->
 				<Label Grid.Column="0" Grid.Row="5">Ekstra Personale</Label>
 				<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Spacing="5">
 					<DropDown Name="dd18" >
@@ -48,7 +48,7 @@
 					<DropDown Name="ddu18" >
 					</DropDown>
 					<Label>Under 18</Label>
-					<!--<TextBox Name="txtStaff" Watermark="Opdater Antal Personale" ></TextBox>
+					<!--<TextBox Name="txtStaff" Watermark="Indtast Antal Personale" ></TextBox>
 				<CheckBox Name="cb18">Over 18?</CheckBox>-->
 				</StackPanel>
 
@@ -60,12 +60,12 @@
 				<Label Grid.Column="0" Grid.Row="7">Antal Gæster</Label>
 				<TextBox Name="txtGuest"  Grid.Column="1" Grid.Row="7" Watermark="Opdater Antalt"></TextBox>
 
-				<!--Telefonnumer-->
-				<Label Grid.Column="0" Grid.Row="2">Telefon</Label>
-				<TextBox Name="txtPhoneNo"  Grid.Column="1" Grid.Row="2" Watermark="Opdater Telefonnummer"></TextBox>
+				<!--Opdater Dato-->
+				<Label Grid.Column="0" Grid.Row="8" >Opdater Dato </Label>
+				<DatePicker Name="dPDate" Grid.Column="1" Grid.Row="8"></DatePicker>
 
-				<!--Vælg Lokaler-->
-				<Label Grid.Column="0" Grid.Row="9"	>Vælg Lokaler</Label>
+				<!--Opdater Lokaler-->
+				<Label Grid.Column="0" Grid.Row="9"	>Opdater Lokaler</Label>
 				<StackPanel	Grid.Column="1" Grid.Row="9" Orientation="Horizontal" Spacing="5">
 					<CheckBox Name="cbRoom1">Lokale1</CheckBox>
 					<CheckBox Name="cbRoom2">Lokale2</CheckBox>
