@@ -49,7 +49,7 @@
         <UserControl x:Name="UserMiddleControl" Grid.Row="1"></UserControl>
 
 
-        <!--Bottom Bar-->
+        <!--Bottom Bar--> 
         <Grid Grid.Row="2" Background="#66452a" ColumnDefinitions="70,100" >
 			<Button Grid.Column="0" x:Name="MainViewBtn"  Click="MainView_Button">Tilbage</Button>
 
