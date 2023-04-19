@@ -24,6 +24,7 @@ namespace LokalRisteriet.Models
         private double _price;
         private double _amountOfGuests;
         private bool _reserved;
+        
 
        
 

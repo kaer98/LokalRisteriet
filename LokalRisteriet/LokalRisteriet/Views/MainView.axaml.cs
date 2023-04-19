@@ -13,15 +13,15 @@ namespace LokalRisteriet.Views
     public partial class MainView : UserControl
     {
 
-        MainViewVM MainViewVm = new MainViewVM();
         
         public event EventHandler BookingViewEvent;
+        public event EventHandler EditBookingViewEvent;
         public event EventHandler AddBookingViewEvent;
+        
 
         public MainView()
         {
             InitializeComponent();
-            DataContext = MainViewVm;
             BookingViewModel bookingViewModel = new BookingViewModel();
             
             DataContext = bookingViewModel;
@@ -41,6 +41,13 @@ namespace LokalRisteriet.Views
         {
 
             AddBookingViewEvent?.Invoke(this, EventArgs.Empty);
+
+        }
+
+        private void EditBookingButton(object sender, RoutedEventArgs e)
+        {
+
+            EditBookingViewEvent?.Invoke(this, EventArgs.Empty);
 
         }
 

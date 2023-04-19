@@ -11,18 +11,32 @@ namespace LokalRisteriet.Views
         public BookingInfoView biv = new BookingInfoView();
         public MainView        mainView = new MainView();
         public AddBookingView addBookingView = new AddBookingView();
+        public EditBookingView editBookingView = new EditBookingView();
 
         public MainWindow()
         {
             InitializeComponent();
             mainView.BookingViewEvent += BookingBtnMainView;
             mainView.AddBookingViewEvent += AddBookingView;
+            mainView.EditBookingViewEvent += MainView_EditBookingViewEvent;
 
 
             UserMiddleControl.Content = mainView;
             MainViewBtn.IsEnabled = false;
 
          
+        }
+
+        private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
+        {
+
+            UserMiddleControl.Content = editBookingView;
+            if (UserMiddleControl.Content == editBookingView)
+            {
+                MainViewBtn.IsEnabled = true;
+
+            }
+
         }
 
         private void BookingBtnMainView(object sender, EventArgs e)
@@ -60,6 +74,8 @@ namespace LokalRisteriet.Views
 
 
         }
+
+  
 
         private void MainView_Button(object sender, RoutedEventArgs e)
         {
