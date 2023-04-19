@@ -57,22 +57,47 @@
 			<ListBoxItem>
 				<Grid ColumnDefinitions="*">
 					<Label>Rengøring af glas</Label>
-					<CheckBox HorizontalAlignment="Right"></CheckBox>
+					<DropDown HorizontalAlignment="Right" CornerRadius="20">
+						<DropDownItem >
+							<Label>Jørgen</Label>
+						</DropDownItem>
+						<DropDownItem>
+							<Label>Amanda</Label>
+						</DropDownItem>
+						
+					</DropDown>
 				</Grid>
 
 			</ListBoxItem>
 			<ListBoxItem>
 				<Grid ColumnDefinitions="*">
 					<Label>Servering</Label>
-					<CheckBox HorizontalAlignment="Right"></CheckBox>
-				</Grid>
+					<DropDown HorizontalAlignment="Right" CornerRadius="20">
+						<DropDownItem >
+							<Label>Jørgen</Label>
+						</DropDownItem>
+						<DropDownItem>
+							<Label>Amanda</Label>
+						</DropDownItem>
+						
+					</DropDown>				</Grid>
 
 			</ListBoxItem>
 			<ListBoxItem>
 				<Grid ColumnDefinitions="*">
 					<Label>Ekstra rengøring</Label>
-					<CheckBox HorizontalAlignment="Right"></CheckBox>
-				</Grid>
+					<DropDown HorizontalAlignment="Right" CornerRadius="20">
+					
+							
+							<DropDown.ItemTemplate>
+								<DataTemplate>
+									<Label Content="{Binding employeeList.EmployeeName}"></Label>
+								</DataTemplate>
+							</DropDown.ItemTemplate>
+					
+					<!-- 	<Label Content="{Binding employeeList.EmployeeName}"></Label> -->
+					<!-- </DataTemplate> -->
+					</DropDown>				</Grid>
 
 			</ListBoxItem>
 
@@ -80,8 +105,9 @@
 
 	</Grid>
 	<StackPanel Grid.Row="1" Margin="10,0,0,0" Spacing="5" Orientation="Horizontal" VerticalAlignment="Top">
-    <Button  Margin="0,0,0,0" >Tilføj produkter</Button>
+    <Button  Margin="0,0,0,0" >Tilføj Produkt</Button>
         <Button  Margin="0,0,0,0" >Tilføj Tasks</Button>
+		
 
 	</StackPanel>
 
