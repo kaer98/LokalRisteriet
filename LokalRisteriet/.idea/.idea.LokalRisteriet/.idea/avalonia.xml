@@ -5,6 +5,7 @@
       <map>
         <entry key="LokalRisteriet/AddBookingView.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
         <entry key="LokalRisteriet/Views/MainView.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
+        <entry key="LokalRisteriet/Views/MainWindow.axaml" value="LokalRisteriet/LokalRisteriet.csproj" />
       </map>
     </option>
   </component>
