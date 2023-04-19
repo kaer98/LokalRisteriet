@@ -25,10 +25,11 @@ namespace LokalRisteriet.Views
             BookingViewModel bookingViewModel = new BookingViewModel();
             
             DataContext = bookingViewModel;
-
             
 
         }
+
+
 
         private void Booking_Button2(object sender, RoutedEventArgs e)
         {

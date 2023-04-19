@@ -54,7 +54,7 @@ namespace LokalRisteriet.Persistence
                  }
             }
         }
-        public List<Customer> GetAllCustomers => _customers;
+        public List<Customer> GetAllCustomers() => _customers;
 
         public int AddCustomer(Customer customer)
         {

@@ -21,6 +21,7 @@ namespace LokalRisteriet.Models
         private DateTime _endDateTime;
         private TimeSpan _duration;
         private int _customerID;
+        private Customer _customer;
         private double _price;
         private double _amountOfGuests;
         private bool _reserved;
@@ -115,6 +116,7 @@ namespace LokalRisteriet.Models
 
         public int EmployeesAdult { get => _employeesAdult; set => _employeesAdult = value; }
         public int EmployeesChild { get => _employeesChild; set => _employeesChild = value; }
+        public Customer Customer { get => _customer; set => _customer = value; }
 
         public void BookingAddTask(Task task)
         {
@@ -135,7 +137,32 @@ namespace LokalRisteriet.Models
             _reserved = reserved;
             _tasks = new List<Task>();
             _addOns = new List<AddOn>();
+            
 
         }
+
+        public void CalculatePrice()
+        {
+            TimeSpan over5 = TimeSpan.FromHours(5);
+            double timePrice = 0;
+            foreach (AddOn addOn in _addOns)
+            {
+                timePrice += addOn.Price;
+            }
+            if (BookingDuration.Hours >=6)
+            {
+                
+                timePrice = 5000+((BookingDuration.Hours-6) * 1000);
+
+            }
+            else 
+            { 
+                timePrice = BookingDuration.Hours * 1000;
+                timePrice += EmployeesAdult * 400;
+                timePrice += EmployeesChild * 200;
+            }
+            _price = timePrice;
+        }
+        
     }
 }

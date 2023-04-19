@@ -19,7 +19,7 @@ namespace LokalRisteriet.ViewModels
         }
         public List<Customer> GetAllCustomers()
         {
-            return _customerRepo.GetAllCustomers;
+            return _customerRepo.GetAllCustomers();
         }
         public int AddCustomer(Customer customer)
         {
@@ -38,7 +38,7 @@ namespace LokalRisteriet.ViewModels
         {
             bool found = false;
             Customer customer = null;
-            foreach (Customer c in _customerRepo.GetAllCustomers)
+            foreach (Customer c in _customerRepo.GetAllCustomers())
             {
                 if (c.CustomerEmail == mail)
                 {
