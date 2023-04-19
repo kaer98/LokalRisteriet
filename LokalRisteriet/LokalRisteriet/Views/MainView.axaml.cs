@@ -7,6 +7,10 @@ using Avalonia.Collections;
 using LokalRisteriet.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using Avalonia.Controls.Primitives;
+using Avalonia.Xaml.Interactivity;
+using Avalonia.Markup.Xaml.Templates;
 
 namespace LokalRisteriet.Views
 {
@@ -25,8 +29,8 @@ namespace LokalRisteriet.Views
             BookingViewModel bookingViewModel = new BookingViewModel();
             
             DataContext = bookingViewModel;
-            
 
+//            ColorCal();
         }
 
 
@@ -49,6 +53,19 @@ namespace LokalRisteriet.Views
         {
 
             EditBookingViewEvent?.Invoke(this, EventArgs.Empty);
+
+        }
+
+        private void ColorCal()
+        {
+            var selectedDates = new List<DateTime>
+        {
+            new DateTime(2023, 4, 19),
+            new DateTime(2023, 4, 22),
+            new DateTime(2023, 4, 25)
+        };
+            _calcal.SelectedDates.Add(new DateTime(2023, 4, 25));
+           
 
         }
 
