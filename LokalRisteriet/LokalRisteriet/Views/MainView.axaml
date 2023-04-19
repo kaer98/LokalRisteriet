@@ -81,11 +81,11 @@
 
 					<!--Vælg Ekstra Personale-->
 					<Label Grid.Column="0" Grid.Row="5">Personale Over 18</Label>
-					<Label Name="lbl18" Grid.Column="1" Grid.Row="5"  >34</Label>
+					<Label Name="lbl18" Grid.Column="1" Grid.Row="5" Content="{Binding	SelectedBooking.EmployeesAdult}" ></Label>
 					
 					<!--Vælg Under Personale-->
 					<Label Grid.Column="0" Grid.Row="6">Personale Under 18</Label>
-					<Label Name="lbl17" Grid.Column="1" Grid.Row="6"  >4</Label>
+					<Label Name="lbl17" Grid.Column="1" Grid.Row="6" Content="{Binding	SelectedBooking.EmployeeChild}"  ></Label>
 
 
 					<!--Event Type - Skal være en drop down menu-->

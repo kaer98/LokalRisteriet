@@ -11,6 +11,7 @@ using System.Globalization;
 using Avalonia.Controls.Primitives;
 using Avalonia.Xaml.Interactivity;
 using Avalonia.Markup.Xaml.Templates;
+using Avalonia.Media;
 
 namespace LokalRisteriet.Views
 {
@@ -58,14 +59,7 @@ namespace LokalRisteriet.Views
 
         private void ColorCal()
         {
-            var selectedDates = new List<DateTime>
-        {
-            new DateTime(2023, 4, 19),
-            new DateTime(2023, 4, 22),
-            new DateTime(2023, 4, 25)
-        };
-            _calcal.SelectedDates.Add(new DateTime(2023, 4, 25));
-           
+
 
         }
 
