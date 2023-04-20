@@ -1,10 +1,6 @@
 ﻿using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LokalRisteriet.ViewModels
 {
