@@ -53,6 +53,8 @@ namespace LokalRisteriet
 
             Booking booking = new Booking(bType, bNote,rooms(), bTimeStart,bTimeEnd,bNoOfPeople,false);
             booking.BookingCustomerID = customer.CustomerId;
+            booking.EmployeesAdult = employeesAdult;
+            booking.EmployeesChild = employeesChild;
             bookingViewModel.AddBooking(booking);
         }
 

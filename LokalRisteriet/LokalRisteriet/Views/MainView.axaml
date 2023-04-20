@@ -7,8 +7,6 @@
              x:Class="LokalRisteriet.Views.MainView"
 			 >
 
-
-
     <Grid Background="#edf0f5" RowDefinitions="*" >
 
 	
@@ -23,7 +21,8 @@
 
 
 			<Grid Grid.Row="0" ColumnDefinitions="Auto,*,*">
-				<Calendar Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center" Height="400"  VerticalAlignment="Center" SelectionMode="SingleDate">
+				<Calendar Name="_calcal" Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center"  Height="400"  VerticalAlignment="Center" SelectionMode="SingleDate">
+					
 				</Calendar>
 
 				<ListBox Grid.Column="1" Height="370" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#121212" BorderThickness="2"  Margin="20,00,20,0" CornerRadius="20">
@@ -82,11 +81,11 @@
 
 					<!--Vælg Ekstra Personale-->
 					<Label Grid.Column="0" Grid.Row="5">Personale Over 18</Label>
-					<Label Name="lbl18" Grid.Column="1" Grid.Row="5"  >34</Label>
+					<Label Name="lbl18" Grid.Column="1" Grid.Row="5" Content="{Binding	SelectedBooking.EmployeesAdult}" ></Label>
 					
 					<!--Vælg Under Personale-->
 					<Label Grid.Column="0" Grid.Row="6">Personale Under 18</Label>
-					<Label Name="lbl17" Grid.Column="1" Grid.Row="6"  >4</Label>
+					<Label Name="lbl17" Grid.Column="1" Grid.Row="6" Content="{Binding	SelectedBooking.EmployeeChild}"  ></Label>
 
 
 					<!--Event Type - Skal være en drop down menu-->
