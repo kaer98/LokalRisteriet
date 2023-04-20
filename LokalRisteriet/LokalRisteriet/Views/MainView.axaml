@@ -21,7 +21,7 @@
 
 
 			<Grid Grid.Row="0" ColumnDefinitions="Auto,*,*">
-				<Calendar Name="_calcal" Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center"  Height="400"  VerticalAlignment="Center" SelectionMode="SingleDate">
+				<Calendar Name="_calcal" Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center"  Height="400"  VerticalAlignment="Center" SelectionMode="MultipleRange">
 					
 				</Calendar>
 
@@ -85,7 +85,7 @@
 					
 					<!--Vælg Under Personale-->
 					<Label Grid.Column="0" Grid.Row="6">Personale Under 18</Label>
-					<Label Name="lbl17" Grid.Column="1" Grid.Row="6" Content="{Binding	SelectedBooking.EmployeeChild}"  ></Label>
+					<Label Name="lbl17" Grid.Column="1" Grid.Row="6" Content="{Binding	SelectedBooking.EmployeesChild}"  ></Label>
 
 
 					<!--Event Type - Skal være en drop down menu-->
@@ -158,13 +158,12 @@
             </ListBox>-->
 
             <Grid Grid.Row="1" RowDefinitions="*" VerticalAlignment="Top" >
-            <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="50,10,50,0" >
+            <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="70,10,70,0" >
                 <Button Click="Booking_Button2" >Se Booking</Button>
                 <Button Click="AddBookingButton">Tilføj Booking</Button>
                 <Button Click="EditBookingButton">Rediger Booking</Button>
+				<Button Click="MarkDays">Marker dage</Button>
 </StackPanel>
-				
-                
             </Grid>
         </Grid>
          
