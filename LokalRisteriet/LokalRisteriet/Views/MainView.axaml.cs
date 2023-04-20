@@ -12,36 +12,28 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Xaml.Interactivity;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
-using Calendar = Avalonia.Controls.Calendar;
 
 namespace LokalRisteriet.Views
 {
     public partial class MainView : UserControl
     {
 
-        
+
         public event EventHandler BookingViewEvent;
         public event EventHandler EditBookingViewEvent;
         public event EventHandler AddBookingViewEvent;
-        public event EventHandler MarkDaysEvent;
-        private BookingViewModel bookingViewModel;
-        private MainViewVM bvm;
-        
+        public MainViewVM bvm;
+        public BookingViewModel bookingViewModel = new BookingViewModel();
+
 
         public MainView()
         {
             InitializeComponent();
-            bookingViewModel = new BookingViewModel();
-            
+
+
             //DataContext = bookingViewModel;
 
-            _calcal.SelectedDatesChanged += (sender, args) =>
-            {
-                SelectedDates();
-            };
-
-
-
+            //            ColorCal();
         }
 
 
@@ -66,41 +58,24 @@ namespace LokalRisteriet.Views
             EditBookingViewEvent?.Invoke(this, EventArgs.Empty);
 
         }
-        private void MarkDays(object sender, RoutedEventArgs e)
-        {
-            _calcal.SelectedDates.Clear();
-            ColorCal();
-        }
 
         private void ColorCal()
         {
             bvm = new MainViewVM();
             foreach (Booking b in bookingViewModel.Bookings)
             {
-                if (b.BookingStart.Month ==  _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
+                if (b.BookingStart.Month == _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
                 {
-                    bvm.MarkBooking(b);
+                    bvm.MarkBookings(b);
 
-                   
-                   _calcal.SelectedDates.Add(b.BookingStart);
+
                 }
 
-            }
-            DataContext = null;
-            DataContext = bvm;
-        }
-        private void SelectedDates()
-        {
-            bvm = new MainViewVM();
-            foreach (DateTime day in _calcal.SelectedDates)
-            {
-                bvm.AddManyBookings(bookingViewModel.GetBookingByDay(day));
-            }
-            DataContext = null;
-            DataContext = bvm;
-           
 
+            }
+
+            DataContext = null;
+            DataContext = bvm;
         }
-    
     }
 }

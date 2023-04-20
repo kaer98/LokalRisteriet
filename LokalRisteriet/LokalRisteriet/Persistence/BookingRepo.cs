@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
-using System.Reactive.Linq;
-using System.Collections.ObjectModel;
 
 namespace LokalRisteriet.Persistence
 {
@@ -101,8 +99,6 @@ namespace LokalRisteriet.Persistence
 
         public List<Booking> GetAllBookings() => _bookings;
 
-        public ObservableCollection<Booking> GetBookingByDay(DateTime day) => new ObservableCollection<Booking>(_bookings.FindAll(b => b.BookingStart.Date == day.Date));
-
         public Booking AddBooking(Booking booking)
         {
             while (booking.BookingRooms.Count < 2)
@@ -196,6 +192,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingReserved", booking.BookingReserved);
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
                 cmd.Parameters.AddWithValue("@BookingDeposit", booking.Deposit);
+
                 cmd.ExecuteNonQuery();
             }
             

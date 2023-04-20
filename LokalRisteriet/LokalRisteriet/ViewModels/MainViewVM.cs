@@ -19,16 +19,16 @@ namespace LokalRisteriet.ViewModels
     public class MainViewVM : INotifyPropertyChanged
     {
         //test
-       public ObservableCollection<Booking> _bookings;
-public Booking selectedBooking;
+        public ObservableCollection<Booking> Bookings;
+
 
         public ICommand BookingCommand { get; }
 
         public MainViewVM()
         {
-            _bookings = new ObservableCollection<Booking>();
-
-
+          Bookings = new ObservableCollection<Booking>();
+    
+       
 
 
             BookingCommand = new RelayCommand(() =>
@@ -37,9 +37,13 @@ public Booking selectedBooking;
             });
         }
 
+        public void MarkBookings(Booking b)
+        {
+            Bookings.Add(b);
+        }
 
-        
 
+        public Booking selectedBooking;
         public Booking SelectedBooking
         {
             get
@@ -61,27 +65,9 @@ public Booking selectedBooking;
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
-
+      
         #endregion
 
-        public void MarkBooking(Booking booking)
-        {
-            _bookings.Add(booking);
-        }
-
-        public ObservableCollection<Booking> Bookings
-        {
-            get { return _bookings; }
-            set { _bookings = value; }
-        }
-
-        public void AddManyBookings(ObservableCollection<Booking> bookings)
-        {
-            foreach (Booking booking in bookings)
-            {
-                MarkBooking(booking);
-            }
-        }
 
 
 

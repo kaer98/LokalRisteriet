@@ -1,6 +1,10 @@
 ﻿using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LokalRisteriet.ViewModels
 {
@@ -13,17 +17,43 @@ namespace LokalRisteriet.ViewModels
             _customerRepo = new CustomerRepo();         
             nextid = _customerRepo.GetNextID();
         }
-        public List<Customer> GetAllCustomers() => _customerRepo.GetAllCustomers();
+        public List<Customer> GetAllCustomers()
+        {
+            return _customerRepo.GetAllCustomers();
+        }
+        public int AddCustomer(Customer customer)
+        {
+           return _customerRepo.AddCustomer(customer);
+        }
+        public void UpdateCustomer(Customer customer)
+        {
+            _customerRepo.UpdateCustomer(customer);
+        }
+        public void DeleteCustomer(Customer customer)
+        {
+            _customerRepo.DeleteCustomer(customer);
+        }
 
-        public int AddCustomer(Customer customer) => _customerRepo.AddCustomer(customer);
+        public Customer GetCustomerByEmail(string mail)
+        {
+            bool found = false;
+            Customer customer = null;
+            foreach (Customer c in _customerRepo.GetAllCustomers())
+            {
+                if (c.CustomerEmail == mail)
+                {
+                    found = true;
+                    customer = c;
+                }
+            }
 
-        public void UpdateCustomer(Customer customer)=> _customerRepo.UpdateCustomer(customer);
 
-        public void DeleteCustomer(Customer customer) => _customerRepo.DeleteCustomer(customer);
-
-        public Customer GetCustomerByEmail(string mail) => _customerRepo.GetAllCustomers().Find(customer => customer.CustomerEmail == mail);
-
-        public int GetNextID() => nextid;
+            return customer;
+        }
+        public int GetNextID()
+        {
+            return nextid;
+        }
 
     }
 }

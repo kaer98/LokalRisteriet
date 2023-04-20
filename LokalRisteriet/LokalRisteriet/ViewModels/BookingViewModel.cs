@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
 
@@ -15,7 +17,6 @@ namespace LokalRisteriet.ViewModels
         private CustomerRepo _customerRepo;
         private ObservableCollection<Booking> _books;
         private ObservableCollection<Customer> _customers;
-        private ObservableCollection<Booking> _markedBookings;
 
         public ObservableCollection<Booking> Bookings
         {
@@ -28,17 +29,6 @@ namespace LokalRisteriet.ViewModels
             get { return _customers = new ObservableCollection<Customer>(_customerRepo.GetAllCustomers()); }
             set { _customers = value; }
         }
-
-        public void MarkBooking(Booking booking)
-        {
-            _markedBookings.Add(booking);
-        }
-
-        public ObservableCollection<Booking> MarkedBookings
-        {
-            get { return _markedBookings; }
-            set { _markedBookings = value; }
-        }
         public BookingViewModel()
         {
             _bookingRepo = new BookingRepo();
@@ -46,36 +36,46 @@ namespace LokalRisteriet.ViewModels
             _books = Bookings;
             _customers = new ObservableCollection<Customer>(_customerRepo.GetAllCustomers());
             AddCustomers();
-            _markedBookings = new ObservableCollection<Booking>();
         }
 
-        public Booking AddBooking(Booking booking) => _bookingRepo.AddBooking(booking);
+        public Booking AddBooking(Booking booking)
+        {
+           return _bookingRepo.AddBooking(booking);
+        }
 
-        public void DeleteBooking(Booking booking) => _bookingRepo.DeleteBooking(booking);
+        public void DeleteBooking(Booking booking)
+        {
+            _bookingRepo.DeleteBooking(booking);
+        }
 
-        public List<Booking> GetBookings() => _bookingRepo.GetAllBookings();
+        public List<Booking> GetBookings()
+        {
+            return _bookingRepo.GetAllBookings();
+        }
 
-        public void UpdateBooking(Booking booking) => _bookingRepo.UpdateBooking(booking);
+        public void UpdateBooking(Booking booking)
+        {
+            _bookingRepo.UpdateBooking(booking);
+        }
 
-        public void AddCustomers() => _books.Where(book => book.BookingCustomerID != 0).ToList().ForEach(book => _customers.Where(cust => book.BookingCustomerID == cust.CustomerId).ToList().ForEach(cust => book.Customer = cust));
-        //{
-        //    foreach (Booking book in _books)
-        //    {
-        //        if (book.BookingCustomerID != 0)
-        //        {
-        //            foreach (Customer cust in _customers)
-        //            {
-        //                if (book.BookingCustomerID == cust.CustomerId)
-        //                {
-        //                    book.Customer = cust;
-        //                }
-        //            }
-        //        }
-        //    }
+        public void AddCustomers()
+        {
+            foreach (Booking book in _books)
+            {
+                if (book.BookingCustomerID != 0)
+                {
+                    foreach (Customer cust in _customers)
+                    {
+                        if (book.BookingCustomerID == cust.CustomerId)
+                        {
+                            book.Customer = cust;
+                        }
+                    }
+                }
+            }
             
-        //}
+        }
 
-        public ObservableCollection<Booking> GetBookingByDay(DateTime Day) => _bookingRepo.GetBookingByDay(Day);
 
         public Booking selectedBooking;
         public Booking SelectedBooking

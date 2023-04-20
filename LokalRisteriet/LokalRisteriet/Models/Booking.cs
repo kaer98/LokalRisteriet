@@ -27,8 +27,7 @@ namespace LokalRisteriet.Models
         private bool _reserved;
         private double _deposit;
 
-
-
+       
 
         public int BookingID
         {
@@ -126,12 +125,12 @@ namespace LokalRisteriet.Models
             _tasks.Add(task);
         }
 
+
         public double Deposit
         {
             get { return _deposit; }
             set { _deposit = value; }
         }
-
 
         public Booking(string bookingtype, string bookingnote , List<Room> rooms, DateTime startDateTime, DateTime endDateTime, double amountOfGuests, bool reserved)
         {
@@ -145,8 +144,6 @@ namespace LokalRisteriet.Models
             _reserved = reserved;
             _tasks = new List<Task>();
             _addOns = new List<AddOn>();
-
-
 
         }
 

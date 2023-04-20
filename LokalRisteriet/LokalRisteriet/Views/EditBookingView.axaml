@@ -54,7 +54,7 @@
 
 				<!--Event Type - Skal være en drop down menu-->
 				<Label Grid.Column="0" Grid.Row="6">Event Type</Label>
-				<TextBox Name="txtTyoe" Grid.Column="1" Grid.Row="6" Watermark="Opdater Type " Margin="0,0,0,5"></TextBox>
+				<TextBox Name="txtType" Grid.Column="1" Grid.Row="6" Watermark="Opdater Type " Margin="0,0,0,5"></TextBox>
 
 				<!--Antal Gæster-->
 				<Label Grid.Column="0" Grid.Row="7">Antal Gæster</Label>
