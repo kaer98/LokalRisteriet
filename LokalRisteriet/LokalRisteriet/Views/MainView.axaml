@@ -162,6 +162,7 @@
                 <Button Click="Booking_Button2" >Se Booking</Button>
                 <Button Click="AddBookingButton">Tilføj Booking</Button>
                 <Button Click="EditBookingButton">Rediger Booking</Button>
+				<Button Click="MarkDays">Marker Booking</Button>
 </StackPanel>
 				
                 

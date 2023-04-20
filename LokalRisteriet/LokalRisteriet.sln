@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LokalRisteriet", "LokalRisteriet\LokalRisteriet.csproj", "{FC55BEC8-4C01-4827-AC76-30B0766BA0D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LRTests", "LRTests\LRTests.csproj", "{17BE02C3-A774-4232-B6F8-A87A8AB36E5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LRTests", "LRTests\LRTests.csproj", "{17BE02C3-A774-4232-B6F8-A87A8AB36E5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
