@@ -22,7 +22,7 @@ namespace LokalRisteriet.Views
 
 
             UserMiddleControl.Content = mainView;
-            MainViewBtn.IsEnabled = false;
+            MainViewBtn.IsVisible = false;
 
          
         }
@@ -33,7 +33,7 @@ namespace LokalRisteriet.Views
             UserMiddleControl.Content = editBookingView;
             if (UserMiddleControl.Content == editBookingView)
             {
-                MainViewBtn.IsEnabled = true;
+                MainViewBtn.IsVisible = true;
 
             }
 
@@ -44,7 +44,7 @@ namespace LokalRisteriet.Views
             UserMiddleControl.Content = biv;
             if (UserMiddleControl.Content == biv)
             {
-                MainViewBtn.IsEnabled = true;
+                MainViewBtn.IsVisible = true;
 
             }
 
@@ -55,7 +55,7 @@ namespace LokalRisteriet.Views
             UserMiddleControl.Content = addBookingView;
             if (UserMiddleControl.Content == addBookingView)
             {
-                MainViewBtn.IsEnabled = true;
+                MainViewBtn.IsVisible = true;
 
             }
 
@@ -67,7 +67,7 @@ namespace LokalRisteriet.Views
             UserMiddleControl.Content = biv;
             if (UserMiddleControl.Content == biv)
             {
-                MainViewBtn.IsEnabled = true;
+                MainViewBtn.IsVisible = true;
 
             }
           
@@ -84,7 +84,7 @@ namespace LokalRisteriet.Views
                 UserMiddleControl.Content = mainView;
                 if (UserMiddleControl.Content == mainView)
                 {
-                    MainViewBtn.IsEnabled = false;
+                MainViewBtn.IsVisible = false;
 
             }
 

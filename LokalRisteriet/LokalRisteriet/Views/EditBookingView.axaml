@@ -21,40 +21,40 @@
 
 				<!--Navn-->
 				<Label Grid.Column="0" Grid.Row="0">Navn</Label>
-				<TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Watermark="Opdater Navn"></TextBox>
+				<TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Watermark="Opdater Navn" Margin="0,0,0,5"></TextBox>
 
 				<!--E-Mail-->
 				<Label  Grid.Column="0" Grid.Row="1">Email</Label>
-				<TextBox Name="txtEmail" Grid.Column="1" Grid.Row="1" Watermark="Opdater Email"></TextBox>
+				<TextBox Name="txtEmail" Grid.Column="1" Grid.Row="1" Watermark="Opdater Email" Margin="0,0,0,5"></TextBox>
 
 				<!--Telefonnumer-->
 				<Label Grid.Column="0" Grid.Row="2">Telefon</Label>
-				<TextBox Name="txtPhoneNo"  Grid.Column="1" Grid.Row="2" Watermark="Opdater Telefonnummer"></TextBox>
+				<TextBox Name="txtPhoneNo"  Grid.Column="1" Grid.Row="2" Watermark="Opdater Telefonnummer" Margin="0,0,0,5"></TextBox>
 
 				<!--Opdater Start Tidspunkt-->
 				<Label Grid.Column="0" Grid.Row="3">Opdater Start tidspunkt </Label>
-				<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3"  ></TimePicker>
+				<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3" Margin="0,0,0,5"  ></TimePicker>
 
 				<!--Opdater Slut Tidspunkt-->
 				<Label Grid.Column="0" Grid.Row="4">Opdater Slut tidspunkt </Label>
-				<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4"  ></TimePicker>
+				<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4" Margin="0,0,0,5"  ></TimePicker>
 
 				<!--Opdater Ekstra Personale-->
 				<Label Grid.Column="0" Grid.Row="5">Ekstra Personale</Label>
-				<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Spacing="5">
-					<DropDown Name="dd18" >
+				<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+					<DropDown CornerRadius="20" Margin="0,0,0,5" Name="dd18" >
 					</DropDown>
 					<Label > over 18</Label>
-					<DropDown Name="ddu18" >
+					<DropDown CornerRadius="20" Name="ddu18" >
 					</DropDown>
-					<Label>Under 18</Label>
+					<Label >Under 18</Label>
 					<!--<TextBox Name="txtStaff" Watermark="Indtast Antal Personale" ></TextBox>
 				<CheckBox Name="cb18">Over 18?</CheckBox>-->
 				</StackPanel>
 
 				<!--Event Type - Skal være en drop down menu-->
 				<Label Grid.Column="0" Grid.Row="6">Event Type</Label>
-				<TextBox Name="txtTyoe" Grid.Column="1" Grid.Row="6" Watermark="Opdater Type"></TextBox>
+				<TextBox Name="txtTyoe" Grid.Column="1" Grid.Row="6" Watermark="Opdater Type " Margin="0,0,0,5"></TextBox>
 
 				<!--Antal Gæster-->
 				<Label Grid.Column="0" Grid.Row="7">Antal Gæster</Label>
@@ -84,10 +84,9 @@
 		</Grid>
 
 		<!--Vi har brug for en pop up (Pris) besked når vi trykker på Aftal Booking-->
-		<Button Name="btnCreateBooking">Aftal Booking</Button>
+		<Button Name="btnCreateBooking">Opdater Booking (Gem)</Button>
 
-		<!--Vi har brug for en pop up (Depositum) besked når vi trykker på Reserver Booking-->
-		<Button Background="#4498e7" >Reserver Booking</Button>
+		
 
 
 

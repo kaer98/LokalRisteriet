@@ -51,7 +51,7 @@
 
         <!--Bottom Bar--> 
         <Grid Grid.Row="2" Background="#66452a" ColumnDefinitions="70,100" >
-			<Button Grid.Column="0" x:Name="MainViewBtn"  Click="MainView_Button">Tilbage</Button>
+			<Button Grid.Column="0" Width="100" HorizontalContentAlignment="Center" x:Name="MainViewBtn"  Click="MainView_Button" Margin="5,0,0,0">Tilbage</Button>
 
 
 		</Grid>

@@ -107,7 +107,7 @@
 	<StackPanel Grid.Row="1" Margin="10,0,0,0" Spacing="5" Orientation="Horizontal" VerticalAlignment="Top">
     <Button  Margin="0,0,0,0" >Tilføj Produkt</Button>
         <Button  Margin="0,0,0,0" >Tilføj Tasks</Button>
-		
+		<Label Content="{}"></Label>
 
 	</StackPanel>
 
