@@ -37,10 +37,7 @@ namespace LokalRisteriet.ViewModels
             });
         }
 
-        public void MarkBookings(Booking b)
-        {
-            Bookings.Add(b);
-        }
+      
 
 
         public Booking selectedBooking;

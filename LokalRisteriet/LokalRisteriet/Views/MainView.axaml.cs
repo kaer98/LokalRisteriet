@@ -22,7 +22,7 @@ namespace LokalRisteriet.Views
         public event EventHandler BookingViewEvent;
         public event EventHandler EditBookingViewEvent;
         public event EventHandler AddBookingViewEvent;
-        public MainViewVM bvm;
+        //public MainViewVM bvm;
         public BookingViewModel bookingViewModel = new BookingViewModel();
 
 
@@ -69,28 +69,28 @@ namespace LokalRisteriet.Views
 
         private void ColorCal()
         {
-            bvm = new MainViewVM();
-            foreach (Booking b in bookingViewModel.Bookings)
+            bookingViewModel = new BookingViewModel();
+            foreach (Booking b in bookingViewModel.Bookings1)
             {
                 if (b.BookingStart.Month == _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
                 {
-                    bvm.MarkBookings(b);
+                    bookingViewModel.MarkBookings(b);
                     _calcal.SelectedDates.Add(b.BookingStart);
                 }
             }
             DataContext = null;
-            DataContext = bvm;
+            DataContext = bookingViewModel;
         }
 
         private void SelectedDates()
         {
-            bvm = new MainViewVM();
+            bookingViewModel = new BookingViewModel();
             foreach (DateTime day in _calcal.SelectedDates)
             {
-                bvm.AddManyBookings(bookingViewModel.GetBookingByDay(day));
+                bookingViewModel.AddManyBookings(bookingViewModel.GetBookingByDay(day));
             }
             DataContext = null;
-            DataContext = bvm;
+            DataContext = bookingViewModel;
 
 
 

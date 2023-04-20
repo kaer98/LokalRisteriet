@@ -85,7 +85,7 @@
 					
 					<!--Vælg Under Personale-->
 					<Label Grid.Column="0" Grid.Row="6">Personale Under 18</Label>
-					<Label Name="lbl17" Grid.Column="1" Grid.Row="6" Content="{Binding	SelectedBooking.EmployeeChild}"  ></Label>
+					<Label Name="lbl17" Grid.Column="1" Grid.Row="6" Content="{Binding	SelectedBooking.EmployeesChild}"  ></Label>
 
 
 					<!--Event Type - Skal være en drop down menu-->

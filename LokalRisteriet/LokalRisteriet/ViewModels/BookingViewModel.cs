@@ -16,14 +16,16 @@ namespace LokalRisteriet.ViewModels
         private BookingRepo _bookingRepo;
         private CustomerRepo _customerRepo;
         private ObservableCollection<Booking> _books;
+        private ObservableCollection<Booking> _books1;
         private ObservableCollection<Customer> _customers;
 
         public ObservableCollection<Booking> Bookings
         {
-            get { return _books = new ObservableCollection<Booking>(_bookingRepo.GetAllBookings());}
-            set { _books = value; }
+            get { return _books1 ;}
+            set { _books1 = value; }
         }
 
+        public ObservableCollection<Booking> Bookings1 { get { return _books; } }
         public ObservableCollection<Customer> Customers
         {
             get { return _customers = new ObservableCollection<Customer>(_customerRepo.GetAllCustomers()); }
@@ -33,8 +35,9 @@ namespace LokalRisteriet.ViewModels
         {
             _bookingRepo = new BookingRepo();
             _customerRepo = new CustomerRepo();
-            _books = Bookings;
+            _books = new ObservableCollection<Booking>(_bookingRepo.GetAllBookings());
             _customers = new ObservableCollection<Customer>(_customerRepo.GetAllCustomers());
+            _books1 = new ObservableCollection<Booking>();
             AddCustomers();
         }
 
@@ -77,6 +80,18 @@ namespace LokalRisteriet.ViewModels
         }
         public ObservableCollection<Booking> GetBookingByDay(DateTime Day) => _bookingRepo.GetBookingByDay(Day);
 
+        public void MarkBookings(Booking b)
+        {
+            Bookings.Add(b);
+        }
+
+        public void AddManyBookings(ObservableCollection<Booking> bookings)
+        {
+            foreach (Booking booking in bookings)
+            {
+                MarkBookings(booking);
+            }
+        }
 
 
         public Booking selectedBooking;

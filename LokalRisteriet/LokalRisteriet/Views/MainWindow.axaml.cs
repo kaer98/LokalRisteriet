@@ -66,6 +66,7 @@ namespace LokalRisteriet.Views
                 editBookingView.txtNote.Text = mainView.bookingViewModel.selectedBooking.BookingNote;
                 editBookingView.txtGuest.Text =
                     mainView.bookingViewModel.selectedBooking.BookingAmountOfGuests.ToString();
+            editBookingView.dPDate.SelectedDate = mainView.bookingViewModel.selectedBooking.BookingStart.Date;
       
 
             // double guestAmount = double.Parse(editBookingView.txtGuest.Text);
