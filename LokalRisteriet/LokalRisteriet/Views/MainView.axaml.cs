@@ -75,6 +75,7 @@ namespace LokalRisteriet.Views
                 if (b.BookingStart.Month == _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
                 {
                     bvm.MarkBookings(b);
+                    _calcal.SelectedDates.Add(b.BookingStart);
                 }
             }
             DataContext = null;
