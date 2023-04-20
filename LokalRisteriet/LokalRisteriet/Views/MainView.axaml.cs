@@ -33,7 +33,7 @@ namespace LokalRisteriet.Views
             InitializeComponent();
             bookingViewModel = new BookingViewModel();
             
-            DataContext = bookingViewModel;
+            //DataContext = bookingViewModel;
 
             _calcal.SelectedDatesChanged += (sender, args) =>
             {
@@ -75,10 +75,9 @@ namespace LokalRisteriet.Views
         private void ColorCal()
         {
             bvm = new MainViewVM();
-            ObservableCollection<Booking> bookings = new ObservableCollection<Booking>();
             foreach (Booking b in bookingViewModel.Bookings)
             {
-                if (b.BookingStart.Month == DateTime.Today.Month)
+                if (b.BookingStart.Month ==  _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
                 {
                     bvm.MarkBooking(b);
 

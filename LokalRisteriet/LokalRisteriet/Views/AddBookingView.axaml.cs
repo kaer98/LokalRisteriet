@@ -52,10 +52,11 @@ namespace LokalRisteriet
             }
             
 
-            Booking booking = new Booking(bType, bNote,rooms(), bTimeStart,bTimeEnd,bNoOfPeople,false, bDepositum);
+            Booking booking = new Booking(bType, bNote,rooms(), bTimeStart,bTimeEnd,bNoOfPeople,false);
             booking.BookingCustomerID = customer.CustomerId;
             booking.EmployeesAdult = employeesAdult;
             booking.EmployeesChild = employeesChild;
+            booking.Deposit = bDepositum;
             bookingViewModel.AddBooking(booking);
         }
 
