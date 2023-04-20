@@ -11,7 +11,7 @@
 
 	
 		<!--Middle (Main) Bar-->
-        <Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="Auto,*">
+        <Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="*,50">
 
 			<Grid.Styles>
 				<Style Selector="Calendar:checked">
@@ -25,7 +25,7 @@
 					
 				</Calendar>
 
-				<ListBox Grid.Column="1" Height="370" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#121212" BorderThickness="2"  Margin="20,00,20,0" CornerRadius="20">
+				<ListBox Grid.Column="1" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#121212" BorderThickness="2"  Margin="20,10,20,10" CornerRadius="20">
                 <ListBox.ItemTemplate>
 					
                     <DataTemplate>
@@ -49,10 +49,10 @@
 
             </ListBox>
 
-				<Grid Grid.Column="2" RowDefinitions="*,Auto" VerticalAlignment="Center" >
+				<Grid Grid.Column="2" RowDefinitions="260,*" >
 
 			
-					<Border Grid.Column="2" Grid.Row="0" BorderThickness="2" Height="260" MinWidth="250" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#e1e5ea" CornerRadius="20" BorderBrush="Black" >
+					<Border Grid.Row="0" BorderThickness="2" Background="#e1e5ea" CornerRadius="20" BorderBrush="Black" VerticalAlignment="Top" Margin="10" >
 				<Grid  ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" VerticalAlignment="Center"  >
 
 					
@@ -106,7 +106,7 @@
 				</Grid>
 				</Border>
 
-					<Border Margin="0,10,0,0" Grid.Column="2" Grid.Row="1" BorderThickness="2" Height="100" HorizontalAlignment="Left" Width="250" VerticalAlignment="Bottom" Background="#e1e5ea" CornerRadius="20" BorderBrush="Black" >
+					<Border Margin="10" Grid.Column="2" Grid.Row="1" BorderThickness="2"  Background="#e1e5ea" CornerRadius="20" BorderBrush="Black" >
 						<StackPanel>
 							<Label>Noter:</Label>
 						<Label  VerticalAlignment="Top"  HorizontalAlignment="Left" Content="{Binding SelectedBooking.BookingNote}" ></Label>

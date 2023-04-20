@@ -7,6 +7,7 @@ namespace LokalRisteriet.Views
         public EditBookingView()
         {
             InitializeComponent();
+
         }
     }
 }

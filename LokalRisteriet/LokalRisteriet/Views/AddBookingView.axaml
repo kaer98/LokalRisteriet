@@ -14,10 +14,10 @@
 
 
 		<Label HorizontalContentAlignment="Center" FontSize="30" >Ny Booking</Label>
-		<Grid ColumnDefinitions="Auto,*">
+		<Grid ColumnDefinitions="Auto,*" RowDefinitions="*,Auto">
 			
 		
-		<Grid Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="50">
+		<Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="50">
 
 			<!--Navn-->
 			<Label Grid.Column="0" Grid.Row="0">Navn</Label>
@@ -75,20 +75,25 @@
 
 		</Grid>
 
-			<Grid Grid.Column="1" RowDefinitions="Auto,*">
+			<Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,*">
 				
 				<Label  Grid.Row="0" HorizontalContentAlignment="Center" FontSize="20">Noter</Label>
 
 				<TextBox Name="txtNote" Grid.Row="1" Width="300" Height="110" Margin="0,20,0,0" VerticalAlignment="Top"  Background="LightGray" BorderBrush="Black" BorderThickness="1"></TextBox>
 			</Grid>
+			
+			<StackPanel Grid.Row="1" Orientation="Horizontal">
+					<Button Click="btnCreateBooking">Aftal Booking</Button> 
+		
+		<!--Vi har brug for en pop up (Depositum) besked når vi trykker på Reserver Booking-->
+		<Button Background="#4498e7" >Reserver Booking</Button>
+			</StackPanel>
+			
 		</Grid>
 
 		<!--Vi har brug for en pop up (Pris) besked når vi trykker på Aftal Booking-->
 
-		<Button Click="btnCreateBooking">Aftal Booking</Button> 
-		
-		<!--Vi har brug for en pop up (Depositum) besked når vi trykker på Reserver Booking-->
-		<Button Background="#4498e7" >Reserver Booking</Button>
+	
 
 		
 
