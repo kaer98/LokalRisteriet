@@ -22,12 +22,14 @@ namespace LokalRisteriet.Views
         public event EventHandler BookingViewEvent;
         public event EventHandler EditBookingViewEvent;
         public event EventHandler AddBookingViewEvent;
+
+        public BookingViewModel bookingViewModel = new BookingViewModel();
         
 
         public MainView()
         {
             InitializeComponent();
-            BookingViewModel bookingViewModel = new BookingViewModel();
+           
             
             DataContext = bookingViewModel;
 

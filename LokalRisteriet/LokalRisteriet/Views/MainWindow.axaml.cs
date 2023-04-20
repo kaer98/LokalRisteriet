@@ -24,18 +24,36 @@ namespace LokalRisteriet.Views
             UserMiddleControl.Content = mainView;
             MainViewBtn.IsVisible = false;
 
+            
          
         }
 
         private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
         {
+           editBookingView.txtName.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerName;
+           editBookingView.txtEmail.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerEmail;
+           editBookingView.txtPhoneNo.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerPhoneNo;
+           editBookingView.tPStart.SelectedTime = mainView.bookingViewModel.selectedBooking.BookingStart.TimeOfDay;
+           editBookingView.tPSlut.SelectedTime = mainView.bookingViewModel.selectedBooking.BookingEnd.TimeOfDay;
+           editBookingView.dd18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesAdult;
+           editBookingView.ddu18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesChild;
+           editBookingView.txtType.Text = mainView.bookingViewModel.selectedBooking.BookingType;
+           editBookingView.txtNote.Text = mainView.bookingViewModel.selectedBooking.BookingNote;
+           editBookingView.txtGuest.Text = mainView.bookingViewModel.selectedBooking.BookingAmountOfGuests.ToString();
 
-            UserMiddleControl.Content = editBookingView;
+           // double guestAmount = double.Parse(editBookingView.txtGuest.Text);
+           // guestAmount =  mainView.bookingViewModel.selectedBooking.BookingAmountOfGuests;
+           // editBookingView.txtGuest.Text = guestAmount.ToString();
+           
+
+           UserMiddleControl.Content = editBookingView;
             if (UserMiddleControl.Content == editBookingView)
             {
                 MainViewBtn.IsVisible = true;
 
             }
+            
+            
 
         }
 
