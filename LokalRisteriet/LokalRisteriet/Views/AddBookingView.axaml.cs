@@ -40,6 +40,7 @@ namespace LokalRisteriet
             string bType = txtTyoe.Text;
             int employeesAdult = dd18.SelectedIndex;
             int employeesChild = ddu18.SelectedIndex;
+            double bDepositum = double.Parse(txtDepositum);
             Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
             if (customer == null)
             {
@@ -51,7 +52,7 @@ namespace LokalRisteriet
             }
             
 
-            Booking booking = new Booking(bType, bNote,rooms(), bTimeStart,bTimeEnd,bNoOfPeople,false);
+            Booking booking = new Booking(bType, bNote,rooms(), bTimeStart,bTimeEnd,bNoOfPeople,false, bDepositum);
             booking.BookingCustomerID = customer.CustomerId;
             booking.EmployeesAdult = employeesAdult;
             booking.EmployeesChild = employeesChild;

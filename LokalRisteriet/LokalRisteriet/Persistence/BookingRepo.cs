@@ -77,7 +77,8 @@ namespace LokalRisteriet.Persistence
                         string bookingNote = dr["BookingNote"].ToString();
                         int bookingEmployeeAdult = int.Parse(dr["BookingEmployeeAdult"].ToString());
                         int bookingEmployeeChild = int.Parse(dr["BookingEmployeeChild"].ToString());
-                        Booking booking = new Booking(bookingtype, bookingNote, rooms, bookingStart, bookingEnd, bookingAmountOfGuests, bookingReserved);
+                        double depositum = double.Parse(dr["Depositum"].ToString());
+                        Booking booking = new Booking(bookingtype, bookingNote, rooms, bookingStart, bookingEnd, bookingAmountOfGuests, bookingReserved, depositum);
                         booking.BookingCustomerID = bookingCustomerID;
                         booking.BookingPrice= bookingPrice;
                         booking.BookingAddOns = addOns;
@@ -109,7 +110,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployeeAdult, BookingEmployeeChild, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployeeAdult, @BookingEmployeeChild, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote)", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployeeAdult, BookingEmployeeChild, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote, Depositum) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployeeAdult, @BookingEmployeeChild, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote, @Depositum)", connection);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
 
                 for (int i = 1; i <= 2; i++)
@@ -142,6 +143,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingPrice", booking.BookingPrice);
                 cmd.Parameters.AddWithValue("@BookingReserved", booking.BookingReserved);
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
+                cmd.Parameters.AddWithValue("@Depositum", booking.Depositum);
                 cmd.ExecuteNonQuery();
             }
             booking.BookingID = nextID++;
@@ -155,7 +157,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployeeAdult=@BookingEmployeeAdult, BookingEmployeeChild=@BookingEmployeeChild, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote WHERE BookingID=@BookingID", connection);
+                SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployeeAdult=@BookingEmployeeAdult, BookingEmployeeChild=@BookingEmployeeChild, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote, Depositum=@Depositum WHERE BookingID=@BookingID", connection);
                 cmd.Parameters.AddWithValue("@BookingID", booking.BookingID);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
 
@@ -188,6 +190,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingPrice", booking.BookingPrice);
                 cmd.Parameters.AddWithValue("@BookingReserved", booking.BookingReserved);
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
+                cmd.Parameters.AddWithValue("@Depositum", booking.Depositum);
                 cmd.ExecuteNonQuery();
             }
             
