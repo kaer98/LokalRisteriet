@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
+using System.Collections.ObjectModel;
 
 namespace LokalRisteriet.Persistence
 {
@@ -222,7 +223,7 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-
+        public ObservableCollection<Booking> GetBookingByDay(DateTime day) => new ObservableCollection<Booking>(_bookings.FindAll(b => b.BookingStart.Date == day.Date));
 
     }
 

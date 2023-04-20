@@ -1,6 +1,7 @@
 using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
 using Task = LokalRisteriet.Models.Task;
+using LokalRisteriet;
 
 namespace LRTests
 {

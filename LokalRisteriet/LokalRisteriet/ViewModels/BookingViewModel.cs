@@ -75,6 +75,8 @@ namespace LokalRisteriet.ViewModels
             }
             
         }
+        public ObservableCollection<Booking> GetBookingByDay(DateTime Day) => _bookingRepo.GetBookingByDay(Day);
+
 
 
         public Booking selectedBooking;

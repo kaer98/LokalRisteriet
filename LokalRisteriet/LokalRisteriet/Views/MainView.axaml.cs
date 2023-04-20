@@ -30,7 +30,10 @@ namespace LokalRisteriet.Views
         {
             InitializeComponent();
 
-
+            _calcal.SelectedDatesChanged += (sender, args) =>
+            {
+                SelectedDates();
+            };
             //DataContext = bookingViewModel;
 
             //            ColorCal();
@@ -59,6 +62,11 @@ namespace LokalRisteriet.Views
 
         }
 
+        private void MarkDays(object sender, RoutedEventArgs e)
+        {
+            ColorCal();
+        }
+
         private void ColorCal()
         {
             bvm = new MainViewVM();
@@ -67,15 +75,24 @@ namespace LokalRisteriet.Views
                 if (b.BookingStart.Month == _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
                 {
                     bvm.MarkBookings(b);
-
-
                 }
-
-
             }
-
             DataContext = null;
             DataContext = bvm;
+        }
+
+        private void SelectedDates()
+        {
+            bvm = new MainViewVM();
+            foreach (DateTime day in _calcal.SelectedDates)
+            {
+                bvm.AddManyBookings(bookingViewModel.GetBookingByDay(day));
+            }
+            DataContext = null;
+            DataContext = bvm;
+
+
+
         }
     }
 }

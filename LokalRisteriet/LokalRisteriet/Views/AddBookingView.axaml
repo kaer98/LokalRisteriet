@@ -71,6 +71,8 @@
 				<CheckBox Name="cbRoom2">Lokale2</CheckBox>
 			</StackPanel>
 			
+			
+			
 			<!--Depositum-->
 			<Label Grid.Column="0" Grid.Row="10">Depositum</Label>
 			<TextBox Name="txtDepositum"  Grid.Column="1" Grid.Row="10" Watermark="Indtast Depositum"></TextBox>
