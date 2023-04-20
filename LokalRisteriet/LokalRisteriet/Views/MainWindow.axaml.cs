@@ -30,6 +30,8 @@ namespace LokalRisteriet.Views
 
         private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
         {
+
+           
            editBookingView.txtName.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerName;
            editBookingView.txtEmail.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerEmail;
            editBookingView.txtPhoneNo.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerPhoneNo;
