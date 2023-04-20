@@ -17,7 +17,7 @@
         <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Produkter til bookingen</Label>
         <Label Grid.Row="0" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Services til bookingen</Label>
 
-		<ListBox Grid.Column="0" Grid.Row="1" Background="#e1e5ea"  Margin="10,10" BorderBrush="Black" BorderThickness="2" CornerRadius="20">
+		<ListBox Grid.Column="0" Grid.Row="1" Background="#e1e5ea"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 			<ListBox.ItemTemplate>
 				
 			</ListBox.ItemTemplate>
@@ -49,7 +49,7 @@
 
 
 		</ListBox>
-        <ListBox Grid.Column="1" Grid.Row="1" Background="#e1e5ea" Margin="10,10" BorderBrush="Black" BorderThickness="2" CornerRadius="20">
+        <ListBox Grid.Column="1" Grid.Row="1" Background="#e1e5ea" Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 			<ListBox.ItemTemplate>
 
 			</ListBox.ItemTemplate>
@@ -110,7 +110,14 @@
 		<Label Content="{}"></Label>
 
 	</StackPanel>
+	<StackPanel Grid.Row="2" Orientation="Horizontal">
+		
+		<Label>Valgt Booking: </Label>
+		<Label x:Name="lblBookingType"></Label>
+		<Label> af</Label>
+		<Label x:Name="choosenBookingName"></Label>
 
+	</StackPanel>
 </Grid>
 
 </UserControl>
