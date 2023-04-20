@@ -21,31 +21,31 @@
 
 			<!--Navn-->
 			<Label Grid.Column="0" Grid.Row="0">Navn</Label>
-			<TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Watermark="Indtast Navn"></TextBox>
+			<TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Watermark="Indtast Navn" Margin="0,0,0,5"></TextBox>
 			
 			<!--E-Mail-->
 			<Label  Grid.Column="0" Grid.Row="1">Email</Label>
-			<TextBox Name="txtEmail" Grid.Column="1" Grid.Row="1" Watermark="Indtast Email"></TextBox>
+			<TextBox Name="txtEmail" Grid.Column="1" Grid.Row="1" Watermark="Indtast Email" Margin="0,0,0,5"></TextBox>
 
 			<!--Telefonnumer-->
 			<Label Grid.Column="0" Grid.Row="2">Telefon</Label>
-			<TextBox Name="txtPhoneNo"  Grid.Column="1" Grid.Row="2" Watermark="Indtast Telefonnummer"></TextBox>
+			<TextBox Name="txtPhoneNo"  Grid.Column="1" Grid.Row="2" Watermark="Indtast Telefonnummer" Margin="0,0,0,5"></TextBox>
 
 			<!--Vælg Start Tidspunkt-->
 			<Label Grid.Column="0" Grid.Row="3">Vælg Start tidspunkt </Label>
-			<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3"  ></TimePicker>
+			<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3" Margin="0,0,0,5" ></TimePicker>
 
 			<!--Vælg Slut Tidspunkt-->
 			<Label Grid.Column="0" Grid.Row="4">Vælg Slut tidspunkt </Label>
-			<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4"  ></TimePicker>
+			<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4" Margin="0,0,0,5"  ></TimePicker>
 
 			<!--Vælg Ekstra Personale-->
 			<Label Grid.Column="0" Grid.Row="5">Ekstra Personale</Label>
-			<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Spacing="5">
-				<DropDown Name="dd18" >
+			<StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Spacing="5" Margin="0,0,0,5">
+				<DropDown CornerRadius="20" Name="dd18" >
 				</DropDown>
 				<Label > over 18</Label>
-				<DropDown Name="ddu18" >
+				<DropDown CornerRadius="20" Name="ddu18" >
 				</DropDown>
 				<Label>Under 18</Label>
 				<!--<TextBox Name="txtStaff" Watermark="Indtast Antal Personale" ></TextBox>
@@ -54,7 +54,7 @@
 
 			<!--Event Type - Skal være en drop down menu-->
 			<Label Grid.Column="0" Grid.Row="6">Event Type</Label>
-			<TextBox Name="txtTyoe" Grid.Column="1" Grid.Row="6" Watermark="Indtast Type"></TextBox>
+			<TextBox Name="txtTyoe" Grid.Column="1" Grid.Row="6" Watermark="Indtast Type" Margin="0,0,0,5"></TextBox>
 
 			<!--Antal Gæster-->
 			<Label Grid.Column="0" Grid.Row="7">Antal Gæster</Label>

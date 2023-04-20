@@ -26,7 +26,7 @@
 				<Calendar Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center" Height="400"  VerticalAlignment="Center" SelectionMode="SingleDate">
 				</Calendar>
 
-				<ListBox Grid.Column="1" Height="370" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#121212" BorderThickness="2"  Margin="50,20,50,0" CornerRadius="20">
+				<ListBox Grid.Column="1" Height="370" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#121212" BorderThickness="2"  Margin="20,00,20,0" CornerRadius="20">
                 <ListBox.ItemTemplate>
 					
                     <DataTemplate>
