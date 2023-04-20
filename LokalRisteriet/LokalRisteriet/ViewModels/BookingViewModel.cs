@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
@@ -42,23 +43,23 @@ namespace LokalRisteriet.ViewModels
 
         public void UpdateBooking(Booking booking) => _bookingRepo.UpdateBooking(booking);
 
-        public void AddCustomers()
-        {
-            foreach (Booking book in _books)
-            {
-                if (book.BookingCustomerID != 0)
-                {
-                    foreach (Customer cust in _customers)
-                    {
-                        if (book.BookingCustomerID == cust.CustomerId)
-                        {
-                            book.Customer = cust;
-                        }
-                    }
-                }
-            }
+        public void AddCustomers() => _books.Where(book => book.BookingCustomerID != 0).ToList().ForEach(book => _customers.Where(cust => book.BookingCustomerID == cust.CustomerId).ToList().ForEach(cust => book.Customer = cust));
+        //{
+        //    foreach (Booking book in _books)
+        //    {
+        //        if (book.BookingCustomerID != 0)
+        //        {
+        //            foreach (Customer cust in _customers)
+        //            {
+        //                if (book.BookingCustomerID == cust.CustomerId)
+        //                {
+        //                    book.Customer = cust;
+        //                }
+        //            }
+        //        }
+        //    }
             
-        }
+        //}
 
 
         public Booking selectedBooking;
