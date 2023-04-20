@@ -17,7 +17,7 @@
 		<Grid ColumnDefinitions="Auto,*" RowDefinitions="*,Auto">
 			
 		
-		<Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="50">
+		<Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*" Margin="50">
 
 			<!--Navn-->
 			<Label Grid.Column="0" Grid.Row="0">Navn</Label>
@@ -69,12 +69,12 @@
 			<StackPanel	Grid.Column="1" Grid.Row="9" Orientation="Horizontal" Spacing="5">
 				<CheckBox Name="cbRoom1">Lokale1</CheckBox>
 				<CheckBox Name="cbRoom2">Lokale2</CheckBox>
-
+			</StackPanel>
 			<!--Depositum-->
 			<Label Grid.Column="0" Grid.Row="10">Depositum</Label>
-			<TextBox Depositum="txtDepositum"  Grid.Column="1" Grid.Row="10" Watermark="Indtast Depositum"></TextBox>
+			<TextBox Name="txtDepositum"  Grid.Column="1" Grid.Row="10" Watermark="Indtast Depositum"></TextBox>
 				
-			</StackPanel>
+			
 			
 
 
