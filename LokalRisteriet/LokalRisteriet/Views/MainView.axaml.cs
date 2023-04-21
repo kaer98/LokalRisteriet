@@ -69,6 +69,7 @@ namespace LokalRisteriet.Views
 
         private void ColorCal()
         {
+            _calcal.SelectedDates.Clear();
             bookingViewModel = new BookingViewModel();
             foreach (Booking b in bookingViewModel.Bookings1)
             {
