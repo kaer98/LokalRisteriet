@@ -17,7 +17,7 @@
 		<Grid ColumnDefinitions="Auto,*" RowDefinitions="*,Auto">
 			
 		
-		<Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*" Margin="50">
+		<Grid Grid.Row="0" Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*" Margin="50">
 
 			<!--Navn-->
 			<Label Grid.Column="0" Grid.Row="0">Navn</Label>
@@ -76,8 +76,12 @@
 			<!--Depositum-->
 			<Label Grid.Column="0" Grid.Row="10">Depositum</Label>
 			<TextBox Name="txtDepositum"  Grid.Column="1" Grid.Row="10" Watermark="Indtast Depositum"></TextBox>
-				
-			
+
+            <!--Price-->
+            <Label Grid.Row="11" Grid.Column="0">Estimerede pris</Label>
+            <TextBox Name="txtPrice" Grid.Column="1" Grid.Row="11" Watermark="Opdater Pris"></TextBox>
+
+
 
 
 		</Grid>

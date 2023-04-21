@@ -22,8 +22,78 @@ namespace LokalRisteriet
              customerViewModel = new CustomerViewModel();
             dd18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
             ddu18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+            tPStart.SelectedTimeChanged += (sender, e) =>
+            {
+                txtPrice.Text = CalculatePrice().ToString();
+            };
+            tPSlut.SelectedTimeChanged += (sender, e) =>
+            {
+                txtPrice.Text = CalculatePrice().ToString();
+            };
+            ddu18.SelectionChanged += (sender, e) =>
+            {
+                txtPrice.Text = CalculatePrice().ToString();
+            };
+            dd18.SelectionChanged += (sender, e) =>
+            {
+                txtPrice.Text = CalculatePrice().ToString();
+            };
 
 
+
+
+
+        }
+
+        public double CalculatePrice()
+        {
+            TimeSpan bookingDuration = new TimeSpan();
+            double timePrice = 0;
+            if (tPSlut.SelectedTime != null && tPStart.SelectedTime != null)
+            {
+                if (tPStart.SelectedTime.Value > tPSlut.SelectedTime)
+                {
+                    bookingDuration = (tPSlut.SelectedTime.Value+TimeSpan.FromHours(24)) - tPStart.SelectedTime.Value;
+                }
+                else
+                {
+                    bookingDuration = tPSlut.SelectedTime.Value - tPStart.SelectedTime.Value;
+                }
+                
+            }
+            else
+            {
+                return 0;
+            }
+
+            int employeesAdult = 0;
+            if (dd18.SelectedIndex != -1)
+            {
+                employeesAdult = dd18.SelectedIndex;
+            }
+            int employeesChild = 0;
+            if (ddu18.SelectedIndex != -1)
+            {
+                employeesChild = ddu18.SelectedIndex;
+            }
+                
+
+            if (bookingDuration.Hours >= 6)
+            {
+
+                timePrice = 5000 + ((bookingDuration.Hours - 6) * 1000);
+                timePrice += employeesAdult * 400;
+                timePrice += employeesChild * 200;
+
+            }
+            else
+            {
+                timePrice = bookingDuration.Hours * 1000;
+                timePrice += employeesAdult * 400;
+                timePrice += employeesChild * 200;
+            }
+
+            return timePrice;
         }
 
         private void btnCreateBooking(object sender, RoutedEventArgs e)
@@ -77,7 +147,13 @@ namespace LokalRisteriet
             list.Add(room);
             list.Add(room2);
             return list;
+
+            
         }
 
+
+        
+
+        
     }
 }

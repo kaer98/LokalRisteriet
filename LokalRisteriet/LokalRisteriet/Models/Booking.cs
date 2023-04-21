@@ -147,7 +147,7 @@ namespace LokalRisteriet.Models
 
         }
 
-        public void CalculatePrice()
+        public double CalculatePrice()
         {
             TimeSpan over5 = TimeSpan.FromHours(5);
             double timePrice = 0;
@@ -159,6 +159,8 @@ namespace LokalRisteriet.Models
             {
                 
                 timePrice = 5000+((BookingDuration.Hours-6) * 1000);
+                timePrice += EmployeesAdult * 400;
+                timePrice += EmployeesChild * 200;
 
             }
             else 
@@ -167,7 +169,7 @@ namespace LokalRisteriet.Models
                 timePrice += EmployeesAdult * 400;
                 timePrice += EmployeesChild * 200;
             }
-            _price = timePrice;
+           return _price = timePrice;
         }
         
     }

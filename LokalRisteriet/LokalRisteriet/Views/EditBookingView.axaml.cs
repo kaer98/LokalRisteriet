@@ -8,6 +8,7 @@ namespace LokalRisteriet.Views
         {
             InitializeComponent();
 
+            
         }
     }
 }

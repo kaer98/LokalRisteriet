@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="2000" d:DesignHeight="800" 
              x:Class="LokalRisteriet.Views.EditBookingView">
 
 
@@ -17,7 +17,7 @@
 		<Grid ColumnDefinitions="Auto,*">
 
 
-			<Grid Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*" Margin="50">
+			<Grid Grid.Column="0" ColumnDefinitions="*,*,*" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*" Margin="50">
 
 				<!--Navn-->
 				<Label Grid.Column="0" Grid.Row="0">Navn</Label>
@@ -73,23 +73,32 @@
 				
 				<!--Depositum-->
 				<Label Grid.Column="0" Grid.Row="10">Depositum</Label>
-				<TextBox Name="txtDepositum"  Grid.Column="1" Grid.Row="10" Watermark="Indtast Depositum"></TextBox>
+				<TextBox Name="txtDepositum"  Grid.Column="1" Grid.Row="10" Watermark="Opdater Depositum"></TextBox>
+
+
+                <!--Price-->
+				<Label Grid.Row="11" Grid.Column="0">Estimerede pris</Label>
+				<TextBox Name="txtPrice" Grid.Column="1" Grid.Row="11" Watermark="Opdater Pris"></TextBox>
+
+                <Button Grid.Column="2" Grid.Row="11" Name="btnCreateBooking" Margin="10,0,0,0">Opdater Booking (Gem)</Button>
 				
 			</Grid>
 
 
 
 
-			<Grid Grid.Column="1" RowDefinitions="Auto,*">
+			<Grid Grid.Column="0" RowDefinitions="Auto,*">
 
-				<Label  Grid.Row="0" HorizontalContentAlignment="Center" FontSize="20">Noter</Label>
+				<Label  Grid.Row="0"  Margin="600,0,0,0" FontSize="20">Noter</Label>
 
-				<TextBox Name="txtNote" Grid.Row="1" Width="300" Height="110" Margin="0,20,0,0" VerticalAlignment="Top"  Background="LightGray" BorderBrush="#b3b3b3" BorderThickness="1"></TextBox>
-			</Grid>
+				<TextBox Name="txtNote" HorizontalAlignment="Right" Grid.Row="1" Width="200" Height="110" Margin="10,20,0,0" VerticalAlignment="Top"  Background="LightGray" BorderBrush="#b3b3b3" BorderThickness="1"></TextBox>
+				
+            </Grid>
+        
 		</Grid>
 
 		<!--Vi har brug for en pop up (Pris) besked når vi trykker på Aftal Booking-->
-		<Button Name="btnCreateBooking">Opdater Booking (Gem)</Button>
+		
 
 		
 
