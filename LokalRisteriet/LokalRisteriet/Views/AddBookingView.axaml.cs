@@ -82,16 +82,13 @@ namespace LokalRisteriet
             {
 
                 timePrice = 5000 + ((bookingDuration.Hours - 6) * 1000);
-                timePrice += employeesAdult * 400;
-                timePrice += employeesChild * 200;
-
             }
             else
             {
                 timePrice = bookingDuration.Hours * 1000;
-                timePrice += employeesAdult * 400;
-                timePrice += employeesChild * 200;
             }
+
+            timePrice += employeesChild * 200 + employeesAdult * 400;
 
             return timePrice;
         }

@@ -139,11 +139,19 @@ namespace LokalRisteriet.Models
             _rooms = rooms;
             _startDateTime = startDateTime;
             _endDateTime = endDateTime;
-            _duration = endDateTime - startDateTime;
+            if (startDateTime > endDateTime)
+            {
+               _duration= endDateTime+TimeSpan.FromHours(24) -startDateTime;
+            }
+            else
+            {
+                _duration = endDateTime - startDateTime;
+            }
             _amountOfGuests = amountOfGuests;
             _reserved = reserved;
             _tasks = new List<Task>();
             _addOns = new List<AddOn>();
+            CalculatePrice();
 
         }
 
@@ -159,15 +167,15 @@ namespace LokalRisteriet.Models
             {
                 
                 timePrice = 5000+((BookingDuration.Hours-6) * 1000);
-                timePrice += EmployeesAdult * 400;
-                timePrice += EmployeesChild * 200;
+                timePrice += EmployeesAdult * 400*BookingDuration.Hours;
+                timePrice += EmployeesChild * 200*BookingDuration.Hours;
 
             }
             else 
             { 
                 timePrice = BookingDuration.Hours * 1000;
-                timePrice += EmployeesAdult * 400;
-                timePrice += EmployeesChild * 200;
+                timePrice += EmployeesAdult * 400 * BookingDuration.Hours;
+                timePrice += EmployeesChild * 200 * BookingDuration.Hours;
             }
            return _price = timePrice;
         }

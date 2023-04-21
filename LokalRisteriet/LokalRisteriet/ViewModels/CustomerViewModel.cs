@@ -55,5 +55,10 @@ namespace LokalRisteriet.ViewModels
             return nextid;
         }
 
+        public Customer GetCustomerById(int id)
+        {
+           return _customerRepo.GetCustomerById(id);
+        }
+
     }
 }

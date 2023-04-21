@@ -103,6 +103,9 @@ namespace LokalRisteriet.Persistence
             return nextID;
         }
 
-
+        public Customer GetCustomerById(int id)
+        {
+            return _customers.Find(x => x.CustomerId == id);
+        }
     }
 }
