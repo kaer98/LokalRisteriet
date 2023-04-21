@@ -25,7 +25,7 @@
 					
 				</Calendar>
 
-				<ListBox Grid.Column="1" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#b3b3b3" BorderThickness="1.60"  Margin="20,10,20,10" CornerRadius="20">
+				<ListBox Grid.Column="1" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#b3b3b3" BorderThickness="1.60"  Margin="20,10,20,10" CornerRadius="20" >
                 <ListBox.ItemTemplate>
 					
                     <DataTemplate>
@@ -156,10 +156,15 @@
                 </ListBoxItem>
 
             </ListBox>-->
+			<Grid Grid.Row="0" RowDefinitions="*" VerticalAlignment="Bottom"  Height="30" >
+			<Label Grid.Row="0" Name="lblError" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Foreground="Red" FontSize="14" Height="50" ></Label>
 
+			</Grid>
             <Grid Grid.Row="1" RowDefinitions="*" VerticalAlignment="Top" >
             <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="50,10,50,0" >
-                <Button Click="Booking_Button2" >Se Booking</Button>
+			
+
+				<Button Name="btn" Click="Booking_Button2" >Se Booking</Button>
                 <Button Click="AddBookingButton">Tilføj Booking</Button>
                 <Button Click="EditBookingButton">Rediger Booking</Button>
 				<Button Click="MarkDays">Marker Booking</Button>

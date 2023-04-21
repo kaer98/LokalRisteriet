@@ -43,28 +43,42 @@ namespace LokalRisteriet.Views
 
         private void Booking_Button2(object sender, RoutedEventArgs e)
         {
-
-            BookingViewEvent?.Invoke(this, EventArgs.Empty);
-
+            if (bookingViewModel.SelectedBooking != null)
+            {
+                BookingViewEvent?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                lblError.Content = "Der er ikke valgt en booking";
+            }
         }
 
         private void AddBookingButton(object sender, RoutedEventArgs e)
         {
 
             AddBookingViewEvent?.Invoke(this, EventArgs.Empty);
+            lblError.Content = "";
 
         }
 
         private void EditBookingButton(object sender, RoutedEventArgs e)
         {
+            if ( bookingViewModel.selectedBooking!= null)
+            {
+                EditBookingViewEvent?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                lblError.Content = "Der er ikke valgt en booking";
+            }
 
-            EditBookingViewEvent?.Invoke(this, EventArgs.Empty);
-
+           
         }
 
         private void MarkDays(object sender, RoutedEventArgs e)
         {
             ColorCal();
+            lblError.Content = "";
         }
 
         private void ColorCal()
@@ -76,6 +90,7 @@ namespace LokalRisteriet.Views
                 {
                     bookingViewModel.MarkBookings(b);
                     _calcal.SelectedDates.Add(b.BookingStart);
+                    
                 }
             }
             DataContext = null;
