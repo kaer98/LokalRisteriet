@@ -109,6 +109,10 @@ namespace LokalRisteriet
             string bType = txtTyoe.Text;
             int employeesAdult = dd18.SelectedIndex;
             int employeesChild = ddu18.SelectedIndex;
+            if (txtDepositum.Text == null)
+            {
+                txtDepositum.Text = "0";
+            }
             double bDepositum = double.Parse(txtDepositum.Text);
             Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
             if (customer == null)

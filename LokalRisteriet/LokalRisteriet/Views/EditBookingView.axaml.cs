@@ -43,10 +43,11 @@ namespace LokalRisteriet.Views
 
         }
 
+        //Opdatering af booking.
+
         private void BtnCreateBooking_OnClick(object sender, RoutedEventArgs e)
         {
             string bName = txtName.Text;
-            
             string bPhone = txtPhoneNo.Text;
             string bEmail = txtEmail.Text;
             DateTime bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
@@ -74,7 +75,6 @@ namespace LokalRisteriet.Views
             booking.EmployeesChild = employeesChild;
             booking.Deposit = bDepositum;
             booking.BookingID = Id;
-            booking.BookingNote = txtNote.Text;
             bookingViewModel.UpdateBooking(booking);
         }
         public double CalculatePrice()
@@ -196,10 +196,6 @@ namespace LokalRisteriet.Views
         }
 
 
-        //Opdatering af booking.
-        public void ddd(object? sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }
