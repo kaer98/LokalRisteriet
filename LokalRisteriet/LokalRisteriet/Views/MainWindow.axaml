@@ -3,11 +3,13 @@
         xmlns:vm="using:LokalRisteriet.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:material="using:Material.Icons.Avalonia"
+
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
         x:Class="LokalRisteriet.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="LokalRisteriet"	
-        Height="650"
+        Height="700"
 		>
 
 
@@ -52,7 +54,9 @@
 
         <!--Bottom Bar--> 
         <Grid Grid.Row="2" Background="#66452a" ColumnDefinitions="70,100" >
-			<Button Grid.Column="0" Width="100" HorizontalContentAlignment="Center" x:Name="MainViewBtn"  Click="MainView_Button" Margin="5,0,0,0">Tilbage</Button>
+			<Button Grid.Column="0" Width="100" HorizontalContentAlignment="Center" x:Name="MainViewBtn"  Click="MainView_Button" Margin="5,0,0,0">
+				<material:MaterialIcon Kind="ArrowLeft"></material:MaterialIcon>
+			</Button>
 
 
 		</Grid>

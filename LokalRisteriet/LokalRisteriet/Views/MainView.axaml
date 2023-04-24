@@ -2,15 +2,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:material="using:Material.Icons.Avalonia"
              xmlns:viewModels="clr-namespace:LokalRisteriet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="810" d:DesignHeight="480"
              x:Class="LokalRisteriet.Views.MainView"
 			 >
 
-    <Grid Background="#edf0f5" RowDefinitions="*" >
+    <Grid  RowDefinitions="*" >
+	    <Grid.Background>
+		    <LinearGradientBrush  >
+			    <GradientStop Color="#e1e5ea"/> 
+
+			    <GradientStop Color="#a1a5a9" Offset="1.0"/>
+
+		    </LinearGradientBrush>    
+	    </Grid.Background>
 
 	
-		<!--Middle (Main) Bar-->
+	    <!--Middle (Main) Bar-->
         <Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="*,50">
 
 			<Grid.Styles>
@@ -21,12 +30,21 @@
 
 
 			<Grid Grid.Row="0" ColumnDefinitions="Auto,*,*">
-				<Calendar Name="_calcal" Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center"  Height="400"  VerticalAlignment="Center" SelectionMode="MultipleRange">
+				<Calendar Name="_calcal" Background="#e1e5ea" CornerRadius="20,20,0,0" BorderBrush="#b3b3b3"  Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center"  Height="400"  VerticalAlignment="Center" SelectionMode="MultipleRange">
 					
 				</Calendar>
 
-				<ListBox Grid.Column="1" SelectedItem="{Binding SelectedBooking}" Background="#e1e5ea" Items="{Binding Bookings}" BorderBrush="#b3b3b3" BorderThickness="1.60"  Margin="20,10,20,10" CornerRadius="20" >
-                <ListBox.ItemTemplate>
+				<ListBox Grid.Column="1"  SelectionChanged="BookingList_OnSelectionChanged" x:Name="bookingList" SelectedItem="{Binding SelectedBooking}"  Items="{Binding Bookings}" BorderBrush="#b3b3b3" BorderThickness="1.60"  Margin="20,10,20,10" CornerRadius="20" >
+                <ListBox.Background>
+	                <LinearGradientBrush  >
+		                <GradientStop Color="#e1e5ea"/> 
+
+		                <GradientStop Color="#a1a5a9" Offset="1.0"/>
+
+	                </LinearGradientBrush>    
+                </ListBox.Background>
+				
+					<ListBox.ItemTemplate>
 					
                     <DataTemplate>
 						
@@ -35,7 +53,13 @@
 							<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*">
 
 						</Grid>
-							<Label Grid.Column="0" Grid.Row="1" Content="{Binding BookingType}" Foreground="Black" ></Label>
+							<StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+								<material:MaterialIcon Kind="Calendar" Foreground="Black" />
+								<Label  Content="{Binding BookingType}" Foreground="Black" ></Label>
+								<Label  Content="af" Foreground="Black" ></Label>
+							</StackPanel>
+							
+
 							<Label Grid.Column="1" Grid.Row="1" Content="{Binding Customer.CustomerName}" Foreground="Black"></Label>
 						</Grid>
 
@@ -109,7 +133,10 @@
 					<Border Margin="10" Grid.Column="2" Grid.Row="1" BorderThickness="1.60"  Background="#e1e5ea" CornerRadius="20" BorderBrush="#b3b3b3" >
 						<StackPanel>
 							<Label>Noter:</Label>
-						<Label  VerticalAlignment="Top"  HorizontalAlignment="Left" Content="{Binding SelectedBooking.BookingNote}" ></Label>
+						<Label   VerticalAlignment="Top"  HorizontalAlignment="Left"  >
+							
+							<TextBlock TextWrapping="Wrap" Text="{Binding SelectedBooking.BookingNote}"></TextBlock>
+						</Label>
 						</StackPanel>
 							</Border>
 				</Grid>
@@ -166,7 +193,7 @@
 
 				<Button Name="btn" Click="Booking_Button2" >Se Booking</Button>
                 <Button Click="AddBookingButton">Tilføj Booking</Button>
-                <Button Click="EditBookingButton">Rediger Booking</Button>
+                <Button x:Name="editBookingBtn" Click="EditBookingButton">Rediger Booking</Button>
 				<Button Click="MarkDays">Marker Booking</Button>
 </StackPanel>
 				

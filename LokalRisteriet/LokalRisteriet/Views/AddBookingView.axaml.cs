@@ -5,6 +5,8 @@ using LokalRisteriet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata;
+using Avalonia;
+using Avalonia.Input;
 
 namespace LokalRisteriet
 {
@@ -149,8 +151,22 @@ namespace LokalRisteriet
         }
 
 
-        
+    
 
-        
+        private void TxtNote_OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        private void TxtNote_OnKeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox textBox1 = (TextBox)sender;
+                int caretIndex = textBox1.CaretIndex;
+                textBox1.Text = textBox1.Text.Insert(caretIndex, "\r\n");
+                textBox1.CaretIndex = caretIndex + 2; // Move caret to end of new line
+                e.Handled = true;
+            }        }
     }
 }

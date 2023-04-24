@@ -2,6 +2,9 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using LokalRisteriet.Models;
+using LokalRisteriet.ViewModels;
+using Microsoft.Win32;
 
 namespace LokalRisteriet.Views
 {
@@ -27,6 +30,12 @@ namespace LokalRisteriet.Views
             
          
         }
+        
+        //Opdatering af booking
+
+
+        
+        
 
         private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
         {

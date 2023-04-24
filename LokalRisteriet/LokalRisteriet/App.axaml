@@ -1,5 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:material="using:Material.Icons.Avalonia"
              xmlns:local="using:LokalRisteriet"
              x:Class="LokalRisteriet.App">
     <Application.DataTemplates>
@@ -8,6 +9,8 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <StyleInclude Source="avares://Material.Icons.Avalonia/App.xaml"></StyleInclude>
+
 
         <Style Selector="Button">
 

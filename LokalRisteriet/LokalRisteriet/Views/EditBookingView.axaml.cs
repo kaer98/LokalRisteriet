@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
@@ -132,6 +134,69 @@ namespace LokalRisteriet.Views
             list.Add(room2);
             return list;
 
+
+        }
+        
+        private void TxtNote_OnKeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox textBox = (TextBox)sender;
+                int caretIndex = textBox.CaretIndex;
+                textBox.Text = textBox.Text.Insert(caretIndex, "\r\n");
+                textBox.CaretIndex = caretIndex + 2; // Move caret to end of new line
+                e.Handled = true;
+            }
+        }
+
+        private void TxtNote_OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+        {
+
+        }
+
+        //Resize Note Box
+        private Point _startPoint;
+        private double _startWidth;
+        private double _startHeight;
+
+        private void ResizeGrip_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+        {
+            _startPoint = e.GetPosition(txtNote.Parent);
+            _startWidth = txtNote.Width;
+            _startHeight = txtNote.Height;
+
+        }
+
+        private void ResizeGrip_OnPointerMoved(object? sender, PointerEventArgs e)
+        {
+
+            Point currentPosition = e.GetPosition(txtNote.Parent);
+            double horizontalChange = currentPosition.X - _startPoint.X;
+            double verticalChange = currentPosition.Y - _startPoint.Y;
+
+            double newWidth = _startWidth + horizontalChange;
+            double newHeight = _startHeight + verticalChange;
+
+            if (newWidth > txtNote.MinWidth)
+            {
+                txtNote.Width = newWidth;
+            }
+
+            if (newHeight > txtNote.MinHeight)
+            {
+                txtNote.Height = newHeight;
+            }
+        }
+
+        private void ResizeGrip_OnPointerReleased(object? sender, PointerReleasedEventArgs e)
+        {
+            e.Pointer.Capture(null);
+        }
+
+
+        //Opdatering af booking.
+        public void BtnCreateBooking_OnClick(object? sender, RoutedEventArgs e)
+        {
 
         }
     }

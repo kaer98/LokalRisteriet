@@ -12,6 +12,10 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Xaml.Interactivity;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
+using MessageBoxSlim.Avalonia;
+using MessageBoxSlim.Avalonia.DTO;
+using MessageBoxSlim.Avalonia.Enums;
+using MessageBoxSlim.Avalonia.Views;
 
 namespace LokalRisteriet.Views
 {
@@ -29,6 +33,9 @@ namespace LokalRisteriet.Views
         public MainView()
         {
             InitializeComponent();
+            editBookingBtn.IsEnabled = false;
+            btn.IsEnabled = false;
+   
 
             _calcal.SelectedDatesChanged += (sender, args) =>
             {
@@ -111,5 +118,33 @@ namespace LokalRisteriet.Views
 
 
         }
+
+        private void BookingList_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+        {
+            bool editBtnOnOff = false;
+            
+            if (bookingList.SelectedItem == null)
+            {
+                editBtnOnOff = false;
+            }
+            else
+            {
+                editBtnOnOff = true;
+            }
+            
+            if (editBtnOnOff == true)
+            {
+                editBookingBtn.IsEnabled = true;
+                btn.IsEnabled = true;
+            }
+            else if (editBtnOnOff == false)
+            {
+                editBookingBtn.IsEnabled = false;
+                btn.IsEnabled = false;
+            }
+
+
+        }
+
     }
 }
