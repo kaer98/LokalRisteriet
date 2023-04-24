@@ -165,19 +165,17 @@ namespace LokalRisteriet.Models
             }
             if (BookingDuration.Hours >=6)
             {
-                
                 timePrice = 5000+((BookingDuration.Hours-6) * 1000);
                 timePrice += EmployeesAdult * 400*BookingDuration.Hours;
                 timePrice += EmployeesChild * 200*BookingDuration.Hours;
-
             }
             else 
             { 
                 timePrice = BookingDuration.Hours * 1000;
                 timePrice += EmployeesAdult * 400 * BookingDuration.Hours;
                 timePrice += EmployeesChild * 200 * BookingDuration.Hours;
-            }
-           return _price = timePrice;
+            } 
+            return _price = timePrice;
         }
         
     }
