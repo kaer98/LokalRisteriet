@@ -43,7 +43,9 @@ namespace LokalRisteriet.Views
 
         }
 
-        private void btnCreateBooking(object sender, RoutedEventArgs e)
+        //Opdatering af booking.
+
+        private void BtnCreateBooking_OnClick(object sender, RoutedEventArgs e)
         {
             string bName = txtName.Text;
             string bPhone = txtPhoneNo.Text;
@@ -194,10 +196,6 @@ namespace LokalRisteriet.Views
         }
 
 
-        //Opdatering af booking.
-        public void BtnCreateBooking_OnClick(object? sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

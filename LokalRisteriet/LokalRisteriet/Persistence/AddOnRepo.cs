@@ -49,11 +49,7 @@ namespace LokalRisteriet.Persistence
                             int bookingID = s;
                             addOn.AddOnBookingID = bookingID;
                         }
-
-
-                       
-                        
-                            addOn.AddOnID = id;
+                        addOn.AddOnID = id;
                         _addOns.Add(addOn);
                     }
                 }
