@@ -150,8 +150,6 @@ namespace LokalRisteriet
             list.Add(room);
             list.Add(room2);
             return list;
-
-            
         }
 
 
