@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Runtime.InteropServices;
 using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
 
@@ -42,14 +43,21 @@ namespace LokalRisteriet.Persistence
                         int id = int.Parse(dr["AddOnId"].ToString());
                         string name = dr["AddOnName"].ToString();
                         double price = double.Parse(dr["AddOnPrice"].ToString());
+                        int amount = 0;
+                       
                         int s = 0;
                         AddOn addOn = new AddOn(name, price);
                         if (int.TryParse(dr["AddOnBookingID"].ToString() ?? "", out s))
                         {
                             int bookingID = s;
                             addOn.AddOnBookingID = bookingID;
+                        } 
+                        if (int.TryParse(dr["AddOnAmount"].ToString() ?? "", out amount))
+                        {
+                            addOn.Amount = amount;
                         }
                         addOn.AddOnID = id;
+                        addOn.Amount = amount;
                         _addOns.Add(addOn);
                     }
                 }
@@ -63,19 +71,21 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                if (addOn.AddOnID != 0)
+                if (addOn.AddOnBookingID != 0)
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO AddOn (AddOnName, AddOnPrice, AddOnBookingId) VALUES (@name, @price, @bookingID)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO AddOn (AddOnName, AddOnPrice, AddOnBookingId, AddOnAmount) VALUES (@name, @price, @bookingID, @AddOnAmount)", connection);
                     cmd.Parameters.AddWithValue("@name", addOn.AddOnName);
                     cmd.Parameters.AddWithValue("@price", addOn.Price);
                     cmd.Parameters.AddWithValue("@bookingID", addOn.AddOnBookingID);
+                    cmd.Parameters.AddWithValue("@AddOnAmount", addOn.Amount);
                     cmd.ExecuteNonQuery();
                 }
                 else
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO AddOn (AddOnName, AddOnPrice) VALUES (@name, @price)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO AddOn (AddOnName, AddOnPrice, AddOnAmount) VALUES (@name, @price, @AddOnAmount)", connection);
                     cmd.Parameters.AddWithValue("@name", addOn.AddOnName);
                     cmd.Parameters.AddWithValue("@price", addOn.Price);
+                    cmd.Parameters.AddWithValue("@AddOnAmount", addOn.Amount);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -116,11 +126,12 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE AddOn SET AddOnName = @name, AddOnPrice = @price, AddOnBookingId = @bookingID WHERE AddOnId = @id", connection);
+                SqlCommand cmd = new SqlCommand("UPDATE AddOn SET AddOnName = @name, AddOnPrice = @price, AddOnBookingId = @bookingID, AddOnAmount= @AddOnAmount WHERE AddOnId = @id", connection);
                 cmd.Parameters.AddWithValue("@name", addOn.AddOnName);
                 cmd.Parameters.AddWithValue("@price", addOn.Price);
                 cmd.Parameters.AddWithValue("@bookingID", addOn.AddOnBookingID);
                 cmd.Parameters.AddWithValue("@id", addOn.AddOnID);
+                cmd.Parameters.AddWithValue("@AddOnAmount", addOn.Amount);
                 cmd.ExecuteNonQuery();
             }
         }

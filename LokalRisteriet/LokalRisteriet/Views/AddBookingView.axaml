@@ -97,7 +97,7 @@
 					<Button Click="btnCreateBooking">Aftal Booking</Button> 
 		
 		<!--Vi har brug for en pop up (Depositum) besked når vi trykker på Reserver Booking-->
-		<Button Background="#4498e7" >Reserver Booking</Button>
+		<Button Click="btnReserve" Background="#4498e7" >Reserver Booking</Button>
 			</StackPanel>
 			
 		</Grid>

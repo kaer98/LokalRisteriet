@@ -172,5 +172,45 @@ namespace LokalRisteriet
                 textBox1.CaretIndex = caretIndex + 2; // Move caret to end of new line
                 e.Handled = true;
             }        }
+
+        private void btnReserve(object? sender, RoutedEventArgs e)
+        {
+            string bName = txtName.Text;
+            string bPhone = txtPhoneNo.Text;
+            string bEmail = txtEmail.Text;
+            DateTime bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
+            DateTime bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
+            int bNoOfPeople = int.Parse(txtGuest.Text);
+            string bNote = txtNote.Text;
+            bool bRoom1 = cbRoom1.IsChecked.Value;
+            bool bRoom2 = cbRoom2.IsChecked.Value;
+            string bType = txtTyoe.Text;
+            int employeesAdult = dd18.SelectedIndex;
+            int employeesChild = ddu18.SelectedIndex;
+            if (txtDepositum.Text == null)
+            {
+                txtDepositum.Text = "0";
+            }
+            double bDepositum = double.Parse(txtDepositum.Text);
+            Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
+            if (customer == null)
+            {
+                Customer c = new Customer(bName, bPhone, bEmail);
+                c.CustomerId = customerViewModel.GetNextID();
+                customerViewModel.AddCustomer(c);
+
+                customer = c;
+            }
+
+
+            Booking booking = new Booking(bType, bNote, rooms(), bTimeStart, bTimeEnd, bNoOfPeople, true);
+            booking.BookingCustomerID = customer.CustomerId;
+            booking.EmployeesAdult = employeesAdult;
+            booking.EmployeesChild = employeesChild;
+            booking.Deposit = bDepositum;
+            bookingViewModel.AddBooking(booking);
+        }
+
+}
     }
 }

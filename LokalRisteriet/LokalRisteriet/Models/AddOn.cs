@@ -5,6 +5,7 @@ namespace LokalRisteriet.Models
     {
         public string AddOnName { get; set; }
         public double Price { get; private set; }
+        public int _amount = 0;
         private int _addOnID;
         private int _addOnBookingID;
 
@@ -12,6 +13,12 @@ namespace LokalRisteriet.Models
         {
             get { return _addOnBookingID; }
             set { _addOnBookingID = value; }
+        }
+
+        public int Amount
+        {
+            get { return _amount; }
+            set { _amount = value; }
         }
 
         public int AddOnID
