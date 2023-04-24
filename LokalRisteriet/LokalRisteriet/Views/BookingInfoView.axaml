@@ -17,7 +17,15 @@
         <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Produkter til bookingen</Label>
         <Label Grid.Row="0" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Services til bookingen</Label>
 
-		<ListBox Grid.Column="0" Grid.Row="1" Background="#e1e5ea"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+		<ListBox Grid.Column="0" Grid.Row="1"   Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+			<ListBox.Background>
+				<LinearGradientBrush>
+					<GradientStop Color="#e1e5ea"/> 
+
+					<GradientStop Color="#a1a5a9" Offset="1.0"/>
+
+				</LinearGradientBrush>    
+			</ListBox.Background>
 			<ListBox.ItemTemplate>
 				
 			</ListBox.ItemTemplate>
@@ -50,8 +58,16 @@
 
 
 		</ListBox>
-        <ListBox Grid.Column="1" Grid.Row="1" Background="#e1e5ea" Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
-			<ListBox.ItemTemplate>
+        <ListBox Grid.Column="1" Grid.Row="1"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+	        <ListBox.Background>
+		        <LinearGradientBrush>
+			        <GradientStop Color="#e1e5ea"/> 
+
+			        <GradientStop Color="#a1a5a9" Offset="1.0"/>
+
+		        </LinearGradientBrush>    
+	        </ListBox.Background>
+	        <ListBox.ItemTemplate>
 
 			</ListBox.ItemTemplate>
 
@@ -118,8 +134,16 @@
 		
 	</Grid.Styles>
 		
-		<Border Grid.Column="0" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Background="#e1e5ea" Margin="5,0,0,0">
-		<StackPanel>
+		<Border Grid.Column="0" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Margin="5,0,0,0">
+			<Border.Background>
+				<LinearGradientBrush>
+					<GradientStop Color="#e1e5ea"/> 
+
+					<GradientStop Color="#a1a5a9" Offset="1.0"/>
+
+				</LinearGradientBrush>    
+			</Border.Background>
+			<StackPanel>
 			<Label HorizontalAlignment="Center" >Tilføj Produkt </Label>
 			<Grid RowDefinitions="25,45,*,80" ColumnDefinitions="*,*" >
 				<Label Grid.Column="0" Grid.Row="0" Margin="10,0,10,0" VerticalContentAlignment="Center" >Produkt Navn</Label>
@@ -137,7 +161,15 @@
 		</StackPanel>
 		</Border>
 		
-		<Border Grid.Column="1" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Background="#e1e5ea" Margin="5,0,0,0">
+		<Border Grid.Column="1" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1"  Margin="5,0,0,0">
+			<Border.Background>
+				<LinearGradientBrush>
+					<GradientStop Color="#e1e5ea"/> 
+
+					<GradientStop Color="#a1a5a9" Offset="1.0"/>
+
+				</LinearGradientBrush>    
+			</Border.Background>
 			<StackPanel>
 				<Label HorizontalAlignment="Center" >Tilføj Opgaver </Label>
 				<Grid RowDefinitions="50,*,50" ColumnDefinitions="*,*" >
