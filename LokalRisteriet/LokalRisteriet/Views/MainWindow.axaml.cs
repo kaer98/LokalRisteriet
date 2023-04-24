@@ -3,6 +3,7 @@ using Avalonia.Interactivity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using LokalRisteriet.Models;
+using LokalRisteriet.Persistence;
 using LokalRisteriet.ViewModels;
 using Microsoft.Win32;
 
@@ -10,7 +11,7 @@ namespace LokalRisteriet.Views
 {
     public partial class MainWindow : Window
     {
-
+        
         public BookingInfoView biv = new BookingInfoView();
         public MainView        mainView = new MainView();
         public AddBookingView addBookingView = new AddBookingView();
@@ -34,7 +35,16 @@ namespace LokalRisteriet.Views
         //Opdatering af booking
 
 
-        
+        private void UpdateBooking()
+        {
+
+            
+            foreach (var bookings in mainView.bookingViewModel.GetBookings() )
+            {
+                RepositoryManager.BookingRepo.UpdateBooking(bookings);
+            }
+            
+        }
         
 
         private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
