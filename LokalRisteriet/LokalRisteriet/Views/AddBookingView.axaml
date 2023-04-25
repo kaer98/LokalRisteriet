@@ -33,11 +33,11 @@
 
 			<!--Vælg Start Tidspunkt-->
 			<Label Grid.Column="0" Grid.Row="3">Vælg Start tidspunkt </Label>
-			<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3" Margin="0,0,0,5" ></TimePicker>
+			<TimePicker Name="tPStart" Grid.Column="1" Grid.Row="3" Margin="0,0,0,5" Width="300"></TimePicker>
 
 			<!--Vælg Slut Tidspunkt-->
 			<Label Grid.Column="0" Grid.Row="4">Vælg Slut tidspunkt </Label>
-			<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4" Margin="0,0,0,5"  ></TimePicker>
+			<TimePicker Name="tPSlut" Grid.Column="1" Grid.Row="4" Margin="0,0,0,5" Width="300" ></TimePicker>
 
 			<!--Vælg Ekstra Personale-->
 			<Label Grid.Column="0" Grid.Row="5">Ekstra Personale</Label>
@@ -58,7 +58,7 @@
 
 			<!--Antal Gæster-->
 			<Label Grid.Column="0" Grid.Row="7">Antal Gæster</Label>
-			<TextBox Name="txtGuest"  Grid.Column="1" Grid.Row="7" Watermark="Indtast Antalt"></TextBox>
+			<TextBox Name="txtGuest"  Grid.Column="1" Grid.Row="7" Watermark="Indtast Antal"></TextBox>
 
 			<!--Vælg Dato-->
 			<Label Grid.Column="0" Grid.Row="8" >Vælg Dato </Label>

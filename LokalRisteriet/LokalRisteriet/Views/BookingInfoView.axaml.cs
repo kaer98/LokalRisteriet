@@ -45,7 +45,7 @@ namespace LokalRisteriet.Views
             Task task = new Task(taskName);
             task.TaskBookingID = Id;
             taskViewModel.AddTask(task);
-            taskName= string.Empty;
+            txtTask.Text= string.Empty;
             
             // var popupContent = new Grid()
             // {

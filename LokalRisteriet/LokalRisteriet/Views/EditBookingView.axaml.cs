@@ -43,6 +43,11 @@ namespace LokalRisteriet.Views
 
         }
 
+        private void btnDelete(object sender, RoutedEventArgs e)
+        {
+            bookingViewModel.DeleteBookingByID(Id);
+            
+        }
         //Opdatering af booking.
 
         private void BtnCreateBooking_OnClick(object sender, RoutedEventArgs e)

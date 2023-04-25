@@ -51,6 +51,10 @@ namespace LokalRisteriet.ViewModels
             _bookingRepo.DeleteBooking(booking);
         }
 
+        public void DeleteBookingByID(int id)
+        {
+            _bookingRepo.DeleteBookingByID(id);
+        }
         public List<Booking> GetBookings()
         {
             return _bookingRepo.GetAllBookings();
