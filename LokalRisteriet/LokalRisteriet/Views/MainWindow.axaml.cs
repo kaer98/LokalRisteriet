@@ -11,7 +11,6 @@ namespace LokalRisteriet.Views
 {
     public partial class MainWindow : Window
     {
-        
         public BookingInfoView biv = new BookingInfoView();
         public MainView        mainView = new MainView();
         public AddBookingView addBookingView = new AddBookingView();
@@ -27,10 +26,11 @@ namespace LokalRisteriet.Views
 
             UserMiddleControl.Content = mainView;
             MainViewBtn.IsVisible = false;
-
             
          
         }
+
+       
         
         //Opdatering af booking
 
@@ -101,7 +101,11 @@ namespace LokalRisteriet.Views
                 MainViewBtn.IsVisible = true;
 
             }
-            
+            if(mainView.bookingViewModel.selectedBooking == null)
+            {
+                mainView.IsVisible = true;
+                editBookingView.IsVisible = false;
+            }
             
 
         }
@@ -169,9 +173,7 @@ namespace LokalRisteriet.Views
 
             }
 
-
-
-
         }
+
     }
 }

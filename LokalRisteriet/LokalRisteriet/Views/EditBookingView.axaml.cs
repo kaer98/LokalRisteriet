@@ -12,10 +12,13 @@ namespace LokalRisteriet.Views
     public partial class EditBookingView : UserControl
     {
         public int Id { get; set; }
+        public MainWindow mainWindow = MainWindow.GetInstance();
         public int CustomerID { get; set; }
         private BookingViewModel bookingViewModel;
         private CustomerViewModel customerViewModel;
         private RoomViewModel roomViewModel;
+
+        public bool onoffIsDeleted = false;
         public EditBookingView()
         {
             InitializeComponent();
@@ -46,7 +49,7 @@ namespace LokalRisteriet.Views
         private void btnDelete(object sender, RoutedEventArgs e)
         {
             bookingViewModel.DeleteBookingByID(Id);
-            
+
         }
         //Opdatering af booking.
 
