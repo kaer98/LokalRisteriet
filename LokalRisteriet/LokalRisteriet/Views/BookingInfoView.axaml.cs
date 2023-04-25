@@ -86,7 +86,7 @@ namespace LokalRisteriet.Views
             addOn.AddOnBookingID = Id;
             addOnViewModel.AddAddOn(addOn);
 
-            txtProductAmount = null; txtProductPrice = null; txtProductName = null;
+            txtProductAmount.Text = String.Empty; txtProductPrice.Text = String.Empty; txtProductName.Text = String.Empty;
         }
     }
 }
