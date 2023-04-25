@@ -12,7 +12,6 @@ namespace LokalRisteriet.Views
     public partial class EditBookingView : UserControl
     {
         public int Id { get; set; }
-        public MainWindow mainWindow = MainWindow.GetInstance();
         public int CustomerID { get; set; }
         private BookingViewModel bookingViewModel;
         private CustomerViewModel customerViewModel;
