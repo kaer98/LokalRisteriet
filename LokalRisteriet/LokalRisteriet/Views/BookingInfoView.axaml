@@ -149,12 +149,12 @@
 				<Label Grid.Column="0" Grid.Row="0" Margin="10,0,10,0" VerticalContentAlignment="Center" >Produkt Navn</Label>
 				<Label Grid.Column="0" Grid.Row="1" Margin="10,0,10,0" VerticalContentAlignment="Center"> Produkt Pris</Label>
 				<Label Grid.Column="0" Grid.Row="2" Margin="10,0,10,0" VerticalContentAlignment="Center">Produkt Antal</Label>
-				<Button  Grid.ColumnSpan="2" Grid.Row="3"  Margin="10,0,0,10" >Tilføj Produkt</Button>
+				<Button  Grid.ColumnSpan="2" Grid.Row="3"  Margin="10,0,0,10" Click="AddProduct" >Tilføj Produkt</Button>
 
 				
-				<TextBox Grid.Row="0"  Grid.Column="1" Watermark="Produkt Navn" ></TextBox>
-				<TextBox Grid.Row="1"  Grid.Column="1" Watermark="Produkt Pris"  HorizontalAlignment="Left" ></TextBox>
-				<TextBox Grid.Row="2" Grid.Column="1"   HorizontalAlignment="Left" Watermark="Antal" CornerRadius=" 20" Margin="10,0,10,0" ></TextBox>
+				<TextBox Grid.Row="0" Name="txtProductName"  Grid.Column="1" Watermark="Produkt Navn" ></TextBox>
+				<TextBox Grid.Row="1" Name="txtProductPrice"  Grid.Column="1" Watermark="Produkt Pris"  HorizontalAlignment="Left" ></TextBox>
+				<TextBox Grid.Row="2" Name="txtProductAmount" Grid.Column="1"   HorizontalAlignment="Left" Watermark="Antal" CornerRadius=" 20" Margin="10,0,10,0" ></TextBox>
 
 
 			</Grid>
@@ -176,7 +176,7 @@
 					<Label Grid.Column="0" Grid.Row="0" Margin="10,0,10,0" VerticalContentAlignment="Center" >Opgave Navn</Label>
 				
 				
-					<TextBox Grid.Row="0"  Grid.Column="1" Watermark="Opgave Navn" ></TextBox>
+					<TextBox Grid.Row="0" Name="txtTask"  Grid.Column="1" Watermark="Opgave Navn" ></TextBox>
 					<Button x:Name="AddTasksButton" Click="AddTasksButton_OnClick"  Grid.ColumnSpan="2" Grid.Row="3"  Margin="10,0,0,-13"  >Tilføj Tasks</Button>
 
 

@@ -3,6 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
+using JetBrains.Annotations;
+using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
 
 namespace LokalRisteriet.Views
@@ -10,10 +12,15 @@ namespace LokalRisteriet.Views
     public partial class BookingInfoView : UserControl
     {
         private BookingInfoViewVM bookingInfoViewVM = new BookingInfoViewVM();
+        private AddOnViewModel addOnViewModel;
+        private TaskViewModel taskViewModel;
+        public int Id { set; get; }
         public BookingInfoView()
         {
             InitializeComponent();
             DataContext = bookingInfoViewVM;
+            addOnViewModel = new AddOnViewModel();
+            taskViewModel = new TaskViewModel();
         }
 
 
@@ -29,6 +36,16 @@ namespace LokalRisteriet.Views
 
         private void AddTasksButton_OnClick(object? sender, RoutedEventArgs e)
         {
+
+            string taskName = string.Empty;
+            if(string.IsNullOrEmpty(taskName))
+            {
+                taskName = txtTask.Text;
+            }
+            Task task = new Task(taskName);
+            task.TaskBookingID = Id;
+            taskViewModel.AddTask(task);
+            taskName= string.Empty;
             
             // var popupContent = new Grid()
             // {
@@ -45,6 +62,31 @@ namespace LokalRisteriet.Views
             // });
             // info_Popup.Child = popupContent;
             
+        }
+
+        private void AddProduct(object? sender, RoutedEventArgs e)
+        {
+            string productName = "";
+            int productAmount = 0;
+            double productPrice = 0;
+            if (txtProductName.Text != null)
+            {
+                productName = txtProductName.Text;
+            }
+            if(txtProductAmount.Text != null)
+            {
+                productAmount = int.Parse(txtProductAmount.Text);
+            }
+            if(txtProductPrice.Text != null)
+            {
+                productPrice = Double.Parse(txtProductPrice.Text);
+            }
+            AddOn addOn = new AddOn(productName,productPrice);
+            addOn.Amount = productAmount;
+            addOn.AddOnBookingID = Id;
+            addOnViewModel.AddAddOn(addOn);
+
+            txtProductAmount = null; txtProductPrice = null; txtProductName = null;
         }
     }
 }
