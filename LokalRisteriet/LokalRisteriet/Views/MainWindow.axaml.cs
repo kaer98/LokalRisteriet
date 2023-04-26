@@ -2,6 +2,9 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Reflection.Metadata;
 using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
 using LokalRisteriet.ViewModels;
@@ -23,6 +26,7 @@ namespace LokalRisteriet.Views
             mainView.BookingViewEvent += BookingBtnMainView;
             mainView.AddBookingViewEvent += AddBookingView;
             mainView.EditBookingViewEvent += MainView_EditBookingViewEvent;
+            addBookingView.BackToMain += BackToMainView;
 
 
             UserMiddleControl.Content = mainView;
@@ -32,8 +36,17 @@ namespace LokalRisteriet.Views
          
         }
         
-        //Opdatering af booking
+        //Tilbage til front screen.
 
+        public void BackToMainView(object sender, EventArgs e)
+        {
+            UserMiddleControl.Content = mainView;
+        }
+        
+        
+        
+        
+        
 
         private void UpdateBooking()
         {
@@ -53,6 +66,7 @@ namespace LokalRisteriet.Views
             try
             {
                 editBookingView.txtName.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerName;
+
             }
             catch (Exception)
             {
@@ -108,6 +122,13 @@ namespace LokalRisteriet.Views
 
         
         //Booking Info View
+        /*
+         *
+         * 
+         *
+         *
+         * 
+         */
         private void BookingBtnMainView(object sender, EventArgs e)
         {
             try
@@ -121,7 +142,28 @@ namespace LokalRisteriet.Views
 
             biv.lblBookingType.Content = mainView.bookingViewModel.selectedBooking.BookingType;
             biv.Id = mainView.bookingViewModel.selectedBooking.BookingID;
+
+            ObservableCollection<Task> tasks_OC = new ObservableCollection<Task>();
             
+       
+            
+            tasks_OC.Add(new Task("Bobb"));
+
+            int index = 0;
+
+
+            TaskRepo taskRepo = new TaskRepo();
+
+            foreach (var booking in mainView.bookingViewModel.selectedBooking.BookingTasks)
+            {
+                tasks_OC.Add(mainView.bookingViewModel.SelectedBooking.BookingTasks[index]);
+                index++;
+            }
+
+            Task task = new Task();
+
+
+
             UserMiddleControl.Content = biv;
             if (UserMiddleControl.Content == biv)
             {

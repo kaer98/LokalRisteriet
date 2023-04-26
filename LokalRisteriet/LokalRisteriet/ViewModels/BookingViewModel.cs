@@ -8,16 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
+using Task = LokalRisteriet.Models.Task;
 
 namespace LokalRisteriet.ViewModels
 {
     public class BookingViewModel : INotifyPropertyChanged
     {
         private BookingRepo _bookingRepo;
+        private TaskRepo _taskRepo;
         private CustomerRepo _customerRepo;
         private ObservableCollection<Booking> _books;
         private ObservableCollection<Booking> _books1;
         private ObservableCollection<Customer> _customers;
+        private ObservableCollection<Task> _tasks;
 
         public ObservableCollection<Booking> Bookings
         {
@@ -58,6 +61,11 @@ namespace LokalRisteriet.ViewModels
         public List<Booking> GetBookings()
         {
             return _bookingRepo.GetAllBookings();
+        }
+        
+        public List<Task> GetTasks()
+        {
+            return _taskRepo.GetAllTasks();
         }
 
         public void UpdateBooking(Booking booking)
