@@ -58,7 +58,7 @@ namespace LokalRisteriet.Persistence
                             Room room = new Room();
                             room.RoomID = id;
                                 rooms.Add(room);
-                          }
+                        }
 
                         List<AddOn> addOns = new List<AddOn>();
 

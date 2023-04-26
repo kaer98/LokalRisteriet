@@ -52,28 +52,89 @@ namespace LokalRisteriet.Views
 
         private void BtnCreateBooking_OnClick(object sender, RoutedEventArgs e)
         {
-            string bName = txtName.Text;
-            string bPhone = txtPhoneNo.Text;
-            string bEmail = txtEmail.Text;
-            DateTime bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
-            DateTime bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
-            int bNoOfPeople = int.Parse(txtGuest.Text);
-            string bNote = txtNote.Text;
-            bool bRoom1 = cbRoom1.IsChecked.Value;
-            bool bRoom2 = cbRoom2.IsChecked.Value;
-            string bType = txtType.Text;
-            int employeesAdult = dd18.SelectedIndex;
-            int employeesChild = ddu18.SelectedIndex;
-            if (txtDepositum.Text == null)
+            string bName = "";
+            string bPhone = "";
+            string bEmail = "";
+            DateTime bTimeStart = new DateTime();
+            DateTime bTimeEnd = new DateTime();
+            int bNoOfPeople = 0;
+            string bNote = "";
+            bool bRoom1 = false;
+            bool bRoom2 = false;
+            string bType = "";
+            int employeesAdult = 0;
+            int employeesChild = 0;
+            double bDepositum = 0;
+
+
+
+            if (txtName.Text != null)
             {
-                txtDepositum.Text = "0";
+                bName = txtName.Text;
             }
-            double bDepositum = double.Parse(txtDepositum.Text);
-            Customer customer = customerViewModel.GetCustomerById(CustomerID);
-           customer.CustomerEmail = bEmail;
-           customer.CustomerName = bName;
-            customer.CustomerPhoneNo = bPhone;
-            customerViewModel.UpdateCustomer(customer);
+
+            if (txtPhoneNo.Text != null)
+            {
+                bPhone = txtPhoneNo.Text;
+            }
+
+            if (txtEmail.Text != null)
+            {
+                bEmail = txtEmail.Text;
+            }
+
+            if (dPDate.SelectedDate != null && tPStart.SelectedTime != null && tPSlut.SelectedTime != null)
+            {
+                bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
+                bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
+            }
+
+            if (txtGuest.Text != null)
+            {
+                bNoOfPeople = int.Parse(txtGuest.Text);
+            }
+
+            if (txtNote.Text != null)
+            {
+                bNote = txtNote.Text;
+            }
+            bRoom1 = cbRoom1.IsChecked.Value;
+            bRoom2 = cbRoom2.IsChecked.Value;
+            if (txtType.Text != null)
+            {
+                bType = txtType.Text;
+            }
+
+            if (dd18.SelectedIndex != -1)
+            {
+                employeesAdult = dd18.SelectedIndex;
+            }
+
+
+            if (ddu18.SelectedIndex != -1)
+            {
+                employeesChild = ddu18.SelectedIndex;
+            }
+
+            if (txtDepositum.Text != null)
+            {
+                bDepositum = double.Parse(txtDepositum.Text);
+            }
+            else
+            {
+                bDepositum = 0;
+            }
+            Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
+            if (customer == null)
+            {
+                Customer c = new Customer(bName, bPhone, bEmail);
+                c.CustomerId = customerViewModel.GetNextID();
+                customerViewModel.AddCustomer(c);
+
+                customer = c;
+            }
+
+
             Booking booking = new Booking(bType, bNote, rooms(), bTimeStart, bTimeEnd, bNoOfPeople, false);
             booking.BookingCustomerID = customer.CustomerId;
             booking.EmployeesAdult = employeesAdult;

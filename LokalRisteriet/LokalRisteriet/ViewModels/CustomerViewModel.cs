@@ -37,10 +37,11 @@ namespace LokalRisteriet.ViewModels
         public Customer GetCustomerByEmail(string mail)
         {
             bool found = false;
+            mail = mail.ToLower();
             Customer customer = null;
             foreach (Customer c in _customerRepo.GetAllCustomers())
             {
-                if (c.CustomerEmail == mail)
+                if (c.CustomerEmail.ToLower() == mail)
                 {
                     found = true;
                     customer = c;

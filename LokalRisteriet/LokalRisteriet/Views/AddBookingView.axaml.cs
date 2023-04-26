@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using Avalonia;
 using Avalonia.Input;
+using Microsoft.Identity.Client;
 
 namespace LokalRisteriet
 {
@@ -15,6 +16,7 @@ namespace LokalRisteriet
         private BookingViewModel bookingViewModel;
         private RoomViewModel roomViewModel;
         private CustomerViewModel customerViewModel;
+        public event EventHandler BackEvent;
 
         public AddBookingView()
         {
@@ -47,6 +49,7 @@ namespace LokalRisteriet
 
         }
 
+        //< calculate price >
         public double CalculatePrice()
         {
             TimeSpan bookingDuration = new TimeSpan();
@@ -95,25 +98,81 @@ namespace LokalRisteriet
             return timePrice;
         }
 
+        //< create booking >
         private void btnCreateBooking(object sender, RoutedEventArgs e)
         {
-            string bName = txtName.Text;
-            string bPhone = txtPhoneNo.Text;
-            string bEmail = txtEmail.Text;
-            DateTime bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
-            DateTime bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
-            int bNoOfPeople = int.Parse(txtGuest.Text);
-            string bNote = txtNote.Text;
-            bool bRoom1 = cbRoom1.IsChecked.Value;
-            bool bRoom2 = cbRoom2.IsChecked.Value;
-            string bType = txtTyoe.Text;
-            int employeesAdult = dd18.SelectedIndex;
-            int employeesChild = ddu18.SelectedIndex;
-            if (txtDepositum.Text == null)
+            string bName = "";
+            string bPhone = "";
+            string bEmail = "";
+            DateTime bTimeStart = DateTime.Now;
+            DateTime bTimeEnd = DateTime.Now;
+            int bNoOfPeople = 0;
+            string bNote = "";
+            bool bRoom1 = false;
+            bool bRoom2 = false;
+            string bType = "";
+            int employeesAdult = 0;
+            int employeesChild = 0;
+            double bDepositum = 0;
+            
+            
+            
+            if (txtName.Text != null)
             {
-                txtDepositum.Text = "0";
+                bName= txtName.Text;
             }
-            double bDepositum = double.Parse(txtDepositum.Text);
+
+            if (txtPhoneNo.Text != null)
+            {
+                bPhone = txtPhoneNo.Text;
+            }
+
+            if (txtEmail.Text != null)
+            {
+                bEmail = txtEmail.Text;
+            }
+
+            if (dPDate.SelectedDate != null && tPStart.SelectedTime != null && tPSlut.SelectedTime != null )
+            {
+                bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
+                bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
+            }
+
+            if (txtGuest.Text != null)
+            {
+                bNoOfPeople = int.Parse(txtGuest.Text);
+            }
+
+            if (txtNote.Text != null)
+            {
+                bNote = txtNote.Text;
+            }
+            bRoom1 = cbRoom1.IsChecked.Value;
+            bRoom2 = cbRoom2.IsChecked.Value;
+            if (txtTyoe.Text != null)
+            {
+                bType = txtTyoe.Text;
+            }
+
+            if (dd18.SelectedIndex != -1)
+            {
+                employeesAdult = dd18.SelectedIndex;
+            }
+            
+
+            if (ddu18.SelectedIndex != -1)
+            {
+                employeesChild = ddu18.SelectedIndex;
+            }
+
+            if (txtDepositum.Text != null)
+            {
+                bDepositum = double.Parse(txtDepositum.Text);
+            }
+            else
+            {
+                bDepositum = 0;  
+            }
             Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
             if (customer == null)
             {
@@ -131,9 +190,10 @@ namespace LokalRisteriet
             booking.EmployeesChild = employeesChild;
             booking.Deposit = bDepositum;
             bookingViewModel.AddBooking(booking);
+            BackEvent.Invoke(this, EventArgs.Empty);
         }
 
-
+        //< pick room >
         public List<Room> rooms()
         {
             List<Room> list = new List<Room>();
@@ -169,8 +229,10 @@ namespace LokalRisteriet
                 textBox1.Text = textBox1.Text.Insert(caretIndex, "\r\n");
                 textBox1.CaretIndex = caretIndex + 2; // Move caret to end of new line
                 e.Handled = true;
-            }        }
+            }      
+        }
 
+        //< reserve booking >
         private void btnReserve(object? sender, RoutedEventArgs e)
         {
             string bName = txtName.Text;
