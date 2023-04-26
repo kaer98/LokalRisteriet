@@ -16,7 +16,6 @@ namespace LokalRisteriet
         private BookingViewModel bookingViewModel;
         private RoomViewModel roomViewModel;
         private CustomerViewModel customerViewModel;
-        public event EventHandler BackEvent;
 
         public AddBookingView()
         {
@@ -190,7 +189,6 @@ namespace LokalRisteriet
             booking.EmployeesChild = employeesChild;
             booking.Deposit = bDepositum;
             bookingViewModel.AddBooking(booking);
-            BackEvent.Invoke(this, EventArgs.Empty);
         }
 
         //< pick room >
