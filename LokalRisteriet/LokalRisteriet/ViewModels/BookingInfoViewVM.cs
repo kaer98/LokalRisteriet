@@ -13,25 +13,23 @@ public class BookingInfoViewVM
     //test liste for BookingInfoView Employee
     
 
-    public ObservableCollection<Employee> employeeList { get; set; } = new();
+    public ObservableCollection<Employee> EmployeesList { get; set; }
     public TaskRepo taskRepository = new();
     public AddOnRepo addOnRepository = new();
+    public EmployeeRepo employeeRepository = new();
     public ObservableCollection<Task> Tasks { get; set; }
     public ObservableCollection<AddOn> AddOns { get; set; } = new();
     public int Id { get; set; }
     public BookingInfoViewVM()
     {
-     Employee amanda = new Employee("Amanda", true);
-     Employee jacob = new Employee("Jacob", true);
-    
-     employeeList.Add((jacob));
-     employeeList.Add((amanda));
+     
     }
 
     public void AddListBoxes(int id)
     {
         AddTasks(id);
         AddAddOns(id);
+        AddEmployees();
     }
 
     private void AddTasks(int id)
@@ -55,6 +53,15 @@ public class BookingInfoViewVM
             {
                 AddOns.Add(addOn);
             }
+        }
+    }
+
+    private void AddEmployees()
+    {
+        EmployeesList= new();
+        foreach (Employee employee in employeeRepository.GetAllEmployees())
+        {
+            EmployeesList.Add(employee);
         }
     }
 
