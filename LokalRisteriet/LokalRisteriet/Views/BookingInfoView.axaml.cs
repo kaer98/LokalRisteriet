@@ -19,7 +19,7 @@ namespace LokalRisteriet.Views
         {
             InitializeComponent();
             bookingInfoViewVM = new BookingInfoViewVM();
-            bookingInfoViewVM.AddTasks(Id);
+            bookingInfoViewVM.AddListBoxes(Id);
             DataContext = bookingInfoViewVM;
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
@@ -28,7 +28,7 @@ namespace LokalRisteriet.Views
         public void SetListBoxTasks()
         {
             bookingInfoViewVM = new BookingInfoViewVM();
-            bookingInfoViewVM.AddTasks(Id);
+            bookingInfoViewVM.AddListBoxes(Id);
             DataContext = bookingInfoViewVM;
         }
 

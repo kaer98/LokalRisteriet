@@ -20,7 +20,7 @@
 		
 		
 		<!-- ListBox for Produkter -->
-		<ListBox x:Name="listBox_Products" Grid.Column="0" Grid.Row="1"   Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+		<ListBox x:Name="listBox_Products" Grid.Column="0" Grid.Row="1" Items="{Binding AddOns}"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 			<ListBox.Background>
 				<LinearGradientBrush>
 					<GradientStop Color="#e1e5ea"/> 
@@ -30,33 +30,22 @@
 				</LinearGradientBrush>    
 			</ListBox.Background>
 			<ListBox.ItemTemplate>
-				
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*">
+                        <Label Content="{Binding AddOnName}"  ></Label>
+                        <DropDown HorizontalAlignment="Right" CornerRadius="20">
+                            <DropDownItem >
+                                <Label>Jørgen</Label>
+                            </DropDownItem>
+                            <DropDownItem>
+                                <Label>Amanda</Label>
+                            </DropDownItem>
+
+                        </DropDown>
+                    </Grid>
+                </DataTemplate>
 			</ListBox.ItemTemplate>
 
-			<ListBoxItem>
-				<Grid ColumnDefinitions="*">
-					<Label>Cola</Label>
-					<CheckBox HorizontalAlignment="Right"></CheckBox>
-				</Grid>
-				
-			</ListBoxItem>
-
-
-			<ListBoxItem>
-				<Grid ColumnDefinitions="*">
-					
-					<Label>Kaffe</Label>
-					<CheckBox HorizontalAlignment="Right"></CheckBox>
-				</Grid>
-
-			</ListBoxItem>
-			<ListBoxItem>
-				<Grid ColumnDefinitions="*">
-					<Label>Vand</Label>
-					<CheckBox HorizontalAlignment="Right"></CheckBox>
-				</Grid>
-
-			</ListBoxItem>
 
 
 
