@@ -32,6 +32,7 @@ namespace LokalRisteriet.Views
             bookingInfoViewVM = new BookingInfoViewVM();
             bookingInfoViewVM.AddListBoxes(Id);
             DataContext = bookingInfoViewVM;
+           
         }
 
         private void Popup_OnClosed(object? sender, EventArgs e)

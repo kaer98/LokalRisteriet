@@ -42,23 +42,7 @@ namespace LokalRisteriet.Views
         {
             UserMiddleControl.Content = mainView;
         }
-        
-        
-        
-        
-        
 
-        private void UpdateBooking()
-        {
-
-            
-            foreach (var bookings in mainView.bookingViewModel.GetBookings() )
-            {
-                RepositoryManager.BookingRepo.UpdateBooking(bookings);
-            }
-            
-        }
-        
 
         private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
         {

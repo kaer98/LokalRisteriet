@@ -37,46 +37,30 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Task left join Employee on taskEmployee=EmployeeID", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Task", connection);
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         int id = int.Parse(dr["TaskId"].ToString());
                         string name = dr["TaskName"].ToString();
-                        int employeeID=0;
                         int bookingID = 0;
-                        string employeeName;
-                        bool employeeAdult;
-                        Employee e = null;
+                        string employee = null;
                         if (dr["TaskEmployee"] != DBNull.Value)
                         {
-                            employeeID = int.Parse(dr["TaskEmployee"].ToString());
+                            employee = dr["TaskEmployee"].ToString();
                         }
-
-                        if (dr["EmployeeName"] != DBNull.Value && dr["EmployeeAdult"] != DBNull.Value)
-                        {
-                            employeeName = dr["EmployeeName"].ToString();
-                            employeeAdult = bool.Parse(dr["EmployeeAdult"].ToString());
-                            e = new Employee(employeeName, employeeAdult);
-                            e.EmployeeID = employeeID;
-                        }
-
                         if (dr["TaskBookingID"] != DBNull.Value)
                         {
                             bookingID = int.Parse(dr["TaskBookingID"].ToString());
                         }
                       
                         Task task = new Task(name);
-                        if (employeeID != 0)
+                        if (employee != null)
                         {
                             task.TaskIsDone = true;
                         }
-
-                        if (e != null)
-                        {
-                            task.TaskEmployee = e;
-                        }
+                        task.Initials= employee;
                         task.TaskID = id;
                         task.TaskBookingID = bookingID;
                         _tasks.Add(task);
@@ -91,26 +75,20 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                if (task.TaskEmployee == null && task.TaskBookingID == 0)
+                if ( task.TaskBookingID == 0)
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName) VALUES(@TaskName)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.ExecuteNonQuery();
                 }
-                else if (task.TaskBookingID != 0 && task.TaskEmployee==null) 
+                else if (task.TaskBookingID != 0) 
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID) Values(@TaskName, @TaskBookingID)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
                     cmd.ExecuteNonQuery();
                 }
-                else if (task.TaskEmployee != null && task.TaskBookingID == 0)
-                {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskEmployee) Values(@TaskName, @TaskEmployee)", connection);
-                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
-                    cmd.Parameters.AddWithValue("@TaskEmployee", task.TaskEmployee.EmployeeID);
-                    cmd.ExecuteNonQuery();
-                }
+                
             }
         }
 
@@ -133,21 +111,11 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                if (task.TaskEmployee == null)
-                {
+               
                     SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskEmployee = NULL WHERE TaskId = @TaskId", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
                     cmd.ExecuteNonQuery();
-                }
-                else
-                {
-                    SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskEmployee = @TaskEmployee WHERE TaskId = @TaskId", connection);
-                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
-                    cmd.Parameters.AddWithValue("@TaskEmployee", task.TaskEmployee.EmployeeID);
-                    cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
-                    cmd.ExecuteNonQuery();
-                }
             }
 
         }

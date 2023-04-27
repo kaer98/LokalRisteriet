@@ -65,12 +65,10 @@
 	        </ListBox.Background>
 	        <ListBox.ItemTemplate>
 <DataTemplate>
-	<Grid ColumnDefinitions="*">
+	<Grid ColumnDefinitions="*" RowDefinitions="*">
 		<Label Content="{Binding TaskName}"></Label>
+		<TextBox HorizontalAlignment="Right" Text="{Binding Initials}"> </TextBox>
 		
-		<CheckBox Content="{Binding TaskEmployee.EmployeeName}" IsThreeState="False" HorizontalAlignment="Right" Name="cbEmployee"  IsChecked="{Binding IsDone}">
-
-        </CheckBox>
 	</Grid>
 </DataTemplate>
 			</ListBox.ItemTemplate>

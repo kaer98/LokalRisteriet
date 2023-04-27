@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 using DynamicData;
 using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
+using Microsoft.VisualBasic.CompilerServices;
 using SkiaSharp;
 
 namespace LokalRisteriet.ViewModels;
@@ -13,10 +16,8 @@ public class BookingInfoViewVM
     //test liste for BookingInfoView Employee
     
 
-    public ObservableCollection<Employee> EmployeesList { get; set; }
     public TaskRepo taskRepository = new();
     public AddOnRepo addOnRepository = new();
-    public EmployeeRepo employeeRepository = new();
     public ObservableCollection<Task> Tasks { get; set; }
     public ObservableCollection<AddOn> AddOns { get; set; } = new();
     public int Id { get; set; }
@@ -29,7 +30,8 @@ public class BookingInfoViewVM
     {
         AddTasks(id);
         AddAddOns(id);
-        AddEmployees();
+
+
     }
 
     private void AddTasks(int id)
@@ -55,16 +57,5 @@ public class BookingInfoViewVM
             }
         }
     }
-
-    private void AddEmployees()
-    {
-        EmployeesList= new();
-        foreach (Employee employee in employeeRepository.GetAllEmployees())
-        {
-            EmployeesList.Add(employee);
-        }
-    }
-
-
 
 }

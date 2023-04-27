@@ -32,7 +32,6 @@ namespace LRTests
             Room room = new Room("test", 10);
             room.RoomID = 6;
             rooms.Add(room);
-            List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13, 30, 0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
             Booking booking = new Booking("konfirmation", "sørger selv for drikkelse", rooms, start, end, 1, false);
@@ -126,48 +125,6 @@ namespace LRTests
             Assert.AreEqual(room, roomViewModel.GetRooms().Last());
         }
 
-        [TestMethod]
-        public void TestAddEmployee()
-        {
-            //Arrange
-            Employee employee = new Employee("Test", true);
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel();
-
-            //Act
-            employeeViewModel.AddEmployee(employee);
-
-            //Assert
-            Assert.AreEqual(employee, employeeViewModel.GetEmployees().Last());
-
-        }
-
-        [TestMethod]
-        public void TestRemoveEmployee()
-        {
-            //Arrange
-            Employee employee = new Employee("Test", true);
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel();
-            int count = employeeViewModel.GetEmployees().Count;
-            //Act
-            employeeViewModel.AddEmployee(employee);
-            employeeViewModel.DeleteEmployee(employee);
-            //Assert
-            Assert.AreEqual(count, employeeViewModel.GetEmployees().Count);
-        }
-
-        [TestMethod]
-        public void TestUpdateEmployee()
-        {
-            //Arrange
-            Employee employee = new Employee("Test", true);
-            EmployeeViewModel employeeViewModel = new EmployeeViewModel();
-            employeeViewModel.AddEmployee(employee);
-            //Act
-            employee.EmployeeName = "Test2";
-            employeeViewModel.UpdateEmployee(employee);
-            //Assert
-            Assert.AreEqual(employee, employeeViewModel.GetEmployees().Last());
-        }
 
         [TestMethod]
         public void TestAddAddOn()
@@ -242,7 +199,6 @@ namespace LRTests
             Room room = new Room("test", 10);
             room.RoomID = 6;
             rooms.Add(room);
-            List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13, 30, 0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
             Booking booking = new Booking("konfirmation", "sørger selv for drikkelse", rooms, start, end, 1, false);
@@ -263,7 +219,6 @@ namespace LRTests
             Room room = new Room("test", 10);
             room.RoomID = 6;
             rooms.Add(room);
-            List<Employee> employees = new List<Employee>() { new Employee("test", true) };
             DateTime start = new DateTime(2023, 04, 09, 13, 30, 0);
             DateTime end = new DateTime(2023, 04, 09, 19, 0, 0);
             Booking booking = new Booking("konfirmation", "sørger selv for drikkelse", rooms, start, end, 1, false);

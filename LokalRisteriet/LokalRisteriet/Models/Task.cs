@@ -6,7 +6,7 @@ namespace LokalRisteriet.Models
         public string TaskName { get; set; }
         public int TaskID { get; set; }
         public bool TaskIsDone { get; set; }
-        public Employee TaskEmployee { get; set; }
+        public string Initials { get; set; }
 
         public int TaskBookingID { get; set; }
 
