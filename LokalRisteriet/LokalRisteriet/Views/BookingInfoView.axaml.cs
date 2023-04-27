@@ -23,7 +23,9 @@ namespace LokalRisteriet.Views
             DataContext = bookingInfoViewVM;
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
+            
         }
+        
 
         public void SetListBoxTasks()
         {

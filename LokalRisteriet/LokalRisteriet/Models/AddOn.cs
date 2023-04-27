@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace LokalRisteriet.Models
 {
     public class AddOn
@@ -8,6 +10,7 @@ namespace LokalRisteriet.Models
         public int _amount = 0;
         private int _addOnID;
         private int _addOnBookingID;
+        public double TotalPrice => _amount * Price;
 
         public int AddOnBookingID
         {

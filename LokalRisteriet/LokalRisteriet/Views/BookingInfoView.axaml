@@ -11,7 +11,7 @@
 <Grid Background="#f6f6f6" RowDefinitions="200,*,30">
 
 
-	<Grid Grid.Row="0" ColumnDefinitions="300,*" RowDefinitions="30,*"   >
+	<Grid Grid.Row="0" ColumnDefinitions="400,*" RowDefinitions="30,*"   >
 
 
         <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Produkter til bookingen</Label>
@@ -20,43 +20,41 @@
 		
 		
 		<!-- ListBox for Produkter -->
-		<ListBox x:Name="listBox_Products" Grid.Column="0" Grid.Row="1" Items="{Binding AddOns}"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+		<ListBox x:Name="listBox_Products" Grid.Column="0" Grid.Row="1" Items="{Binding AddOns}"  Margin="10,10,10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20" >
 			<ListBox.Background>
 				<LinearGradientBrush>
-					<GradientStop Color="#e1e5ea"/> 
+					<GradientStop Color="#e1e5ea"/>
 
 					<GradientStop Color="#a1a5a9" Offset="1.0"/>
 
-				</LinearGradientBrush>    
+				</LinearGradientBrush>
 			</ListBox.Background>
 			<ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="*">
-                        <Label Content="{Binding AddOnName}"  ></Label>
-                        <DropDown HorizontalAlignment="Right" CornerRadius="20">
-                            <DropDownItem >
-                                <Label>Jørgen</Label>
-                            </DropDownItem>
-                            <DropDownItem>
-                                <Label>Amanda</Label>
-                            </DropDownItem>
-
-                        </DropDown>
-                    </Grid>
-                </DataTemplate>
+				<DataTemplate>
+					<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*">
+						<Label VerticalAlignment="Top">Produkt</Label>
+						<Label Grid.Column="1" VerticalAlignment="Top">Pris</Label>
+                        <Label Grid.Column="2" VerticalAlignment="Top">Antal</Label>
+                        <Label Grid.Column="3" VerticalAlignment="Top">Total Pris</Label>
+                        <TextBox Grid.Row="1" Text="{Binding AddOnName}" VerticalAlignment="Bottom" ></TextBox>
+						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Price}" Name="cbAddOn"> </TextBox>
+						<TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Amount}"  Name="cbsAddOn"> </TextBox>
+						<TextBox Grid.Row="1" Grid.Column="3" Text="{Binding TotalPrice}" IsReadOnly="True"></TextBox>
+					</Grid>
+				</DataTemplate>
 			</ListBox.ItemTemplate>
 
 
 
 
-			
-			
-			
+
+
+
 		</ListBox>
 		
 		
 		<!-- ListBox for Tasks -->
-        <ListBox x:Name="listBox_Tasks" Items="{Binding Tasks}" Grid.Column="1" Grid.Row="1"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+        <ListBox x:Name="listBox_Tasks"  Items="{Binding Tasks}" Grid.Column="1" Grid.Row="1"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 	        <ListBox.Background>
 		        <LinearGradientBrush>
 			        <GradientStop Color="#e1e5ea"/> 
@@ -68,16 +66,11 @@
 	        <ListBox.ItemTemplate>
 <DataTemplate>
 	<Grid ColumnDefinitions="*">
-		<Label Content="{Binding TaskName}"  ></Label>
-		<DropDown HorizontalAlignment="Right" CornerRadius="20">
-			<DropDownItem >
-				<Label>Jørgen</Label>
-			</DropDownItem>
-			<DropDownItem>
-				<Label>Amanda</Label>
-			</DropDownItem>
-						
-		</DropDown>
+		<Label Content="{Binding TaskName}"></Label>
+		
+		<CheckBox Content="{Binding TaskEmployee.EmployeeName}" IsThreeState="False" HorizontalAlignment="Right" Name="cbEmployee"  IsChecked="{Binding IsDone}">
+
+        </CheckBox>
 	</Grid>
 </DataTemplate>
 			</ListBox.ItemTemplate>

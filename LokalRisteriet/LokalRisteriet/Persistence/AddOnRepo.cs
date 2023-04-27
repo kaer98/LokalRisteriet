@@ -12,7 +12,7 @@ namespace LokalRisteriet.Persistence
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         private List<AddOn> _addOns;
         private int nextID = 0;
-
+    
         public AddOnRepo()
         {
             _addOns = new List<AddOn>();

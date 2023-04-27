@@ -37,7 +37,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Task", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Task left join Employee on taskEmployee=EmployeeID", connection);
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
@@ -46,19 +46,36 @@ namespace LokalRisteriet.Persistence
                         string name = dr["TaskName"].ToString();
                         int employeeID=0;
                         int bookingID = 0;
+                        string employeeName;
+                        bool employeeAdult;
+                        Employee e = null;
                         if (dr["TaskEmployee"] != DBNull.Value)
                         {
                             employeeID = int.Parse(dr["TaskEmployee"].ToString());
+                        }
+
+                        if (dr["EmployeeName"] != DBNull.Value && dr["EmployeeAdult"] != DBNull.Value)
+                        {
+                            employeeName = dr["EmployeeName"].ToString();
+                            employeeAdult = bool.Parse(dr["EmployeeAdult"].ToString());
+                            e = new Employee(employeeName, employeeAdult);
+                            e.EmployeeID = employeeID;
                         }
 
                         if (dr["TaskBookingID"] != DBNull.Value)
                         {
                             bookingID = int.Parse(dr["TaskBookingID"].ToString());
                         }
+                      
                         Task task = new Task(name);
                         if (employeeID != 0)
                         {
                             task.TaskIsDone = true;
+                        }
+
+                        if (e != null)
+                        {
+                            task.TaskEmployee = e;
                         }
                         task.TaskID = id;
                         task.TaskBookingID = bookingID;
