@@ -11,18 +11,26 @@ namespace LokalRisteriet.Views
 {
     public partial class BookingInfoView : UserControl
     {
-        private BookingInfoViewVM bookingInfoViewVM = new BookingInfoViewVM();
+        private BookingInfoViewVM bookingInfoViewVM;
         private AddOnViewModel addOnViewModel;
         private TaskViewModel taskViewModel;
         public int Id { set; get; }
         public BookingInfoView()
         {
             InitializeComponent();
+            bookingInfoViewVM = new BookingInfoViewVM();
+            bookingInfoViewVM.AddTasks(Id);
             DataContext = bookingInfoViewVM;
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
         }
 
+        public void SetListBoxTasks()
+        {
+            bookingInfoViewVM = new BookingInfoViewVM();
+            bookingInfoViewVM.AddTasks(Id);
+            DataContext = bookingInfoViewVM;
+        }
 
         private void Popup_OnClosed(object? sender, EventArgs e)
         {

@@ -143,33 +143,13 @@ namespace LokalRisteriet.Views
             biv.lblBookingType.Content = mainView.bookingViewModel.selectedBooking.BookingType;
             biv.Id = mainView.bookingViewModel.selectedBooking.BookingID;
 
-            ObservableCollection<Task> tasks_OC = new ObservableCollection<Task>();
-            
-       
-            
-            tasks_OC.Add(new Task("Bobb"));
-
-            int index = 0;
-
-
-            TaskRepo taskRepo = new TaskRepo();
-
-            foreach (var booking in mainView.bookingViewModel.selectedBooking.BookingTasks)
-            {
-                tasks_OC.Add(mainView.bookingViewModel.SelectedBooking.BookingTasks[index]);
-                index++;
-            }
-
-            Task task = new Task();
-
-
-
             UserMiddleControl.Content = biv;
             if (UserMiddleControl.Content == biv)
             {
                 MainViewBtn.IsVisible = true;
 
             }
+            biv.SetListBoxTasks();
 
         }
 

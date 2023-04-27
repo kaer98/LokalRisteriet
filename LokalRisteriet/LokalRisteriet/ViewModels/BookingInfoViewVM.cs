@@ -14,6 +14,9 @@ public class BookingInfoViewVM
     
 
     public ObservableCollection<Employee> employeeList { get; set; } = new();
+    public TaskRepo taskRepository = new();
+    public ObservableCollection<Task> Tasks { get; set; } = new();
+    public int Id { get; set; }
     public BookingInfoViewVM()
     {
      Employee amanda = new Employee("Amanda", true);
@@ -21,11 +24,17 @@ public class BookingInfoViewVM
     
      employeeList.Add((jacob));
      employeeList.Add((amanda));
+    }
 
-     
-    
-
-
+    public void AddTasks(int id)
+    {
+        foreach (Task task in taskRepository.GetAllTasks())
+        {
+            if (task.TaskBookingID == id)
+            {
+                Tasks.Add(task);
+            }
+        }
     }
 
 

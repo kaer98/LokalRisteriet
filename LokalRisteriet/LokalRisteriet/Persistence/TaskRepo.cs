@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
@@ -36,27 +37,30 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Task INNER JOIN Employee ON Employee.EmployeeID=Task.TaskEmployee", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Task", connection);
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
                         int id = int.Parse(dr["TaskId"].ToString());
                         string name = dr["TaskName"].ToString();
-                        int employeeID = int.Parse(dr["TaskEmployee"].ToString());
-                        string employeeName = dr["EmployeeName"].ToString();
-                        bool employeeAdult = bool.Parse(dr["EmployeeAdult"].ToString());
-                        int bookingID = int.Parse(dr["TaskBookingID"].ToString());
+                        int employeeID=0;
+                        int bookingID = 0;
+                        if (dr["TaskEmployee"] != DBNull.Value)
+                        {
+                            employeeID = int.Parse(dr["TaskEmployee"].ToString());
+                        }
+
+                        if (dr["TaskBookingID"] != DBNull.Value)
+                        {
+                            bookingID = int.Parse(dr["TaskBookingID"].ToString());
+                        }
                         Task task = new Task(name);
                         if (employeeID != 0)
                         {
                             task.TaskIsDone = true;
                         }
-                        
-                        Employee employee = new Employee(employeeName,employeeAdult);
-
-                        employee.EmployeeID = employeeID;
-                        task.TaskEmployee = employee;
+                        task.TaskID = id;
                         task.TaskBookingID = bookingID;
                         _tasks.Add(task);
                     }
