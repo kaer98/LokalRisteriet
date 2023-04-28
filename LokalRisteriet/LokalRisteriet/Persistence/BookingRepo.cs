@@ -202,14 +202,7 @@ namespace LokalRisteriet.Persistence
         public void DeleteBookingByID(int bookingID)
         {
             Booking booking = _bookings.Find(b => b.BookingID == bookingID);
-            _bookings.Remove(booking);
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Booking WHERE BookingID=@BookingID", connection);
-                cmd.Parameters.AddWithValue("@BookingID", bookingID);
-                cmd.ExecuteNonQuery();
-            }
+            DeleteBooking(booking);
         }
 
         public void DeleteBooking(Booking booking)
