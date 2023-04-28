@@ -104,5 +104,14 @@ namespace LokalRisteriet.Views
 
             txtProductAmount.Text = String.Empty; txtProductPrice.Text = String.Empty; txtProductName.Text = String.Empty;
         }
+
+        private void UpdateProduct(object? sender, RoutedEventArgs e)
+        {
+            //addOnViewModel.UpdateAddOn();
+        }
+        private void DeleteProduct(object? sender, RoutedEventArgs e)
+        {
+            addOnViewModel.DeleteAddOnID(bookingInfoViewVM.SelectedAddOn.AddOnID);
+        }
     }
 }

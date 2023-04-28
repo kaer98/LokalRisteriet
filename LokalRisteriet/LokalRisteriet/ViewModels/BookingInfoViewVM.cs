@@ -75,6 +75,21 @@ public class BookingInfoViewVM : INotifyPropertyChanged
         }
     }
 
+    public AddOn selectedAddOn;
+    public AddOn SelectedAddOn
+    {
+        get
+        {
+            return selectedAddOn;
+        }
+
+        set
+        {
+            selectedAddOn = value;
+            OnPropertyChanged(nameof(SelectedAddOn));
+        }
+    }
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)

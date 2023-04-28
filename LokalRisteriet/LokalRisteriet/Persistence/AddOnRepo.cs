@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
 
@@ -117,6 +118,12 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@id", addOn.AddOnID);
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public void DeleteAddOnId(int id)
+        {
+            AddOn addOn = _addOns.Find(addOn => addOn.AddOnID == id);
+            deleteAddOn(addOn);
         }
 
         public void updateAddOn(AddOn addOn)
