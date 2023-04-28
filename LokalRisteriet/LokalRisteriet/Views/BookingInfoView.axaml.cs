@@ -111,7 +111,7 @@ namespace LokalRisteriet.Views
         }
         private void DeleteProduct(object? sender, RoutedEventArgs e)
         {
-            addOnViewModel.DeleteAddOnID(bookingInfoViewVM.SelectedAddOn.AddOnID);
+            addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
         }
     }
 }

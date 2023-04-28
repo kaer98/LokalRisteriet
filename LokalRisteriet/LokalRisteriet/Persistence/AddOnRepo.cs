@@ -120,12 +120,6 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public void DeleteAddOnId(int id)
-        {
-            AddOn addOn = _addOns.Find(addOn => addOn.AddOnID == id);
-            deleteAddOn(addOn);
-        }
-
         public void updateAddOn(AddOn addOn)
         {
             int i =_addOns.FindIndex(a => a.AddOnID == addOn.AddOnID);

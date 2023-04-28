@@ -155,20 +155,6 @@ namespace LRTests
         }
 
         [TestMethod]
-        public void TestRemoveAddOnById()
-        {
-            //Arrange
-            AddOn addOn = new AddOn("Test", 10);
-            AddOnViewModel addOnViewModel = new AddOnViewModel();
-            int count = addOnViewModel.GetAddOns().Count;
-            //Act
-            addOnViewModel.AddAddOn(addOn);
-            addOnViewModel.DeleteAddOnID(addOn.AddOnID);
-            //Assert
-            Assert.AreEqual(count, addOnViewModel.GetAddOns().Count);
-        }
-
-        [TestMethod]
         public void TestUpdateAddOn()
         {
             //Arrange
