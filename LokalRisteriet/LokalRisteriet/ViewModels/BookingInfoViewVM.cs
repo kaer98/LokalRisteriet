@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Reactive.Linq;
+using System.Runtime.CompilerServices;
 using DynamicData;
 using LokalRisteriet.Models;
 using LokalRisteriet.Persistence;
@@ -10,7 +12,7 @@ using SkiaSharp;
 
 namespace LokalRisteriet.ViewModels;
 
-public class BookingInfoViewVM
+public class BookingInfoViewVM : INotifyPropertyChanged
 {
     
     //test liste for BookingInfoView Employee
@@ -57,5 +59,34 @@ public class BookingInfoViewVM
             }
         }
     }
+    
+    public Task selectedTask;
+    public Task SelectedTask
+    {
+        get
+        {
+            return selectedTask;
+        }
 
+        set
+        {
+            selectedTask = value;
+            OnPropertyChanged(nameof(SelectedTask));
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    {
+        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+        field = value;
+        OnPropertyChanged(propertyName);
+        return true;
+    }
 }

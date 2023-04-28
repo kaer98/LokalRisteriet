@@ -54,7 +54,7 @@
 		
 		
 		<!-- ListBox for Tasks -->
-        <ListBox x:Name="listBox_Tasks"  Items="{Binding Tasks}" Grid.Column="1" Grid.Row="1"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+        <ListBox x:Name="listBox_Tasks"  Items="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" Grid.Column="1" Grid.Row="1"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 	        <ListBox.Background>
 		        <LinearGradientBrush>
 			        <GradientStop Color="#e1e5ea"/> 
