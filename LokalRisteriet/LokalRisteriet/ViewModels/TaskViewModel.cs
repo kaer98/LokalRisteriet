@@ -28,11 +28,6 @@ namespace LokalRisteriet.ViewModels
             _taskRepo.DeleteTask(task);
         }
 
-        public void DeleteTaskByID(int task)
-        {
-            _taskRepo.DeleteTaskById(task);
-        }
-
         public List<Task> GetTasks()
         {
             return _taskRepo.GetAllTasks();

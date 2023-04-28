@@ -77,7 +77,7 @@ namespace LokalRisteriet.Views
 
         private void DeleteTasksButton_OnClick(object? sender, RoutedEventArgs e)
         {
-            taskViewModel.DeleteTaskByID(bookingInfoViewVM.SelectedTask.TaskID);
+            taskViewModel.DeleteTask(bookingInfoViewVM.SelectedTask);
         }
 
         private void AddProduct(object? sender, RoutedEventArgs e)

@@ -104,11 +104,6 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        public void DeleteTaskById(int id)
-        {
-            Task task = _tasks.Find(task => task.TaskID == id);
-            DeleteTask(task);
-        }
         public void UpdateTask(Task task)
         {
             int i =_tasks.FindIndex(t => t.TaskID == task.TaskID);

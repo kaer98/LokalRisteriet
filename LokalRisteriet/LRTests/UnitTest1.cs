@@ -64,20 +64,6 @@ namespace LRTests
         }
 
         [TestMethod]
-        public void TestDeleteTaskById()
-        {
-            //Arrange
-            Task task = new Task("Test");
-            TaskViewModel taskViewModel = new TaskViewModel();
-            int count = taskViewModel.GetTasks().Count;
-            //Act
-            taskViewModel.AddTask(task);
-            taskViewModel.DeleteTaskByID(task.TaskID);
-            //Assert
-            Assert.AreEqual(count, taskViewModel.GetTasks().Count);
-        }
-
-        [TestMethod]
         public void TestUpdateTask()
         {
             //Arrange
