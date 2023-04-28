@@ -114,5 +114,12 @@ namespace LokalRisteriet.Views
         {
             addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
         }
+
+        private void btnDoneTask(object? sender, RoutedEventArgs e)
+        {
+            Task task = bookingInfoViewVM.SelectedTask;
+            task.Initials = txtTask.Text;
+            taskViewModel.UpdateTask(task);
+        }
     }
 }

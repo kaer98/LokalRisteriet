@@ -67,8 +67,8 @@
 <DataTemplate>
 	<Grid ColumnDefinitions="*" RowDefinitions="*">
 		<Label Content="{Binding TaskName}"></Label>
-		<TextBox HorizontalAlignment="Right" Text="{Binding Initials}"> </TextBox>
-		
+		<TextBox HorizontalAlignment="Right" Text="{Binding Initials}" Margin="0,0,90,0"> </TextBox>
+		<Button x:Name="" HorizontalAlignment="Right" Click="btnDoneTask">Færdiggør</Button>
 	</Grid>
 </DataTemplate>
 			</ListBox.ItemTemplate>
@@ -91,7 +91,7 @@
 		
 	</Grid.Styles>
 		
-		<Border Grid.Column="0" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Margin="5,0,0,0">
+		<Border Grid.Column="0" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Margin="10,0,0,75">
 			<Border.Background>
 				<LinearGradientBrush>
 					<GradientStop Color="#e1e5ea"/> 
@@ -100,6 +100,7 @@
 
 				</LinearGradientBrush>    
 			</Border.Background>
+			<!-- Tilføj Opgaver -->
 			<StackPanel>
 			<Label HorizontalAlignment="Center" >Tilføj Produkt </Label>
 			<Grid RowDefinitions="25,45,*,40,45,40" ColumnDefinitions="*,*" >

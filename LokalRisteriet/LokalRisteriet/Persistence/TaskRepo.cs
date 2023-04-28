@@ -46,10 +46,10 @@ namespace LokalRisteriet.Persistence
                         string name = dr["TaskName"].ToString();
                         int bookingID = 0;
                         string employee = null;
-                        if (dr["TaskEmployee"] != DBNull.Value)
-                        {
-                            employee = dr["TaskEmployee"].ToString();
-                        }
+                        //if (dr["TaskInitials"] != DBNull.Value)
+                        //{
+                        //    employee = dr["TaskInitials"].ToString();
+                        //}
                         if (dr["TaskBookingID"] != DBNull.Value)
                         {
                             bookingID = int.Parse(dr["TaskBookingID"].ToString());
@@ -112,9 +112,10 @@ namespace LokalRisteriet.Persistence
             {
                 connection.Open();
                
-                    SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskEmployee = NULL WHERE TaskId = @TaskId", connection);
+                    SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskInitials = @TaskInitials WHERE TaskId = @TaskId", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
+                    cmd.Parameters.AddWithValue("@TaskInitials", task.Initials);
                     cmd.ExecuteNonQuery();
             }
 
