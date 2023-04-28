@@ -75,6 +75,11 @@ namespace LokalRisteriet.Views
             
         }
 
+        private void DeleteTasksButton_OnClick(object? sender, RoutedEventArgs e)
+        {
+            taskViewModel.DeleteTaskByID(Id);
+        }
+
         private void AddProduct(object? sender, RoutedEventArgs e)
         {
             string productName = "";
