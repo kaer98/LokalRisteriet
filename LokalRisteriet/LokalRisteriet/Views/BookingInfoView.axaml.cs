@@ -107,7 +107,8 @@ namespace LokalRisteriet.Views
 
         private void UpdateProduct(object? sender, RoutedEventArgs e)
         {
-            //addOnViewModel.UpdateAddOn();
+            AddOn addOn = bookingInfoViewVM.SelectedAddOn; 
+            addOnViewModel.UpdateAddOn(addOn);
         }
         private void DeleteProduct(object? sender, RoutedEventArgs e)
         {
