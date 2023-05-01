@@ -112,6 +112,7 @@
 				</Grid>
 			</StackPanel>
 		</Border>
+	<Label Grid.Row="0" Grid.Column="1" Name="lblError" Content="Intet er markeret" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="-300,10,0,0" Foreground="Red" FontSize="14" ></Label>
 	</Grid>
 	<StackPanel Grid.Row="2" Orientation="Horizontal">
 		
