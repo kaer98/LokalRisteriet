@@ -10,11 +10,11 @@
 
 <Grid Background="#f6f6f6" RowDefinitions="200,*,30">
 	<Grid Grid.Row="0" ColumnDefinitions="400,*" RowDefinitions="30,*"   >
-        <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold">Liste over Produkter til bookingen</Label>
-        <Label Grid.Row="0" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold">Liste over Services til bookingen</Label>
+        <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold" Margin="10,10,0,-10" FontSize="16">Liste over Produkter til Bookingen</Label>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold" Margin="-50,10,0,-10" FontSize="16">Liste over Services til Bookingen</Label>
 
 		<!-- ListBox for Produkter -->
-		<ListBox x:Name="listBox_Products" SelectedItem="{Binding SelectedAddOn}" Grid.Column="0" Grid.Row="1" Items="{Binding AddOns}"  Margin="60,10,-190,-50" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+		<ListBox x:Name="listBox_Products" SelectedItem="{Binding SelectedAddOn}" Grid.Column="0" Grid.Row="1" Items="{Binding AddOns}"  Margin="60,10,-210,-50" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 			<ListBox.Background>
 				<LinearGradientBrush>
 					<GradientStop Color="#e1e5ea"/>
@@ -28,18 +28,18 @@
 						<Label Grid.Column="1" VerticalAlignment="Top">Pris</Label>
                         <Label Grid.Column="2" VerticalAlignment="Top">Antal</Label>
                         <Label Grid.Column="3" VerticalAlignment="Top">Total Pris</Label>
-                        <TextBox Grid.Row="1" Text="{Binding AddOnName}" VerticalAlignment="Bottom" Margin="0,0,0,0" ></TextBox>
-						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Price}" Name="cbAddOn" Margin="0,0,0,0"> </TextBox>
-						<TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Amount}"  Name="cbsAddOn" Margin="0,0,0,0"> </TextBox>
-						<TextBox Grid.Row="1" Grid.Column="3" Text="{Binding TotalPrice}" IsReadOnly="True" Margin="0,0,0,0"></TextBox>
-						<Button  Grid.Column="4" Grid.Row="4"  Margin="10,0,-110,10" Click="UpdateProduct">Rediger</Button>
-					<Button  Grid.Column="5" Grid.Row="4"  Margin="10,0,0,10" Click="DeleteProduct" HorizontalAlignment="Right" >Slet</Button>
+                        <TextBox Grid.Row="1" Text="{Binding AddOnName}" VerticalAlignment="Bottom" Width="190" Margin="50,0,60,0" ></TextBox>
+						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Price}" VerticalAlignment="Bottom" Name="cbAddOn" Margin="0,0,5,0" > </TextBox>
+						<TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Amount}" VerticalAlignment="Bottom"  Name="cbsAddOn" Margin="0,0,5,0"> </TextBox>
+						<TextBox Grid.Row="1" Grid.Column="3" Text="{Binding TotalPrice}" VerticalAlignment="Bottom" IsReadOnly="True" Margin="0,0,5,0"></TextBox>
+						<Button  Grid.Column="4" Grid.Row="4"  Margin="5,0,-10,-1" VerticalAlignment="Bottom" Click="UpdateProduct">Rediger</Button>
+					<Button  Grid.Column="5" Grid.Row="4"  Margin="20,0,0,-1" VerticalAlignment="Bottom" Click="DeleteProduct" HorizontalAlignment="Right" >Slet</Button>
 					</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>		
 		<!-- ListBox for Tasks -->
-        <ListBox x:Name="listBox_Tasks"  Items="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" Grid.Column="1" Grid.Row="1"  Margin="200,10,50,-50" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+        <ListBox x:Name="listBox_Tasks"  Items="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" Grid.Column="1" Grid.Row="1"  Margin="220,10,50,-50" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 	        <ListBox.Background>
 		        <LinearGradientBrush>
 			        <GradientStop Color="#e1e5ea"/> 
