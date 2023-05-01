@@ -68,7 +68,7 @@
 	<Grid ColumnDefinitions="*" RowDefinitions="*">
 		<Label Content="{Binding TaskName}"></Label>
 		<TextBox HorizontalAlignment="Right" Text="{Binding Initials}" Margin="0,0,90,0"> </TextBox>
-		<Button x:Name="" HorizontalAlignment="Right" Click="btnDoneTask">Færdiggør</Button>
+		<Button x:Name="btnFinish" HorizontalAlignment="Right" Click="btnDoneTask">Færdiggør</Button>
 	</Grid>
 </DataTemplate>
 			</ListBox.ItemTemplate>
