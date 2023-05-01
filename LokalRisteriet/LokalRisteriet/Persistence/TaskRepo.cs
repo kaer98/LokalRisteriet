@@ -46,10 +46,10 @@ namespace LokalRisteriet.Persistence
                         string name = dr["TaskName"].ToString();
                         int bookingID = 0;
                         string employee = null;
-                        //if (dr["TaskInitials"] != DBNull.Value)
-                        //{
-                        //    employee = dr["TaskInitials"].ToString();
-                        //}
+                        if (dr["TaskInitials"] != DBNull.Value)
+                        {
+                            employee = dr["TaskInitials"].ToString();
+                        }
                         if (dr["TaskBookingID"] != DBNull.Value)
                         {
                             bookingID = int.Parse(dr["TaskBookingID"].ToString());
@@ -81,11 +81,19 @@ namespace LokalRisteriet.Persistence
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.ExecuteNonQuery();
                 }
-                else if (task.TaskBookingID != 0) 
+                else if (task.TaskBookingID != 0 && task.Initials == null) 
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID) Values(@TaskName, @TaskBookingID)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
+                    cmd.ExecuteNonQuery();
+                }
+                else if(task.TaskBookingID != 0 && task.Initials!= null)
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID, TaskInitials) Values(@TaskName, @TaskBookingID, @TaskInitials)", connection);
+                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                    cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
+                    cmd.Parameters.AddWithValue("@TaskInitials", task.Initials);
                     cmd.ExecuteNonQuery();
                 }
                 

@@ -118,7 +118,7 @@ namespace LokalRisteriet.Views
         private void btnDoneTask(object? sender, RoutedEventArgs e)
         {
             Task task = bookingInfoViewVM.SelectedTask;
-            task.Initials = txtTask.Text;
+            //task.Initials = txtInitials.Text;
             taskViewModel.UpdateTask(task);
         }
     }

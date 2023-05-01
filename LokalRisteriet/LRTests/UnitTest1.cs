@@ -72,6 +72,7 @@ namespace LRTests
             taskViewModel.AddTask(task);
             //Act
             task.TaskName = "Test2";
+            task.Initials = "jnf";
             taskViewModel.UpdateTask(task);
             //Assert
             Assert.AreEqual(task, taskViewModel.GetTasks().Last());

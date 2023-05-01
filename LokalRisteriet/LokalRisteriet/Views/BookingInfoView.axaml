@@ -66,6 +66,7 @@
 	        </ListBox.Background>
 	        <ListBox.ItemTemplate>
 <DataTemplate>
+
 	<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*">
 		<Label Content="{Binding TaskName}" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0"></Label>
 		<TextBox HorizontalAlignment="Right" Text="{Binding Initials}" Margin="0,0,0,0" Grid.Column="1"> </TextBox>
@@ -143,11 +144,6 @@
 				</Grid>
 			</StackPanel>
 		</Border>
-	
-		
-		
-		
-		
 
 	</Grid>
 	
