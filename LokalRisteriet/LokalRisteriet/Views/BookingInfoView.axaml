@@ -14,13 +14,13 @@
 	<Grid Grid.Row="0" ColumnDefinitions="400,*" RowDefinitions="30,*"   >
 
 
-        <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Produkter til bookingen</Label>
-        <Label Grid.Row="0" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom">Liste over Services til bookingen</Label>
+        <Label Grid.Row="0" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold">Liste over Produkter til bookingen</Label>
+        <Label Grid.Row="0" Grid.Column="1" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold">Liste over Services til bookingen</Label>
 
 		
 		
 		<!-- ListBox for Produkter -->
-		<ListBox x:Name="listBox_Products" SelectedItem="{Binding SelectedAddOn}" Grid.Column="0" Grid.Row="1" Items="{Binding AddOns}"  Margin="10,10,10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20" >
+		<ListBox x:Name="listBox_Products" SelectedItem="{Binding SelectedAddOn}" Grid.Column="0" Grid.Row="1" Items="{Binding AddOns}"  Margin="60,10,-190,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 			<ListBox.Background>
 				<LinearGradientBrush>
 					<GradientStop Color="#e1e5ea"/>
@@ -31,7 +31,7 @@
 			</ListBox.Background>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*">
+					<Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*">
 						<Label VerticalAlignment="Top">Produkt</Label>
 						<Label Grid.Column="1" VerticalAlignment="Top">Pris</Label>
                         <Label Grid.Column="2" VerticalAlignment="Top">Antal</Label>
@@ -40,6 +40,7 @@
 						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Price}" Name="cbAddOn"> </TextBox>
 						<TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Amount}"  Name="cbsAddOn"> </TextBox>
 						<TextBox Grid.Row="1" Grid.Column="3" Text="{Binding TotalPrice}" IsReadOnly="True"></TextBox>
+						<Button  Grid.Column="4" Grid.Row="4"  Margin="10,0,0,10" Click="UpdateProduct" >Rediger</Button>
 					</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
@@ -54,7 +55,7 @@
 		
 		
 		<!-- ListBox for Tasks -->
-        <ListBox x:Name="listBox_Tasks"  Items="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" Grid.Column="1" Grid.Row="1"  Margin="10,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
+        <ListBox x:Name="listBox_Tasks"  Items="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" Grid.Column="1" Grid.Row="1"  Margin="200,10,50,10" BorderBrush="#b3b3b3" BorderThickness="1" CornerRadius="20">
 	        <ListBox.Background>
 		        <LinearGradientBrush>
 			        <GradientStop Color="#e1e5ea"/> 
@@ -65,10 +66,11 @@
 	        </ListBox.Background>
 	        <ListBox.ItemTemplate>
 <DataTemplate>
-	<Grid ColumnDefinitions="*" RowDefinitions="*">
-		<Label Content="{Binding TaskName}"></Label>
-		<TextBox HorizontalAlignment="Right" Text="{Binding Initials}" Margin="0,0,90,0"> </TextBox>
-		<Button x:Name="" HorizontalAlignment="Right" Click="btnDoneTask">Færdiggør</Button>
+	<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*">
+		<Label Content="{Binding TaskName}" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0"></Label>
+		<TextBox HorizontalAlignment="Right" Text="{Binding Initials}" Margin="0,0,0,0" Grid.Column="1"> </TextBox>
+		<Button x:Name="" HorizontalAlignment="Right" Click="btnDoneTask" Grid.Column="2">Færdiggør</Button>
+		<Button x:Name="DeleteTasksButton" Click="DeleteTasksButton_OnClick"  Grid.Column="3" Margin="0,0,0,0" HorizontalAlignment="Right" >Slet Opgave</Button>
 	</Grid>
 </DataTemplate>
 			</ListBox.ItemTemplate>
@@ -91,37 +93,7 @@
 		
 	</Grid.Styles>
 		
-		<Border Grid.Column="0" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Margin="10,0,0,75">
-			<Border.Background>
-				<LinearGradientBrush>
-					<GradientStop Color="#e1e5ea"/> 
-
-					<GradientStop Color="#a1a5a9" Offset="1.0"/>
-
-				</LinearGradientBrush>    
-			</Border.Background>
-			<!-- Tilføj Opgaver -->
-			<StackPanel>
-			<Label HorizontalAlignment="Center" >Tilføj Produkt </Label>
-			<Grid RowDefinitions="25,45,*,40,45,40" ColumnDefinitions="*,*" >
-				<Label Grid.Column="0" Grid.Row="0" Margin="10,0,10,0" VerticalContentAlignment="Center" >Produkt Navn</Label>
-				<Label Grid.Column="0" Grid.Row="1" Margin="10,0,10,0" VerticalContentAlignment="Center"> Produkt Pris</Label>
-				<Label Grid.Column="0" Grid.Row="2" Margin="10,0,10,0" VerticalContentAlignment="Center">Produkt Antal</Label>
-				<Button  Grid.ColumnSpan="2" Grid.Row="3"  Margin="10,0,0,10" Click="AddProduct" >Tilføj Produkt</Button>
-				<Button  Grid.ColumnSpan="2" Grid.Row="4"  Margin="10,0,0,10" Click="UpdateProduct" >Rediger Produkt</Button>
-				<Button  Grid.ColumnSpan="2" Grid.Row="4"  Margin="10,0,0,10" Click="DeleteProduct" HorizontalAlignment="Right" >Slet Produkt</Button>
-
-				
-				<TextBox Grid.Row="0" Name="txtProductName"  Grid.Column="1" Watermark="Produkt Navn" ></TextBox>
-				<TextBox Grid.Row="1" Name="txtProductPrice"  Grid.Column="1" Watermark="Produkt Pris"  HorizontalAlignment="Left" ></TextBox>
-				<TextBox Grid.Row="2" Name="txtProductAmount" Grid.Column="1"   HorizontalAlignment="Left" Watermark="Antal" CornerRadius=" 20" Margin="10,0,10,0" ></TextBox>
-
-
-			</Grid>
-		</StackPanel>
-		</Border>
-		
-		<Border Grid.Column="1" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1"  Margin="5,0,0,0">
+		<Border Grid.Column="0" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Margin="10,20,0,85">
 			<Border.Background>
 				<LinearGradientBrush>
 					<GradientStop Color="#e1e5ea"/> 
@@ -131,18 +103,43 @@
 				</LinearGradientBrush>    
 			</Border.Background>
 			
-			<!-- Opgaver -->
+			<!-- Tilføj Produkt -->
 			<StackPanel>
-				<Label HorizontalAlignment="Center" >Tilføj Opgaver </Label>
+			<Label HorizontalAlignment="Center" Margin="0,0,0,20" FontWeight="Bold">Tilføj Produkt </Label>
+			<Grid RowDefinitions="25,45,*,40,45,40" ColumnDefinitions="*,*" >
+				<Label Grid.Column="0" Grid.Row="0" Margin="10,0,10,0" VerticalContentAlignment="Center" >Produkt Navn</Label>
+				<Label Grid.Column="0" Grid.Row="1" Margin="10,0,10,0" VerticalContentAlignment="Center"> Produkt Pris</Label>
+				<Label Grid.Column="0" Grid.Row="2" Margin="10,0,10,0" VerticalContentAlignment="Center">Produkt Antal</Label>
+				<Button  Grid.ColumnSpan="2" Grid.Row="3"  Margin="10,0,0,10" Click="AddProduct" >Tilføj Produkt</Button>
+				<Button  Grid.ColumnSpan="2" Grid.Row="4"  Margin="10,0,0,10" Click="DeleteProduct" HorizontalAlignment="Right" >Slet Produkt</Button>
+
+				
+				<TextBox Grid.Row="0" Name="txtProductName"  Grid.Column="1" Watermark="Produkt Navn" ></TextBox>
+				<TextBox Grid.Row="1" Name="txtProductPrice"  Grid.Column="1" Watermark="Produkt Pris"  HorizontalAlignment="Left" ></TextBox>
+				<TextBox Grid.Row="2" Name="txtProductAmount" Grid.Column="1"   HorizontalAlignment="Left" Watermark="Antal" CornerRadius=" 20" Margin="10,0,10,0" ></TextBox>
+
+
+			</Grid>
+
+		<!-- Tilføj Opgaver -->
+		</StackPanel>
+		</Border>
+		
+		<Border Grid.Column="1" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1"   Margin="10,20,0,85">
+			<Border.Background>
+				<LinearGradientBrush>
+					<GradientStop Color="#e1e5ea"/> 
+					<GradientStop Color="#a1a5a9" Offset="1.0"/>
+				</LinearGradientBrush>    
+			</Border.Background>
+			
+			<StackPanel>
+				<Label HorizontalAlignment="Center" FontWeight="Bold" >Tilføj Opgaver </Label>
 				<Grid RowDefinitions="50,*,50,50" ColumnDefinitions="*,*" >
 					<Label Grid.Column="0" Grid.Row="0" Margin="10,0,10,0" VerticalContentAlignment="Center" >Opgave Navn</Label>
 				
-				
 					<TextBox Grid.Row="0" Name="txtTask"  Grid.Column="1" Watermark="Opgave Navn" ></TextBox>
 					<Button x:Name="AddTasksButton" Click="AddTasksButton_OnClick"  Grid.ColumnSpan="2" Grid.Row="3"  Margin="10,0,0,-13"  >Tilføj Opgave</Button>
-					<Button x:Name="DeleteTasksButton" Click="DeleteTasksButton_OnClick"  Grid.ColumnSpan="2" Grid.Row="3"  Margin="10,0,0,-13" HorizontalAlignment="Right" >Slet Opgave</Button>
-
-
 				</Grid>
 			</StackPanel>
 		</Border>
