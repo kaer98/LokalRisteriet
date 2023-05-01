@@ -107,8 +107,17 @@ namespace LokalRisteriet.Views
 
         private void UpdateProduct(object? sender, RoutedEventArgs e)
         {
-            AddOn addOn = bookingInfoViewVM.SelectedAddOn; 
-            addOnViewModel.UpdateAddOn(addOn);
+            AddOn addOn = bookingInfoViewVM.SelectedAddOn;
+            if (addOn != null)
+            {
+                addOnViewModel.UpdateAddOn(addOn);
+                lblErroraddOn.Content = "";
+            }
+            else
+            {
+                lblErroraddOn.Content = "intet valgt!";
+            }
+            
         }
         private void DeleteProduct(object? sender, RoutedEventArgs e)
         {
@@ -118,7 +127,16 @@ namespace LokalRisteriet.Views
         private void btnDoneTask(object? sender, RoutedEventArgs e)
         {
             Task task = bookingInfoViewVM.SelectedTask;
-            taskViewModel.UpdateTask(task);
+            if(task != null)
+            {
+                taskViewModel.UpdateTask(task);
+                lblErrortask.Content = "";
+            }
+            else
+            {
+                lblErrortask.Content = "Intet Markeret!";
+            }
+            
         }
     }
 }

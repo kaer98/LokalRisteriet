@@ -69,14 +69,16 @@
 	</Grid.Styles>
 		
 			<!-- Tilføj Produkt -->
+		<Label Grid.Row="0" Grid.Column="0" Name="lblErroraddOn" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" Foreground="Red" FontSize="14" ></Label>
+
 		<Border Grid.Column="0" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1" Margin="10,70,-20,100">
+
 			<Border.Background>
 				<LinearGradientBrush>
 					<GradientStop Color="#e1e5ea"/> 
 					<GradientStop Color="#a1a5a9" Offset="1.0"/>
 				</LinearGradientBrush>    
 			</Border.Background>
-			
 			<StackPanel>
 			<Label HorizontalAlignment="Center" Margin="0,0,0,20" FontWeight="Bold">Tilføj Produkt </Label>
 			<Grid RowDefinitions="25,45,*,40,45,40" ColumnDefinitions="*,*" >
@@ -93,7 +95,7 @@
 		<!-- Tilføj Opgaver -->
 		</StackPanel>
 		</Border>
-		
+		<Label Grid.Row="0" Grid.Column="1" Name="lblErrortask" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" Foreground="Red" FontSize="14" ></Label>
 		<Border Grid.Column="1" CornerRadius="20" BorderBrush="#b3b3b3" BorderThickness="1"   Margin="30,70,0,150">
 			<Border.Background>
 				<LinearGradientBrush>
@@ -112,6 +114,7 @@
 				</Grid>
 			</StackPanel>
 		</Border>
+	
 	</Grid>
 	<StackPanel Grid.Row="2" Orientation="Horizontal">
 		
