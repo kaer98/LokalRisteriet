@@ -9,12 +9,16 @@ namespace LokalRisteriet.Persistence
 {
     public class BookingRepo 
     {
+        
+        // This is a private field of type List<Booking>, used to store a collection of bookings
         private List<Booking> _bookings;
         private int nextID = 0;
 
         // private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
 
+        
+        //The booking repository
         public BookingRepo()
         {
             using(SqlConnection connection = new SqlConnection(_connectionString))
@@ -23,9 +27,14 @@ namespace LokalRisteriet.Persistence
                 SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('Booking') + IDENT_INCR('Booking') AS NextID", connection);
                 using(SqlDataReader dr = cmd.ExecuteReader())
                 {
+                    
+                    // A while loop is used to iterate through the result set.
                     while (dr.Read())
                     {
+                        // The NextID value is parsed from the result set and stored in the id variable.
                         int id = int.Parse(dr["NextID"].ToString());
+                        
+                        // If the id value is greater than the current nextID value, it is set as the new nextID value.
                         if (id > nextID)
                         {
                             nextID = id;
@@ -33,35 +42,61 @@ namespace LokalRisteriet.Persistence
                     }
                 }
             }
+            
+            // A new List of Booking objects is created.
             _bookings = new List<Booking>();
+            
+            // Another using statement is used to create a new SqlConnection object to retrieve all booking records from the database.
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
+                
+                // The connection is opened.
                 connection.Open();
+                
+                // A SqlCommand object is created with a SELECT statement to retrieve all records from the Booking table.
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Booking", connection);
+                
+                // Another SqlDataReader object is created to execute the query and read the result set.
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
+                    
+                    // Another while loop is used to iterate through the result set.
                     while (dr.Read())
                     {
+                        
+                        // Various fields are retrieved from the current record and parsed into the appropriate data types.
                         int bookingID = int.Parse((string)dr["BookingID"].ToString());
                         string bookingtype = dr["BookingType"].ToString();
 
+                        // A List of Room objects is created to store the rooms associated with the current booking.
                         List<Room> rooms = new List<Room>();
+                        
+                        // A for loop is used to iterate through the two available rooms associated with a booking.
                         for (int i = 1; i <= 2; i++)
                         {
+                            // If the BookingRoom field is not null, its value is parsed and stored in the id variable.
+
                             int id = 0;
+                            
+                            // If the BookingRoom field is not null, its value is parsed and stored in the id variable.
                             if (dr[$"BookingRoom{i}"] != DBNull.Value)
                             {
                                 string s = dr[$"BookingRoom{i}"].ToString();
                                 id = int.Parse(dr[$"BookingRoom{i}"].ToString());
 
                             }
+                            
+                            // A new Room object is created and its RoomID is set to the parsed id value. The Room object is then added to the rooms list.
                             Room room = new Room();
                             room.RoomID = id;
                                 rooms.Add(room);
                         }
 
+                        // A List of AddOn objects is created to store the add-ons associated with the current booking.
                         List<AddOn> addOns = new List<AddOn>();
 
+                        
+                        // Various fields are retrieved from the current record and parsed into the appropriate data types.
                         DateTime bookingStart = DateTime.Parse(dr["BookingStart"].ToString());
                         DateTime bookingEnd = DateTime.Parse(dr["BookingEnd"].ToString());
                         TimeSpan bookingDuration = TimeSpan.Parse(dr["BookingDuration"].ToString());
@@ -98,8 +133,12 @@ namespace LokalRisteriet.Persistence
 
         }
 
+        //This method allows us to get all bookings.
+        //In this way we can add them to a List<> or ObservableCollection (and more!)
         public List<Booking> GetAllBookings() => _bookings;
 
+        //The Add Booking Method:
+        //Allows us to Add bookings to the database. 
         public Booking AddBooking(Booking booking)
         {
             while (booking.BookingRooms.Count < 2)
@@ -152,6 +191,7 @@ namespace LokalRisteriet.Persistence
             return booking;
         }
 
+        //This allows us to update a booking in the database.
         public void UpdateBooking(Booking booking)
         {
             int i =_bookings.FindIndex(b => b.BookingID == booking.BookingID);
