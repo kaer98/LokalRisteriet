@@ -14,20 +14,21 @@ namespace LokalRisteriet.ViewModels;
 
 public class BookingInfoViewVM : INotifyPropertyChanged
 {
-    
-    //test liste for BookingInfoView Employee
-    
 
+    // Fields
     public TaskRepo taskRepository = new();
     public AddOnRepo addOnRepository = new();
     public ObservableCollection<Task> Tasks { get; set; }
     public ObservableCollection<AddOn> AddOns { get; set; } = new();
     public int Id { get; set; }
+
+    // Constructor
     public BookingInfoViewVM()
     {
      
     }
 
+    // Methods
     public void AddListBoxes(int id)
     {
         AddTasks(id);
@@ -59,7 +60,8 @@ public class BookingInfoViewVM : INotifyPropertyChanged
             }
         }
     }
-    
+
+    // Properties
     public Task selectedTask;
     public Task SelectedTask
     {
@@ -90,6 +92,7 @@ public class BookingInfoViewVM : INotifyPropertyChanged
         }
     }
 
+    // Events
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
