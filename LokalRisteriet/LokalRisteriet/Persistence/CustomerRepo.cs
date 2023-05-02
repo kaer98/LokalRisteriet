@@ -12,13 +12,17 @@ namespace LokalRisteriet.Persistence
 {
     public class CustomerRepo
     {
+        // List of Customers
         private List<Customer> _customers;
+        // Next available ID for a Customer
         private int nextID = 0;
-        //private string connectionsString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        // Database connection string
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         public CustomerRepo()
         { 
+            // Initialize the list of Customers
          _customers = new List<Customer>();
+            // Get the next available ID for a Customer from the database
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -35,6 +39,7 @@ namespace LokalRisteriet.Persistence
                     }
                 }
             }
+            // Get all the Customers from the database and add them to the list
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
@@ -54,8 +59,9 @@ namespace LokalRisteriet.Persistence
                  }
             }
         }
+        // get all Customers
         public List<Customer> GetAllCustomers() => _customers;
-
+        // Add a new Customer
         public int AddCustomer(Customer customer)
         {
             _customers.Add(customer);
@@ -70,7 +76,7 @@ namespace LokalRisteriet.Persistence
             }
             return nextID++;
         }
-
+        // Update a Customer
         public void UpdateCustomer(Customer customer)
         {
             int i  = _customers.FindIndex(c => c.CustomerId == customer.CustomerId);
@@ -86,7 +92,7 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-
+        // Delete a Customer
         public void DeleteCustomer(Customer customer)
         {
             _customers.Remove(customer);
@@ -98,11 +104,12 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
+        // Get the next available ID for a Customer
         public int GetNextID()
         {
             return nextID;
         }
-
+        // Get a Customer by ID
         public Customer GetCustomerById(int id)
         {
             return _customers.Find(x => x.CustomerId == id);

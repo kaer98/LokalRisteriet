@@ -9,14 +9,18 @@ namespace LokalRisteriet.Persistence
 {
     public class AddOnRepo
     {
-        //private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        // Database connection string
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
+        //List of AddOns
         private List<AddOn> _addOns;
+        //Next available ID for a AddOn
         private int nextID = 0;
     
         public AddOnRepo()
         {
+            // Initialize the list of AddOns
             _addOns = new List<AddOn>();
+            // Get the next available ID for a AddOn from the database
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -32,7 +36,9 @@ namespace LokalRisteriet.Persistence
                         }
                     }
                 }
+
             }
+            // Get all the AddOns from the database and add them to the list
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -65,6 +71,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
+        // Add a AddOn to the list and the database
         public void addAddOn(AddOn addOn)
         {
             _addOns.Add(addOn);
@@ -91,10 +98,10 @@ namespace LokalRisteriet.Persistence
                 }
             }
         }
-
+        // Get all the AddOns
         public List<AddOn> GetAllAddOns() => _addOns;
 
-
+        //Delete a AddOn from the list and the database by ID
         public void DeleteAddOnByID(int id)
         {
             AddOn addOn = _addOns.Find(a => a.AddOnID == id);
@@ -107,7 +114,7 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-
+        // Delete a AddOn from the list and the database
         public void deleteAddOn(AddOn addOn)
         {
             _addOns.Remove(addOn);
@@ -119,7 +126,7 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-
+        // Update a AddOn in the list and the database
         public void updateAddOn(AddOn addOn)
         {
             int i =_addOns.FindIndex(a => a.AddOnID == addOn.AddOnID);
@@ -136,7 +143,7 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-
+        //find a AddOn by ID
         public AddOn GetAddOnByID(int id) => _addOns.Find(a => a.AddOnID == id);
     }
 }
