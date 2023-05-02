@@ -14,6 +14,7 @@ namespace LokalRisteriet.ViewModels
 {
     public class BookingViewModel : INotifyPropertyChanged
     {
+        // Repositories and collections
         private BookingRepo _bookingRepo;
         private TaskRepo _taskRepo;
         private CustomerRepo _customerRepo;
@@ -22,9 +23,10 @@ namespace LokalRisteriet.ViewModels
         private ObservableCollection<Customer> _customers;
         private ObservableCollection<Task> _tasks;
 
+        // Properties
         public ObservableCollection<Booking> Bookings
         {
-            get { return _books1 ;}
+            get { return _books1; }
             set { _books1 = value; }
         }
 
@@ -34,6 +36,8 @@ namespace LokalRisteriet.ViewModels
             get { return _customers = new ObservableCollection<Customer>(_customerRepo.GetAllCustomers()); }
             set { _customers = value; }
         }
+
+        // Constructor
         public BookingViewModel()
         {
             _bookingRepo = new BookingRepo();
@@ -44,9 +48,10 @@ namespace LokalRisteriet.ViewModels
             AddCustomers();
         }
 
+        // Methods for CRUD operations
         public Booking AddBooking(Booking booking)
         {
-           return _bookingRepo.AddBooking(booking);
+            return _bookingRepo.AddBooking(booking);
         }
 
         public void DeleteBooking(Booking booking)
@@ -58,11 +63,12 @@ namespace LokalRisteriet.ViewModels
         {
             _bookingRepo.DeleteBookingByID(id);
         }
+
         public List<Booking> GetBookings()
         {
             return _bookingRepo.GetAllBookings();
         }
-        
+
         public List<Task> GetTasks()
         {
             return _taskRepo.GetAllTasks();
@@ -73,6 +79,7 @@ namespace LokalRisteriet.ViewModels
             _bookingRepo.UpdateBooking(booking);
         }
 
+        // Helper methods
         public void AddCustomers()
         {
             foreach (Booking book in _books)
@@ -88,7 +95,7 @@ namespace LokalRisteriet.ViewModels
                     }
                 }
             }
-            
+
         }
         public ObservableCollection<Booking> GetBookingByDay(DateTime Day) => _bookingRepo.GetBookingByDay(Day);
 
@@ -105,7 +112,7 @@ namespace LokalRisteriet.ViewModels
             }
         }
 
-
+        // Selected booking property
         public Booking selectedBooking;
         public Booking SelectedBooking
         {
@@ -121,6 +128,7 @@ namespace LokalRisteriet.ViewModels
             }
         }
 
+        // INotifyPropertyChanged implementation
         #region OnChanged events
         public event PropertyChangedEventHandler? PropertyChanged;
 
