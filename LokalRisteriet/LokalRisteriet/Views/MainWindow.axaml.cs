@@ -20,6 +20,7 @@ namespace LokalRisteriet.Views
         public AddBookingView addBookingView = new AddBookingView();
         public EditBookingView editBookingView = new EditBookingView();
 
+        // Initializes the MainWindow, sets up event handlers and sets the main view to the BookingView.
         public MainWindow()
         {
             InitializeComponent();
@@ -35,15 +36,14 @@ namespace LokalRisteriet.Views
             
          
         }
-        
-        //Tilbage til front screen.
 
+        //Back to Main View
         public void BackToMainView(object sender, EventArgs e)
         {
             UserMiddleControl.Content = mainView;
         }
 
-
+        // This method is triggered when the "Edit" button is clicked in the main view. It loads the selected booking details into the EditBookingView for editing.
         private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
         {
 
@@ -104,7 +104,7 @@ namespace LokalRisteriet.Views
 
         }
 
-        
+
         //Booking Info View
         /*
          *
@@ -113,6 +113,8 @@ namespace LokalRisteriet.Views
          *
          * 
          */
+
+        // Update booking information in the main view
         private void BookingBtnMainView(object sender, EventArgs e)
         {
             try
@@ -137,6 +139,7 @@ namespace LokalRisteriet.Views
 
         }
 
+        // Add Booking View Method
         private void AddBookingView(object sender, EventArgs e)
         {
             UserMiddleControl.Content = addBookingView;
@@ -148,6 +151,7 @@ namespace LokalRisteriet.Views
 
         }
 
+        // Booking Button 
         private void Booking_Button(object sender, RoutedEventArgs e)
         {
             

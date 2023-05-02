@@ -75,11 +75,13 @@ namespace LokalRisteriet.Views
             
         }
 
+        // Function for Delete Tasks Button Click Event.
         private void DeleteTasksButton_OnClick(object? sender, RoutedEventArgs e)
         {
             taskViewModel.DeleteTask(bookingInfoViewVM.SelectedTask);
         }
 
+        // AddProduct method to create and add a new add-on product to a booking
         private void AddProduct(object? sender, RoutedEventArgs e)
         {
             string productName = "";
@@ -105,6 +107,7 @@ namespace LokalRisteriet.Views
             txtProductAmount.Text = String.Empty; txtProductPrice.Text = String.Empty; txtProductName.Text = String.Empty;
         }
 
+        // Update Product Function
         private void UpdateProduct(object? sender, RoutedEventArgs e)
         {
             AddOn addOn = bookingInfoViewVM.SelectedAddOn;
@@ -119,11 +122,14 @@ namespace LokalRisteriet.Views
             }
             
         }
+
+        // Delete Product Function
         private void DeleteProduct(object? sender, RoutedEventArgs e)
         {
             addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
         }
 
+        // Update Selected Task Done status
         private void btnDoneTask(object? sender, RoutedEventArgs e)
         {
             Task task = bookingInfoViewVM.SelectedTask;

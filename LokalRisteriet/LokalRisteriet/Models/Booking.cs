@@ -10,6 +10,7 @@ namespace LokalRisteriet.Models
 {
     public class Booking
     {
+        // Fields
         private int _bookingid;
         private string _bookingtype;
         private string _bookingnote;
@@ -29,7 +30,7 @@ namespace LokalRisteriet.Models
         private double _deposit;
 
        
-
+        // Properties
         public int BookingID
         {
             get { return _bookingid; }
@@ -136,14 +137,18 @@ namespace LokalRisteriet.Models
             get { return _deposit; }
             set { _deposit = value; }
         }
-
+        
+        // Methods
         public Booking(string bookingtype, string bookingnote , List<Room> rooms, DateTime startDateTime, DateTime endDateTime, double amountOfGuests, bool reserved)
         {
+            // Set booking properties
             _bookingtype = bookingtype;
             _bookingnote = bookingnote;
             _rooms = rooms;
             _startDateTime = startDateTime;
             _endDateTime = endDateTime;
+
+            // Calculate booking duration
             if (startDateTime > endDateTime)
             {
                _duration= endDateTime+TimeSpan.FromHours(24) -startDateTime;
@@ -152,10 +157,14 @@ namespace LokalRisteriet.Models
             {
                 _duration = endDateTime - startDateTime;
             }
+
+            // Set other booking properties
             _amountOfGuests = amountOfGuests;
             _reserved = reserved;
             _tasks = new List<Task>();
             _addOns = new List<AddOn>();
+
+            // Calculate booking price
             CalculatePrice();
 
         }
@@ -164,10 +173,14 @@ namespace LokalRisteriet.Models
         {
             TimeSpan over5 = TimeSpan.FromHours(5);
             double timePrice = 0;
+
+            // Add up the prices of all add-ons
             foreach (AddOn addOn in _addOns)
             {
                 timePrice += addOn.Price;
             }
+
+            // Calculate the price based on the booking duration
             if (BookingDuration.Hours >=6)
             {
                 timePrice = 5000+((BookingDuration.Hours-6) * 1000);
@@ -179,7 +192,9 @@ namespace LokalRisteriet.Models
                 timePrice = BookingDuration.Hours * 1000;
                 timePrice += EmployeesAdult * 400 * BookingDuration.Hours;
                 timePrice += EmployeesChild * 200 * BookingDuration.Hours;
-            } 
+            }
+
+            // Store the calculated price and return it
             return _price = timePrice;
         }
         

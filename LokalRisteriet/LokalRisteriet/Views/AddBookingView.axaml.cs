@@ -265,7 +265,7 @@ namespace LokalRisteriet
                 customer = c;
             }
 
-
+            // Create and Add a New Booking
             Booking booking = new Booking(bType, bNote, rooms(), bTimeStart, bTimeEnd, bNoOfPeople, true);
             booking.BookingCustomerID = customer.CustomerId;
             booking.EmployeesAdult = employeesAdult;

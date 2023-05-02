@@ -47,7 +47,7 @@ namespace LokalRisteriet.Views
         }
 
 
-
+        // Booking error handler
         private void Booking_Button2(object sender, RoutedEventArgs e)
         {
             if (bookingViewModel.SelectedBooking != null)
@@ -60,6 +60,7 @@ namespace LokalRisteriet.Views
             }
         }
 
+        // AddBookingButton method
         private void AddBookingButton(object sender, RoutedEventArgs e)
         {
 
@@ -68,6 +69,7 @@ namespace LokalRisteriet.Views
 
         }
 
+        // Edit Booking Button Function
         private void EditBookingButton(object sender, RoutedEventArgs e)
         {
             if ( bookingViewModel.selectedBooking!= null)
@@ -82,6 +84,7 @@ namespace LokalRisteriet.Views
            
         }
 
+        // MarkDays Method
         private void MarkDays(object sender, RoutedEventArgs e)
         {
             ColorCal();
@@ -90,8 +93,13 @@ namespace LokalRisteriet.Views
 
         private void ColorCal()
         {
+            // Clear existing selected dates
             _calcal.SelectedDates.Clear();
+
+            // Initialize bookingViewModel
             bookingViewModel = new BookingViewModel();
+
+            // Iterate over bookings and mark those within the current month/year
             foreach (Booking b in bookingViewModel.Bookings1)
             {
                 if (b.BookingStart.Month == _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
@@ -101,10 +109,13 @@ namespace LokalRisteriet.Views
                     
                 }
             }
+
+            // Update data context to reflect changes
             DataContext = null;
             DataContext = bookingViewModel;
         }
 
+        // retrieves the selected dates from a calendar control and uses them to add bookings to the view model, which is then updated in the UI.
         private void SelectedDates()
         {
             bookingViewModel = new BookingViewModel();
@@ -119,6 +130,7 @@ namespace LokalRisteriet.Views
 
         }
 
+        // This method handles the selection changed event of the booking list and enables or disables the edit and delete buttons based on whether an item is selected or not.
         private void BookingList_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
             bool editBtnOnOff = false;

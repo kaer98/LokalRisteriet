@@ -43,15 +43,17 @@ namespace LokalRisteriet.Views
 
         }
 
+        // Delete Booking by ID Function
         private void btnDelete(object sender, RoutedEventArgs e)
         {
             bookingViewModel.DeleteBookingByID(Id);
             
         }
-        //Opdatering af booking.
 
+        // Create a new booking
         private void BtnCreateBooking_OnClick(object sender, RoutedEventArgs e)
         {
+            // Initialize variables to store user input
             string bName = "";
             string bPhone = "";
             string bEmail = "";
@@ -67,7 +69,7 @@ namespace LokalRisteriet.Views
             double bDepositum = 0;
 
 
-
+            // Get user input from UI controls
             if (txtName.Text != null)
             {
                 bName = txtName.Text;
@@ -124,9 +126,12 @@ namespace LokalRisteriet.Views
             {
                 bDepositum = 0;
             }
+
+            // Check if customer already exists based on email provided
             Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
             if (customer == null)
             {
+                // Create new customer object if not found
                 Customer c = new Customer(bName, bPhone, bEmail);
                 c.CustomerId = customerViewModel.GetNextID();
                 customerViewModel.AddCustomer(c);
@@ -134,7 +139,7 @@ namespace LokalRisteriet.Views
                 customer = c;
             }
 
-
+            // Create new booking object based on user input and pass to bookingViewModel
             Booking booking = new Booking(bType, bNote, rooms(), bTimeStart, bTimeEnd, bNoOfPeople, false);
             booking.BookingCustomerID = customer.CustomerId;
             booking.EmployeesAdult = employeesAdult;
@@ -143,8 +148,11 @@ namespace LokalRisteriet.Views
             booking.BookingID = Id;
             bookingViewModel.UpdateBooking(booking);
         }
+
+        // Calculate Booking Price
         public double CalculatePrice()
         {
+            // Time Calculation
             TimeSpan bookingDuration = new TimeSpan();
             double timePrice = 0;
             if (tPSlut.SelectedTime != null && tPStart.SelectedTime != null)
@@ -163,11 +171,13 @@ namespace LokalRisteriet.Views
             {
                 return 0;
             }
+            // Adult Employee Count.
             int employeesAdult = 0;
             if (dd18.SelectedIndex != -1)
             {
                 employeesAdult = dd18.SelectedIndex;
             }
+            // Child Employee Count.
             int employeesChild = 0;
             if (ddu18.SelectedIndex != -1)
             {
@@ -182,6 +192,7 @@ namespace LokalRisteriet.Views
             {
                 timePrice = bookingDuration.Hours * 1000;
             }
+            // Price calculation based on number of employees and Duration
             timePrice += employeesChild * 200*bookingDuration.Hours + employeesAdult * 400*bookingDuration.Hours;
             return timePrice;
         }

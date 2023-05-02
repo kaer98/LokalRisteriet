@@ -24,6 +24,7 @@ namespace LokalRisteriet.ViewModels
 
         public ICommand BookingCommand { get; }
 
+        // Constructor of MainViewVM class.
         public MainViewVM()
         {
           _bookings = new ObservableCollection<Booking>();
@@ -37,9 +38,9 @@ namespace LokalRisteriet.ViewModels
             });
         }
 
-      
 
 
+        // Property for Selected Booking.
         public Booking selectedBooking;
         public Booking SelectedBooking
         {
@@ -55,6 +56,7 @@ namespace LokalRisteriet.ViewModels
             }
         }
 
+        // MarkBooking Method
         #region OnChanged events
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -69,12 +71,14 @@ namespace LokalRisteriet.ViewModels
             _bookings.Add(booking);
         }
 
+        // Bookings (ObservableCollection<Booking>)
         public ObservableCollection<Booking> Bookings
         {
             get { return _bookings; }
             set { _bookings = value; }
         }
 
+        // Add multiple bookings to the list of bookings
         public void AddManyBookings(ObservableCollection<Booking> bookings)
         {
             foreach (Booking booking in bookings)

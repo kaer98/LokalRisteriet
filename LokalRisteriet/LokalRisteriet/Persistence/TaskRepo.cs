@@ -69,7 +69,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        // Methods
+        // Method to add a task to a booking and store it in the database
         public void AddTask(Task task)
         {
             _tasks.Add(task);
@@ -103,9 +103,13 @@ namespace LokalRisteriet.Persistence
         public void DeleteTask(Task task)
         {
             _tasks.Remove(task);
+
+            // Connect to database
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
+
+                // Delete task from database using SqlCommand
                 SqlCommand cmd = new SqlCommand("DELETE FROM Task WHERE TaskId = @TaskId", connection);
                 cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
                 cmd.ExecuteNonQuery();
@@ -113,8 +117,11 @@ namespace LokalRisteriet.Persistence
         }
         public void UpdateTask(Task task)
         {
+            // Find the index of the task to update
             int i = _tasks.FindIndex(t => t.TaskID == task.TaskID);
             _tasks[i] = task;
+
+            // Update the task in the database
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();

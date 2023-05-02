@@ -17,6 +17,7 @@ namespace LokalRisteriet.ViewModels
             _roomRepo = new RoomRepo();
         }
 
+        // Crud methods
         public void AddRoom(Room room)
         {
             _roomRepo.AddRoom(room);

@@ -13,7 +13,7 @@ namespace LokalRisteriet.ViewModels
         private CustomerRepo _customerRepo;
         private int nextid;
 
-        // Constructor
+        // Customer View Model Constructor.
         public CustomerViewModel()
         {
             _customerRepo = new CustomerRepo();

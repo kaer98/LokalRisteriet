@@ -79,7 +79,7 @@ namespace LokalRisteriet.ViewModels
             _bookingRepo.UpdateBooking(booking);
         }
 
-        // Helper methods
+        // AddCustomers method - Assign customers to bookings
         public void AddCustomers()
         {
             foreach (Booking book in _books)
@@ -97,13 +97,17 @@ namespace LokalRisteriet.ViewModels
             }
 
         }
+
+        // retrieves all bookings on a given day.
         public ObservableCollection<Booking> GetBookingByDay(DateTime Day) => _bookingRepo.GetBookingByDay(Day);
 
+        // adds a booking to the Bookings collection.
         public void MarkBookings(Booking b)
         {
             Bookings.Add(b);
         }
 
+        // adds multiple bookings to the Bookings collection.
         public void AddManyBookings(ObservableCollection<Booking> bookings)
         {
             foreach (Booking booking in bookings)

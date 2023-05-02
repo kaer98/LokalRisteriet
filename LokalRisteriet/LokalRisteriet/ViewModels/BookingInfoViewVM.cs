@@ -22,13 +22,13 @@ public class BookingInfoViewVM : INotifyPropertyChanged
     public ObservableCollection<AddOn> AddOns { get; set; } = new();
     public int Id { get; set; }
 
-    // Constructor
+    // Constructor for BookingInfoViewVM class
     public BookingInfoViewVM()
     {
      
     }
 
-    // Methods
+    // Add List Boxes for Tasks and Add-Ons by Booking ID
     public void AddListBoxes(int id)
     {
         AddTasks(id);
@@ -37,6 +37,7 @@ public class BookingInfoViewVM : INotifyPropertyChanged
 
     }
 
+    // method to retrieve tasks by booking ID.
     private void AddTasks(int id)
     {
         Tasks = new();
@@ -49,6 +50,7 @@ public class BookingInfoViewVM : INotifyPropertyChanged
         }
     }
 
+    // function that adds add-ons to the current booking by ID.
     private void AddAddOns(int id)
     {
         AddOns = new();
@@ -61,7 +63,7 @@ public class BookingInfoViewVM : INotifyPropertyChanged
         }
     }
 
-    // Properties
+    // Task Selection Property
     public Task selectedTask;
     public Task SelectedTask
     {
@@ -77,6 +79,7 @@ public class BookingInfoViewVM : INotifyPropertyChanged
         }
     }
 
+    // Property with selected add-on information
     public AddOn selectedAddOn;
     public AddOn SelectedAddOn
     {
@@ -92,7 +95,7 @@ public class BookingInfoViewVM : INotifyPropertyChanged
         }
     }
 
-    // Events
+    // PropertyChanged event and Property Change Notification methods.
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
