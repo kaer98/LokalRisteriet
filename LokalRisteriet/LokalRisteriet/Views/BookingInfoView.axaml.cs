@@ -1,11 +1,8 @@
-using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Layout;
-using Avalonia.Media;
-using JetBrains.Annotations;
 using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
+using System;
 
 namespace LokalRisteriet.Views
 {
@@ -23,44 +20,56 @@ namespace LokalRisteriet.Views
             DataContext = bookingInfoViewVM;
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
-            
+
         }
-        
+
 
         public void SetListBoxTasks()
         {
             bookingInfoViewVM = new BookingInfoViewVM();
             bookingInfoViewVM.AddListBoxes(Id);
             DataContext = bookingInfoViewVM;
-           
+
         }
 
         //method for adding a new task to a booking
         private void AddTasksButton_OnClick(object? sender, RoutedEventArgs e)
         {
-
             string taskName = string.Empty;
-            if(string.IsNullOrEmpty(taskName))
+            if (txtTask.Text.Length > 0)
             {
                 taskName = txtTask.Text;
-            }
-            Task task = new Task(taskName);
-            task.TaskBookingID = Id;
-            taskViewModel.AddTask(task);
-            txtTask.Text= string.Empty;
 
-            
+                Task task = new Task(taskName);
+                task.TaskBookingID = Id;
+                taskViewModel.AddTask(task);
+                txtTask.Text = string.Empty;
+            }
+            else
+            {
+                lblErrortask.Content = "intet skrevet i opgave felt!";
+            }
+
+
         }
 
         // Function for Delete Tasks Button Click Event.
         private void DeleteTasksButton_OnClick(object? sender, RoutedEventArgs e)
         {
-            taskViewModel.DeleteTask(bookingInfoViewVM.SelectedTask);
+            if (bookingInfoViewVM.selectedTask != null)
+            {
+                taskViewModel.DeleteTask(bookingInfoViewVM.SelectedTask);
+            }
+            else
+            {
+                lblErrortask.Content = "ingen opgave valgt!";
+            }
         }
 
         // AddProduct method to create and add a new add-on product to a booking
         private void AddProduct(object? sender, RoutedEventArgs e)
         {
+            
             string productName = "";
             int productAmount = 0;
             double productPrice = 0;
@@ -68,15 +77,20 @@ namespace LokalRisteriet.Views
             {
                 productName = txtProductName.Text;
             }
-            if(txtProductAmount.Text != null)
+            if (txtProductAmount.Text != null)
             {
                 productAmount = int.Parse(txtProductAmount.Text);
             }
-            if(txtProductPrice.Text != null)
+            if (txtProductPrice.Text != null)
             {
                 productPrice = Double.Parse(txtProductPrice.Text);
             }
-            AddOn addOn = new AddOn(productName,productPrice);
+            else
+            {
+                lblErroraddOn.Content = "mangler information om produkt!";
+                return;
+            }
+            AddOn addOn = new AddOn(productName, productPrice);
             addOn.Amount = productAmount;
             addOn.AddOnBookingID = Id;
             addOnViewModel.AddAddOn(addOn);
@@ -97,20 +111,27 @@ namespace LokalRisteriet.Views
             {
                 lblErroraddOn.Content = "intet valgt!";
             }
-            
+
         }
 
         // Delete Product Function
         private void DeleteProduct(object? sender, RoutedEventArgs e)
         {
-            addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
+            if (bookingInfoViewVM.SelectedAddOn != null)
+            {
+                addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
+            }
+            else
+            {
+                lblErroraddOn.Content = "intet produkt valgt!";
+            }
         }
 
         // Update Selected Task Done status
         private void btnDoneTask(object? sender, RoutedEventArgs e)
         {
             Task task = bookingInfoViewVM.SelectedTask;
-            if(task != null)
+            if (task != null)
             {
                 taskViewModel.UpdateTask(task);
                 lblErrortask.Content = "";
@@ -119,7 +140,7 @@ namespace LokalRisteriet.Views
             {
                 lblErrortask.Content = "Intet Markeret!";
             }
-            
+
         }
     }
 }
