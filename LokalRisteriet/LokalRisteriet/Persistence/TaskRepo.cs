@@ -9,12 +9,12 @@ namespace LokalRisteriet.Persistence
 {
     public class TaskRepo
     {
-
-        //private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        // Fields
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         private List<Task> _tasks;
         private int nextID = 0;
 
+        // Constructor
         public TaskRepo()
         {
             _tasks = new List<Task>();
@@ -54,13 +54,13 @@ namespace LokalRisteriet.Persistence
                         {
                             bookingID = int.Parse(dr["TaskBookingID"].ToString());
                         }
-                      
+
                         Task task = new Task(name);
                         if (employee != null)
                         {
                             task.TaskIsDone = true;
                         }
-                        task.Initials= employee;
+                        task.Initials = employee;
                         task.TaskID = id;
                         task.TaskBookingID = bookingID;
                         _tasks.Add(task);
@@ -69,26 +69,27 @@ namespace LokalRisteriet.Persistence
             }
         }
 
+        // Methods
         public void AddTask(Task task)
         {
             _tasks.Add(task);
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                if ( task.TaskBookingID == 0)
+                if (task.TaskBookingID == 0)
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName) VALUES(@TaskName)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.ExecuteNonQuery();
                 }
-                else if (task.TaskBookingID != 0 && task.Initials == null) 
+                else if (task.TaskBookingID != 0 && task.Initials == null)
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID) Values(@TaskName, @TaskBookingID)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
                     cmd.Parameters.AddWithValue("@TaskBookingID", task.TaskBookingID);
                     cmd.ExecuteNonQuery();
                 }
-                else if(task.TaskBookingID != 0 && task.Initials!= null)
+                else if (task.TaskBookingID != 0 && task.Initials != null)
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO Task(TaskName, TaskBookingID, TaskInitials) Values(@TaskName, @TaskBookingID, @TaskInitials)", connection);
                     cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
@@ -96,7 +97,6 @@ namespace LokalRisteriet.Persistence
                     cmd.Parameters.AddWithValue("@TaskInitials", task.Initials);
                     cmd.ExecuteNonQuery();
                 }
-                
             }
         }
 
@@ -111,31 +111,26 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-
         public void UpdateTask(Task task)
         {
-            int i =_tasks.FindIndex(t => t.TaskID == task.TaskID);
+            int i = _tasks.FindIndex(t => t.TaskID == task.TaskID);
             _tasks[i] = task;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-               
-                    SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskInitials = @TaskInitials WHERE TaskId = @TaskId", connection);
-                    cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
-                    cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
-                    cmd.Parameters.AddWithValue("@TaskInitials", task.Initials);
-                    cmd.ExecuteNonQuery();
+
+                SqlCommand cmd = new SqlCommand("UPDATE Task SET TaskName = @TaskName, TaskInitials = @TaskInitials WHERE TaskId = @TaskId", connection);
+                cmd.Parameters.AddWithValue("@TaskName", task.TaskName);
+                cmd.Parameters.AddWithValue("@TaskId", task.TaskID);
+                cmd.Parameters.AddWithValue("@TaskInitials", task.Initials);
+                cmd.ExecuteNonQuery();
             }
-
         }
-
         public void LoadTasksForBooking()
         {
-   
+
         }
-
         public List<Task> GetAllTasks() => _tasks;
-
         public void AddTasksFromBooking(Booking booking)
         {
             foreach (Task t in booking.BookingTasks)
@@ -144,6 +139,5 @@ namespace LokalRisteriet.Persistence
                 AddTask(t);
             }
         }
-
     }
 }
