@@ -7,14 +7,21 @@ namespace LokalRisteriet.Persistence
 {
     public class RoomRepo
     {
-        //private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        // Database connection string
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
+
+        // List of rooms
         private List<Room> _rooms;
+
+        // Next available ID for a room
         private int nextID = 0;
 
         public RoomRepo()
         {
+            // Initialize the list of rooms
             _rooms = new List<Room>();
+
+            // Get the next available ID for a room from the database
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -31,6 +38,8 @@ namespace LokalRisteriet.Persistence
                     }
                 }
             }
+
+            // Get all the rooms from the database and add them to the list
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -50,6 +59,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
+        // Add a room to the list and the database
         public void AddRoom(Room room)
         {
             _rooms.Add(room);
@@ -63,8 +73,10 @@ namespace LokalRisteriet.Persistence
             }
         }
 
+        // Get all the rooms in the list
         public List<Room> GetAllRooms() => _rooms;
 
+        // Remove a room from the list and the database
         public void DeleteRoom(Room room)
         {
             _rooms.Remove(room);
@@ -77,6 +89,7 @@ namespace LokalRisteriet.Persistence
             }
         }
 
+        // Update a room in the list and the database
         public void UpdateRoom(Room room)
         {
             int i = _rooms.FindIndex(r => r.RoomID == room.RoomID);
@@ -91,7 +104,5 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-
-
     }
 }
