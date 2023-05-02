@@ -8,52 +8,53 @@
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
         x:Class="LokalRisteriet.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="LokalRisteriet"	
+        Title="LokalRisteriet"
         Height="700"
 		>
 
 
-    <!--Styles--> 
-<Window.Styles>
+	<!--Styles-->
+	<Window.Styles>
 
-</Window.Styles>
+	</Window.Styles>
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
 
 
-    <!--Main Grid-->
+	<!--Main Grid-->
 	<Grid Background="#edf0f5" RowDefinitions="50,*,50">
 
 
-        <!--Top Bar-->
-        <Grid Grid.Row="0" Background="#121212">
+		<!--Top Bar-->
+		<Grid Grid.Row="0" Background="#121212">
 
 			<StackPanel>
-				<Label 
+				<Label
                     Foreground="White"
 					HorizontalContentAlignment="Center"
 					HorizontalAlignment="Center"
 					VerticalContentAlignment="Center"
 					VerticalAlignment="Center"
 					FontSize="30"
-					>Lokalristeriet
-                    				
+					>
+					Lokalristeriet
+
 				</Label>
 			</StackPanel>
-			
+
 		</Grid>
 
-        <!--View Bar-->
+		<!--View Bar-->
 
-        <UserControl x:Name="UserMiddleControl" Grid.Row="1"></UserControl>
+		<UserControl x:Name="UserMiddleControl" Grid.Row="1"></UserControl>
 
 
-        <!--Bottom Bar--> 
-        <Grid Grid.Row="2" Background="#66452a" ColumnDefinitions="70,100" >
+		<!--Bottom Bar-->
+		<Grid Grid.Row="2" Background="#66452a" ColumnDefinitions="70,100" >
 			<Button Grid.Column="0" Width="100" HorizontalContentAlignment="Center" x:Name="MainViewBtn"  Click="MainView_Button" Margin="5,0,0,0">
 				<material:MaterialIcon Kind="ArrowLeft"></material:MaterialIcon>
 			</Button>
@@ -63,7 +64,7 @@
 
 
 
-    </Grid>
+	</Grid>
 
 
 </Window>

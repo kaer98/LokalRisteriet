@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
-using LokalRisteriet.Models;
+﻿using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace LokalRisteriet.Persistence
 {
@@ -15,6 +14,7 @@ namespace LokalRisteriet.Persistence
 
         // Next available ID for a room
         private int nextID = 0;
+
 
         public RoomRepo()
         {

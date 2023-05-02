@@ -18,6 +18,7 @@ namespace LokalRisteriet.ViewModels
             _taskRepo = new TaskRepo();
         }
 
+        //CRUD methods
         public void AddTask(Task task)
         {
             _taskRepo.AddTask(task);

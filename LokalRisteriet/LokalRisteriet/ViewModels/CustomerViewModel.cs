@@ -47,7 +47,6 @@ namespace LokalRisteriet.ViewModels
         // Method to get a customer by email
         public Customer GetCustomerByEmail(string mail)
         {
-            bool found = false;
             mail = mail.ToLower();
             Customer customer = null;
 
@@ -55,8 +54,8 @@ namespace LokalRisteriet.ViewModels
             {
                 if (c.CustomerEmail.ToLower() == mail)
                 {
-                    found = true;
                     customer = c;
+                    break;
                 }
             }
 

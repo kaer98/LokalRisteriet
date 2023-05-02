@@ -16,17 +16,20 @@ namespace LokalRisteriet
         private BookingViewModel bookingViewModel;
         private RoomViewModel roomViewModel;
         private CustomerViewModel customerViewModel;
-        
+
         public event EventHandler BackToMain;
 
         public AddBookingView()
         {
             InitializeComponent();
-             bookingViewModel = new BookingViewModel();
-             roomViewModel = new RoomViewModel();
-             customerViewModel = new CustomerViewModel();
+            bookingViewModel = new BookingViewModel();
+            roomViewModel = new RoomViewModel();
+            customerViewModel = new CustomerViewModel();
+            //Lists for comboboxes when choosing amount of employees both adults and non adults
             dd18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
             ddu18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+
+            //updates estimated price when changing time and amount of employees
             tPStart.SelectedTimeChanged += (sender, e) =>
             {
                 txtPrice.Text = CalculatePrice().ToString();
@@ -59,13 +62,13 @@ namespace LokalRisteriet
             {
                 if (tPStart.SelectedTime.Value > tPSlut.SelectedTime)
                 {
-                    bookingDuration = (tPSlut.SelectedTime.Value+TimeSpan.FromHours(24)) - tPStart.SelectedTime.Value;
+                    bookingDuration = (tPSlut.SelectedTime.Value + TimeSpan.FromHours(24)) - tPStart.SelectedTime.Value;
                 }
                 else
                 {
                     bookingDuration = tPSlut.SelectedTime.Value - tPStart.SelectedTime.Value;
                 }
-                
+
             }
             else
             {
@@ -82,7 +85,7 @@ namespace LokalRisteriet
             {
                 employeesChild = ddu18.SelectedIndex;
             }
-                
+
 
             if (bookingDuration.Hours >= 6)
             {
@@ -115,12 +118,12 @@ namespace LokalRisteriet
             int employeesAdult = 0;
             int employeesChild = 0;
             double bDepositum = 0;
-            
-            
-            
+
+
+
             if (txtName.Text != null)
             {
-                bName= txtName.Text;
+                bName = txtName.Text;
             }
 
             if (txtPhoneNo.Text != null)
@@ -133,7 +136,7 @@ namespace LokalRisteriet
                 bEmail = txtEmail.Text;
             }
 
-            if (dPDate.SelectedDate != null && tPStart.SelectedTime != null && tPSlut.SelectedTime != null )
+            if (dPDate.SelectedDate != null && tPStart.SelectedTime != null && tPSlut.SelectedTime != null)
             {
                 bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
                 bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
@@ -159,7 +162,7 @@ namespace LokalRisteriet
             {
                 employeesAdult = dd18.SelectedIndex;
             }
-            
+
 
             if (ddu18.SelectedIndex != -1)
             {
@@ -172,7 +175,7 @@ namespace LokalRisteriet
             }
             else
             {
-                bDepositum = 0;  
+                bDepositum = 0;
             }
             Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
             if (customer == null)
@@ -183,15 +186,15 @@ namespace LokalRisteriet
 
                 customer = c;
             }
-            
 
-            Booking booking = new Booking(bType, bNote,rooms(), bTimeStart,bTimeEnd,bNoOfPeople,false);
+
+            Booking booking = new Booking(bType, bNote, rooms(), bTimeStart, bTimeEnd, bNoOfPeople, false);
             booking.BookingCustomerID = customer.CustomerId;
             booking.EmployeesAdult = employeesAdult;
             booking.EmployeesChild = employeesChild;
             booking.Deposit = bDepositum;
             bookingViewModel.AddBooking(booking);
-            
+
             BackToMain?.Invoke(this, EventArgs.Empty);
 
         }
@@ -206,7 +209,7 @@ namespace LokalRisteriet
             {
                 room = roomViewModel.GetRooms()[0];
             }
-            if(cbRoom2.IsChecked.Value)
+            if (cbRoom2.IsChecked.Value)
             {
                 room2 = roomViewModel.GetRooms()[1];
             }
@@ -216,13 +219,13 @@ namespace LokalRisteriet
         }
 
 
-    
+
 
         private void TxtNote_OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
         {
-            
-        }
 
+        }
+        // method for adding new line in text box
         private void TxtNote_OnKeyDown(object? sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -232,7 +235,7 @@ namespace LokalRisteriet
                 textBox1.Text = textBox1.Text.Insert(caretIndex, "\r\n");
                 textBox1.CaretIndex = caretIndex + 2; // Move caret to end of new line
                 e.Handled = true;
-            }      
+            }
         }
 
         //< reserve booking >
@@ -274,6 +277,6 @@ namespace LokalRisteriet
             bookingViewModel.AddBooking(booking);
         }
 
-}
     }
+}
 

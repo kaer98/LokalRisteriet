@@ -35,16 +35,7 @@ namespace LokalRisteriet.Views
            
         }
 
-        private void Popup_OnClosed(object? sender, EventArgs e)
-        {
-            
-        }
-
-        private void Popup_OnOpened(object? sender, EventArgs e)
-        {
-            
-        }
-
+        //method for adding a new task to a booking
         private void AddTasksButton_OnClick(object? sender, RoutedEventArgs e)
         {
 
@@ -57,21 +48,7 @@ namespace LokalRisteriet.Views
             task.TaskBookingID = Id;
             taskViewModel.AddTask(task);
             txtTask.Text= string.Empty;
-            
-            // var popupContent = new Grid()
-            // {
-            //     Background = Brushes.White,
-            //     Width = 300,
-            //     Height = 200,
-            // };
-            //
-            // popupContent.Children.Add(new TextBlock()
-            // {
-            //     Text = "Popup content",
-            //     HorizontalAlignment = HorizontalAlignment.Center,
-            //     VerticalAlignment = VerticalAlignment.Center,
-            // });
-            // info_Popup.Child = popupContent;
+
             
         }
 

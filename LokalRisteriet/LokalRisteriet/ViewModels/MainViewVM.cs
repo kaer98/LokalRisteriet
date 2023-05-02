@@ -29,9 +29,7 @@ namespace LokalRisteriet.ViewModels
         {
           _bookings = new ObservableCollection<Booking>();
     
-       
-
-
+            //maybe delete, we dont know
             BookingCommand = new RelayCommand(() =>
             {
 
@@ -56,7 +54,6 @@ namespace LokalRisteriet.ViewModels
             }
         }
 
-        // MarkBooking Method
         #region OnChanged events
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -66,6 +63,8 @@ namespace LokalRisteriet.ViewModels
         }
 
         #endregion
+
+        // MarkBooking Method for adding bookings to observable list
         public void MarkBooking(Booking booking)
         {
             _bookings.Add(booking);

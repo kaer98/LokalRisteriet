@@ -21,7 +21,6 @@ namespace LokalRisteriet.ViewModels
         private ObservableCollection<Booking> _books;
         private ObservableCollection<Booking> _books1;
         private ObservableCollection<Customer> _customers;
-        private ObservableCollection<Task> _tasks;
 
         // Properties
         public ObservableCollection<Booking> Bookings

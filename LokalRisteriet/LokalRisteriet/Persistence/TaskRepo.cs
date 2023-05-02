@@ -133,11 +133,9 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
-        public void LoadTasksForBooking()
-        {
-
-        }
+        // gets tasks
         public List<Task> GetAllTasks() => _tasks;
+        // adds tasks from booking
         public void AddTasksFromBooking(Booking booking)
         {
             foreach (Task t in booking.BookingTasks)

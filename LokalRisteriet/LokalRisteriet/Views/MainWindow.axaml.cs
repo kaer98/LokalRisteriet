@@ -76,22 +76,15 @@ namespace LokalRisteriet.Views
             }
 
             editBookingView.tPStart.SelectedTime = mainView.bookingViewModel.selectedBooking.BookingStart.TimeOfDay;
-                editBookingView.tPSlut.SelectedTime = mainView.bookingViewModel.selectedBooking.BookingEnd.TimeOfDay;
-                editBookingView.dd18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesAdult;
-                editBookingView.ddu18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesChild;
-                editBookingView.txtType.Text = mainView.bookingViewModel.selectedBooking.BookingType;
-                editBookingView.txtNote.Text = mainView.bookingViewModel.selectedBooking.BookingNote;
-                editBookingView.txtGuest.Text =
-                    mainView.bookingViewModel.selectedBooking.BookingAmountOfGuests.ToString();
+            editBookingView.tPSlut.SelectedTime = mainView.bookingViewModel.selectedBooking.BookingEnd.TimeOfDay;
+            editBookingView.dd18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesAdult;
+            editBookingView.ddu18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesChild;
+            editBookingView.txtType.Text = mainView.bookingViewModel.selectedBooking.BookingType;
+            editBookingView.txtNote.Text = mainView.bookingViewModel.selectedBooking.BookingNote;
+            editBookingView.txtGuest.Text = mainView.bookingViewModel.selectedBooking.BookingAmountOfGuests.ToString();
             editBookingView.dPDate.SelectedDate = mainView.bookingViewModel.selectedBooking.BookingStart.Date;
             editBookingView.Id = mainView.bookingViewModel.selectedBooking.BookingID;
-            editBookingView.CustomerID = mainView.bookingViewModel.selectedBooking.Customer.CustomerId;
-      
-
-            // double guestAmount = double.Parse(editBookingView.txtGuest.Text);
-           // guestAmount =  mainView.bookingViewModel.selectedBooking.BookingAmountOfGuests;
-           // editBookingView.txtGuest.Text = guestAmount.ToString();
-           
+            editBookingView.CustomerID = mainView.bookingViewModel.selectedBooking.Customer.CustomerId;       
 
            UserMiddleControl.Content = editBookingView;
             if (UserMiddleControl.Content == editBookingView)
@@ -104,15 +97,6 @@ namespace LokalRisteriet.Views
 
         }
 
-
-        //Booking Info View
-        /*
-         *
-         * 
-         *
-         *
-         * 
-         */
 
         // Update booking information in the main view
         private void BookingBtnMainView(object sender, EventArgs e)
@@ -161,27 +145,15 @@ namespace LokalRisteriet.Views
                 MainViewBtn.IsVisible = true;
 
             }
-          
-
-
         }
-
-  
-
+        //method for going back to main view
         private void MainView_Button(object sender, RoutedEventArgs e)
         {
-
-          
-                UserMiddleControl.Content = mainView;
-                if (UserMiddleControl.Content == mainView)
-                {
-                MainViewBtn.IsVisible = false;
-
+            UserMiddleControl.Content = mainView;
+            if (UserMiddleControl.Content == mainView)
+            {
+               MainViewBtn.IsVisible = false;
             }
-
-
-
-
         }
     }
 }

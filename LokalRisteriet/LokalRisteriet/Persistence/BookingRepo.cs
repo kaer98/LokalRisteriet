@@ -14,7 +14,7 @@ namespace LokalRisteriet.Persistence
         private List<Booking> _bookings;
         private int nextID = 0;
 
-        // private string _connectionString = ConfigurationManager.ConnectionStrings["Production"].ConnectionString;
+        // connection string for database
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
 
         
@@ -238,13 +238,13 @@ namespace LokalRisteriet.Persistence
             }
             
         }
-
+        // This method deletes a booking from the database by id.
         public void DeleteBookingByID(int bookingID)
         {
             Booking booking = _bookings.Find(b => b.BookingID == bookingID);
             DeleteBooking(booking);
         }
-
+        // Deletes a booking from the database.
         public void DeleteBooking(Booking booking)
         {
             _bookings.Remove(booking);
@@ -256,6 +256,7 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
+        // This method gets a booking from the database by date
         public ObservableCollection<Booking> GetBookingByDay(DateTime day) => new ObservableCollection<Booking>(_bookings.FindAll(b => b.BookingStart.Date == day.Date));
 
     }
