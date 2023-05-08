@@ -81,15 +81,18 @@ namespace LokalRisteriet.Persistence
                             // If the BookingRoom field is not null, its value is parsed and stored in the id variable.
                             if (dr[$"BookingRoom{i}"] != DBNull.Value)
                             {
-                                string s = dr[$"BookingRoom{i}"].ToString();
                                 id = int.Parse(dr[$"BookingRoom{i}"].ToString());
-
+                                Room room = new Room();
+                                room.RoomID = id;
+                                rooms.Add(room);
+                            }
+                            else
+                            {
+                                rooms.Add(null);
                             }
                             
                             // A new Room object is created and its RoomID is set to the parsed id value. The Room object is then added to the rooms list.
-                            Room room = new Room();
-                            room.RoomID = id;
-                                rooms.Add(room);
+                            
                         }
 
                         // A List of AddOn objects is created to store the add-ons associated with the current booking.
@@ -199,7 +202,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployeeAdult=@BookingEmployeeAdult, BookingEmployeeChild=@BookingEmployeeChild, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote, BookingDeposit=@BookingDeposit WHERE BookingID=@BookingID", connection);
+                SqlCommand cmd = new SqlCommand("UPDATE Booking SET BookingType=@BookingType, BookingRoom1=@BookingRoom1, BookingRoom2=@BookingRoom2, BookingEmployee=@BookingEmployee, BookingStart=@BookingStart, BookingEnd=@BookingEnd, BookingDuration=@BookingDuration, BookingCustomerID=@BookingCustomerID, BookingAmountOfGuests=@BookingAmountOfGuests, BookingPrice=@BookingPrice, BookingReserved=@BookingReserved, BookingNote=@BookingNote, BookingDeposit=@BookingDeposit WHERE BookingID=@BookingID", connection);
                 cmd.Parameters.AddWithValue("@BookingID", booking.BookingID);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
 

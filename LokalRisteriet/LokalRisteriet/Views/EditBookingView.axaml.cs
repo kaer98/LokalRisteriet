@@ -116,6 +116,7 @@ namespace LokalRisteriet.Views
             }
             bRoom1 = cbRoom1.IsChecked.Value;
             bRoom2 = cbRoom2.IsChecked.Value;
+            
             if (txtType.Text != null)
             {
                 CurrBooking.BookingType = txtType.Text;
@@ -137,7 +138,7 @@ namespace LokalRisteriet.Views
                 CurrBooking.Deposit = 0;
             }
 
-            
+            CurrBooking.BookingRooms = rooms();
             CurrBooking.BookingCustomerID = customer.CustomerId;
             bookingViewModel.UpdateBooking(CurrBooking);
             bookingViewModel.selectedBooking= CurrBooking;
