@@ -94,10 +94,7 @@
 			</Grid>
 
 			<StackPanel Grid.Row="1" Orientation="Horizontal">
-				<Button Click="btnCreateBooking">Aftal Booking</Button>
-
-
-				<Button Click="btnReserve" Background="#4498e7" >Reserver Booking</Button>
+				<Button Click="btnCreateBooking">Booking</Button>
 			</StackPanel>
 
 		</Grid>
