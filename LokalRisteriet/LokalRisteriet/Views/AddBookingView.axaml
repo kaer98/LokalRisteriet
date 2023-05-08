@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="530"
              x:Class="LokalRisteriet.AddBookingView">
 
 
@@ -93,11 +93,11 @@
 				<TextBox Name="txtNote" TextWrapping="Wrap"  KeyDown="TxtNote_OnKeyDown"  Grid.Row="1" Width="300" Height="110" Margin="0,20,0,0" VerticalAlignment="Top"  Background="LightGray" BorderBrush="#b3b3b3" BorderThickness="1"></TextBox>
 			</Grid>
 
-			<StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="20">
+			<StackPanel Grid.Row="1" Orientation="Horizontal">
 				<Button Click="btnCreateBooking">Aftal Booking</Button>
 
 
-				<CheckBox CornerRadius="20">Reserver Booking</CheckBox>
+				<Button Click="btnReserve" Background="#4498e7" >Reserver Booking</Button>
 			</StackPanel>
 
 		</Grid>

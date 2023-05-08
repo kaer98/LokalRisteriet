@@ -3,6 +3,8 @@ using Avalonia.Interactivity;
 using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
 using System;
+using System.Data;
+using System.Linq;
 
 namespace LokalRisteriet.Views
 {
@@ -15,11 +17,10 @@ namespace LokalRisteriet.Views
         public BookingInfoView()
         {
             InitializeComponent();
-            bookingInfoViewVM = new BookingInfoViewVM();
-            bookingInfoViewVM.AddListBoxes(Id);
-            DataContext = bookingInfoViewVM;
+            UpdateDataContext();
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
+          //  UpdateEstimatedPrice();
 
         }
 
@@ -44,6 +45,8 @@ namespace LokalRisteriet.Views
                 task.TaskBookingID = Id;
                 taskViewModel.AddTask(task);
                 txtTask.Text = string.Empty;
+                UpdateDataContext();
+                lblErrortask.Content = "";
             }
             else
             {
@@ -59,6 +62,7 @@ namespace LokalRisteriet.Views
             if (bookingInfoViewVM.selectedTask != null)
             {
                 taskViewModel.DeleteTask(bookingInfoViewVM.SelectedTask);
+                UpdateDataContext();
             }
             else
             {
@@ -94,6 +98,7 @@ namespace LokalRisteriet.Views
             addOn.Amount = productAmount;
             addOn.AddOnBookingID = Id;
             addOnViewModel.AddAddOn(addOn);
+            UpdateDataContext();
 
             txtProductAmount.Text = String.Empty; txtProductPrice.Text = String.Empty; txtProductName.Text = String.Empty;
         }
@@ -106,6 +111,7 @@ namespace LokalRisteriet.Views
             {
                 addOnViewModel.UpdateAddOn(addOn);
                 lblErroraddOn.Content = "";
+                UpdateDataContext();
             }
             else
             {
@@ -120,6 +126,8 @@ namespace LokalRisteriet.Views
             if (bookingInfoViewVM.SelectedAddOn != null)
             {
                 addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
+                UpdateDataContext();
+                lblErroraddOn.Content = "";
             }
             else
             {
@@ -135,6 +143,8 @@ namespace LokalRisteriet.Views
             {
                 taskViewModel.UpdateTask(task);
                 lblErrortask.Content = "";
+                UpdateDataContext();
+
             }
             else
             {
@@ -142,5 +152,21 @@ namespace LokalRisteriet.Views
             }
 
         }
+        private void UpdateDataContext()
+        {
+            bookingInfoViewVM = new BookingInfoViewVM();
+            bookingInfoViewVM.AddListBoxes(Id);
+
+            DataContext = bookingInfoViewVM;
+        //    UpdateEstimatedPrice();
+
+        }
+        //private void UpdateEstimatedPrice()
+        //{ if (bookingInfoViewVM.GetBookingByID(Id) != null && bookingInfoViewVM.AddOns != null)
+        //    {
+        //        bookingInfoViewVM.GetBookingByID(Id).BookingAddOns = bookingInfoViewVM.AddOns.ToList();
+        //        lblEstPrice.Content = $"Estimerede pris: {bookingInfoViewVM.GetBookingByID(Id).BookingPrice}";
+        //    }
+        //}
     }
 }
