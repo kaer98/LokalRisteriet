@@ -12,6 +12,8 @@ namespace LokalRisteriet.Views
     public partial class EditBookingView : UserControl
     {
         private Booking _currBooking;
+        public event EventHandler BackToMain;
+
         public int Id { get; set; }
         public int CustomerID { get; set; }
         private BookingViewModel bookingViewModel;
@@ -45,7 +47,8 @@ namespace LokalRisteriet.Views
         private void btnDelete(object sender, RoutedEventArgs e)
         {
             bookingViewModel.DeleteBooking(CurrBooking);
-            
+            BackToMain?.Invoke(this, EventArgs.Empty);
+
         }
 
         public Booking CurrBooking{
@@ -69,6 +72,8 @@ namespace LokalRisteriet.Views
             string bType = "";
             int employee = 0;
             double bDepositum = 0;
+            BackToMain?.Invoke(this, EventArgs.Empty);
+
 
 
             // Get user input from UI controls

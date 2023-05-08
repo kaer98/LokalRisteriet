@@ -9,8 +9,12 @@ using System.Linq;
 
 namespace LokalRisteriet.Views
 {
+
+
     public partial class BookingInfoView : UserControl
     {
+        public event EventHandler BackToMain;
+
         private BookingInfoViewVM bookingInfoViewVM;
         private AddOnViewModel addOnViewModel;
         private TaskViewModel taskViewModel;

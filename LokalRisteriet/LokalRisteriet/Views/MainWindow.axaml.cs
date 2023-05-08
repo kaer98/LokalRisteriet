@@ -28,6 +28,7 @@ namespace LokalRisteriet.Views
             mainView.AddBookingViewEvent += AddBookingView;
             mainView.EditBookingViewEvent += MainView_EditBookingViewEvent;
             addBookingView.BackToMain += BackToMainView;
+            editBookingView.BackToMain += BackToMainView;
 
 
             UserMiddleControl.Content = mainView;
@@ -41,6 +42,7 @@ namespace LokalRisteriet.Views
         public void BackToMainView(object sender, EventArgs e)
         {
             UserMiddleControl.Content = mainView;
+            MainViewBtn.IsVisible = false;
         }
 
         // This method is triggered when the "Edit" button is clicked in the main view. It loads the selected booking details into the EditBookingView for editing.
