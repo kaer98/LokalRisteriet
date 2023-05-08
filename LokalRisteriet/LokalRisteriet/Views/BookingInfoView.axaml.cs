@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Data;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace LokalRisteriet.Views
         private void AddTasksButton_OnClick(object? sender, RoutedEventArgs e)
         {
             string taskName = string.Empty;
-            if (txtTask.Text.Length > 0)
+            if (!txtTask.Text.IsNullOrEmpty())
             {
                 taskName = txtTask.Text;
 
