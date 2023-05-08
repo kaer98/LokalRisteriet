@@ -152,7 +152,11 @@ namespace LokalRisteriet.Views
         //method for going back to main view
         private void MainView_Button(object sender, RoutedEventArgs e)
         {
-            
+            // Reset bookingview selected booking, to update data instantly
+            Booking selectedBooking = mainView.bookingViewModel.SelectedBooking;
+            mainView.bookingViewModel.SelectedBooking = null;
+            mainView.bookingViewModel.SelectedBooking = selectedBooking;
+
             UserMiddleControl.Content = mainView;
             if (UserMiddleControl.Content == mainView)
             {
