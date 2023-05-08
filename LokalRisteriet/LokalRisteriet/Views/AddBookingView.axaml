@@ -79,7 +79,7 @@
 
 				<!--Price-->
 				<Label Grid.Row="11" Grid.Column="0">Estimerede pris</Label>
-				<TextBox Name="txtPrice" Grid.Column="1" Grid.Row="11" Watermark="Opdater Pris"></TextBox>
+				<TextBox Name="txtPrice" Grid.Column="1" Grid.Row="11" Watermark=""></TextBox>
 
 
 
@@ -94,10 +94,7 @@
 			</Grid>
 
 			<StackPanel Grid.Row="1" Orientation="Horizontal">
-				<Button Click="btnCreateBooking">Aftal Booking</Button>
-
-
-				<Button Click="btnReserve" Background="#4498e7" >Reserver Booking</Button>
+				<Button Click="btnCreateBooking">Booking</Button>
 			</StackPanel>
 
 		</Grid>

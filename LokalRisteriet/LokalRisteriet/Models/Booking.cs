@@ -22,7 +22,6 @@ namespace LokalRisteriet.Models
         private TimeSpan _duration;
         private int _customerID;
         private Customer _customer;
-        private Task _task;
         private double _price;
         private double _amountOfGuests;
         private bool _reserved;
@@ -124,9 +123,6 @@ namespace LokalRisteriet.Models
         public int Employee { get => _employee; set => _employee = value; }
         public Customer Customer { get => _customer; set => _customer = value; }
         
-        public Task Task {get => _task;
-            set => _task = value;
-        }
 
         public void BookingAddTask(Task task)
         {
