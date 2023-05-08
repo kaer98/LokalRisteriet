@@ -85,7 +85,7 @@ namespace LokalRisteriet.Models
 
         public TimeSpan BookingDuration
         {
-            get { return _duration; }
+            get { CalculateDuration(); return _duration; }
             set { _duration = value; }
         }
 
@@ -148,15 +148,7 @@ namespace LokalRisteriet.Models
             _startDateTime = startDateTime;
             _endDateTime = endDateTime;
 
-            // Calculate booking duration
-            if (startDateTime > endDateTime)
-            {
-               _duration= endDateTime+TimeSpan.FromHours(24) -startDateTime;
-            }
-            else
-            {
-                _duration = endDateTime - startDateTime;
-            }
+            CalculateDuration();
 
             // Set other booking properties
             _amountOfGuests = amountOfGuests;
@@ -194,6 +186,20 @@ namespace LokalRisteriet.Models
 
             // Store the calculated price and return it
             return _price = timePrice;
+        }
+
+        public void CalculateDuration()
+        {
+
+            if (_startDateTime > _endDateTime)
+            {
+                _duration = _endDateTime + TimeSpan.FromHours(24) - _startDateTime;
+            }
+            else
+            {
+                _duration = _endDateTime - _startDateTime;
+            }
+
         }
         
     }
