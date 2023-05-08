@@ -73,7 +73,7 @@
 				<TextBox Name="txtPrice" Grid.Column="1" Grid.Row="11" Watermark="Opdater Pris"></TextBox>
 
 				<!-- Gem ændreinger -->
-				<StackPanel Grid.Row="12" Orientation="Horizontal" Grid.ColumnSpan="2" Spacing="40">
+				<StackPanel Margin="30" Grid.Row="12" Orientation="Horizontal" Grid.ColumnSpan="2" Spacing="40">
 					<Button  Click="BtnCreateBooking_OnClick" >Gem Ændringer</Button>
 					<Button   Click="btnDelete">Slet Booking</Button>
 					<CheckBox Name="cbReserved" CornerRadius="20">Booking Reserveret?</CheckBox>
