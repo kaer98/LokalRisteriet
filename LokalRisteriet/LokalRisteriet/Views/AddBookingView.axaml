@@ -97,8 +97,9 @@
 				<Button Click="btnCreateBooking">Aftal Booking</Button>
 
 
-				<Button Click="btnReserve" Background="#4498e7" >Reserver Booking</Button>
-			</StackPanel>
+<CheckBox CornerRadius="20">
+	Reservering?
+</CheckBox>			</StackPanel>
 
 		</Grid>
 
