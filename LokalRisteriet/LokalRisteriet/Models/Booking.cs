@@ -64,7 +64,7 @@ namespace LokalRisteriet.Models
                 }
                 else
                 {
-                    return "IKKE Reserveret";
+                    return "Aftalt";
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace LokalRisteriet.Models
 
         public DateTime RegistrationDate
         {
-            get { return _RegistrationDate.Date; }
+            get { return _RegistrationDate; }
             set { _RegistrationDate = value; }
         }
 
