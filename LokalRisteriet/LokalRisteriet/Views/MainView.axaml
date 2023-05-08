@@ -60,7 +60,7 @@
                         <DataTemplate>
 
 
-                            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*">
+                            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*,*">
 
                                 <!-- Bookers Name -->
                                 <StackPanel  Grid.Row="0" Orientation="Horizontal">
@@ -83,13 +83,22 @@
                                     
                                 </StackPanel>
                                 <!-- Booking Type -->
-                                <StackPanel  Grid.Row="3" Orientation="Horizontal">
+                                <StackPanel  Grid.Row="4" Orientation="Horizontal">
                                     
                                  
                                     <material:MaterialIcon  Kind="{Binding BookingReservedKind}" Foreground="{Binding BookingReservedColors} " />
                                     <Label Content="{Binding BookingReservedText}" Foreground="Black"/>
                                     
                                 </StackPanel>
+
+								<!-- Booking Start Date -->
+								<StackPanel  Grid.Row="3" Orientation="Horizontal">
+
+
+									<material:MaterialIcon  Kind="CalendarArrowRight" Foreground="Black" />
+									<Label Content="{Binding RegistrationDate}" Foreground="Black"/>
+
+								</StackPanel>
                                 <!-- </Grid> -->
                                 <!-- <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal"> -->
                                 <!--     <material:MaterialIcon Kind="CalendarAccount" Foreground="Black" /> -->

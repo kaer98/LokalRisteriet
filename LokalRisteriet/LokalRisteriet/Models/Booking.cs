@@ -79,12 +79,12 @@ namespace LokalRisteriet.Models
             {
                 if (_reserved)
                 {
-                    return MaterialIconKind.Verified;
+                    return MaterialIconKind.Denied;
 
                 }
                 else
                 {
-                    return MaterialIconKind.Forbid;
+                    return MaterialIconKind.Verified;
                         
                 }
             }
@@ -96,12 +96,12 @@ namespace LokalRisteriet.Models
             {
                 if (_reserved)
                 {
-                    return Brushes.Green;
+                    return Brushes.Red;
 
                 }
                 else
                 {
-                    return Brushes.Red;
+                    return Brushes.Green;
 
                 }
             }
