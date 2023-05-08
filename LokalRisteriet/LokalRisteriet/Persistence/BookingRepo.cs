@@ -109,8 +109,8 @@ namespace LokalRisteriet.Persistence
                         double bookingPrice = double.Parse(dr["BookingPrice"].ToString());
                         bool bookingReserved = bool.Parse(dr["BookingReserved"].ToString());
                         string bookingNote = dr["BookingNote"].ToString();
-                        int bookingEmployeeAdult = int.Parse(dr["BookingEmployeeAdult"].ToString());
-                        int bookingEmployeeChild = int.Parse(dr["BookingEmployeeChild"].ToString());
+                        int bookingEmployee = int.Parse(dr["BookingEmployee"].ToString());
+                        DateTime bookingRegistrationDate = DateTime.Parse(dr["BookingRegistrationDate"].ToString());
                         Double deposit = 0;
                         if (dr["BookingDeposit"] != DBNull.Value)
                         {
@@ -122,8 +122,8 @@ namespace LokalRisteriet.Persistence
                         booking.BookingAddOns = addOns;
                         booking.BookingDuration= bookingDuration;
                         booking.BookingID= bookingID;
-                        booking.EmployeesChild = bookingEmployeeChild;
-                        booking.EmployeesAdult = bookingEmployeeAdult;
+                        booking.Employee = bookingEmployee;
+                        booking.RegistrationDate = bookingRegistrationDate;
                         booking.Deposit = deposit;
 
                         _bookings.Add(booking);
@@ -151,7 +151,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployeeAdult, BookingEmployeeChild, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote, BookingDeposit) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployeeAdult, @BookingEmployeeChild, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote, @BookingDeposit)", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Booking(BookingType, BookingRoom1, BookingRoom2, BookingEmployee, BookingStart, BookingEnd, BookingDuration, BookingCustomerID, BookingAmountOfGuests, BookingPrice, BookingReserved, BookingNote, BookingRegistrationDate, BookingDeposit) VALUES(@BookingType, @BookingRoom1, @BookingRoom2, @BookingEmployee, @BookingStart, @BookingEnd, @BookingDuration, @BookingCustomerID, @BookingAmountOfGuests, @BookingPrice, @BookingReserved, @BookingNote, @BookingRegistrationDate, @BookingDeposit)", connection);
                 cmd.Parameters.AddWithValue("@BookingType", booking.BookingType);
 
                 for (int i = 1; i <= 2; i++)
@@ -167,8 +167,7 @@ namespace LokalRisteriet.Persistence
                 }
 
                 
-                cmd.Parameters.AddWithValue($"@BookingEmployeeAdult", booking.EmployeesAdult);            
-                cmd.Parameters.AddWithValue($"@BookingEmployeeChild", booking.EmployeesChild);
+                cmd.Parameters.AddWithValue($"@BookingEmployee", booking.Employee);
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
                 cmd.Parameters.AddWithValue("@BookingEnd", booking.BookingEnd);
                 cmd.Parameters.AddWithValue("@BookingDuration", booking.BookingDuration);
@@ -183,6 +182,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingAmountOfGuests", booking.BookingAmountOfGuests);
                 cmd.Parameters.AddWithValue("@BookingPrice", booking.BookingPrice);
                 cmd.Parameters.AddWithValue("@BookingReserved", booking.BookingReserved);
+                cmd.Parameters.AddWithValue("@BookingRegistrationDate", booking.RegistrationDate);
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
                 cmd.Parameters.AddWithValue("@BookingDeposit", booking.Deposit);
                 cmd.ExecuteNonQuery();
@@ -215,8 +215,7 @@ namespace LokalRisteriet.Persistence
                     }
                 }
 
-                cmd.Parameters.AddWithValue("@BookingEmployeeAdult", booking.EmployeesAdult);
-                cmd.Parameters.AddWithValue("@BookingEmployeeChild", booking.EmployeesChild);
+                cmd.Parameters.AddWithValue("@BookingEmployee", booking.Employee);
                 cmd.Parameters.AddWithValue("@BookingStart", booking.BookingStart);
                 cmd.Parameters.AddWithValue("@BookingEnd", booking.BookingEnd);
                 cmd.Parameters.AddWithValue("@BookingDuration", booking.BookingDuration);
@@ -232,11 +231,17 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingPrice", booking.BookingPrice);
                 cmd.Parameters.AddWithValue("@BookingReserved", booking.BookingReserved);
                 cmd.Parameters.AddWithValue("@BookingNote", booking.BookingNote);
+                cmd.Parameters.AddWithValue("@BookingRegistrationDate", booking.RegistrationDate);
                 cmd.Parameters.AddWithValue("@BookingDeposit", booking.Deposit);
 
                 cmd.ExecuteNonQuery();
             }
             
+        }
+
+        public Booking GetBookingByID(int id)
+        {
+            return _bookings.Find(b => b.BookingID == id);
         }
         // This method deletes a booking from the database by id.
         public void DeleteBookingByID(int bookingID)

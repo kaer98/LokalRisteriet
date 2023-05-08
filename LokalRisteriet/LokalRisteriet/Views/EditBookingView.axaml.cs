@@ -11,6 +11,7 @@ namespace LokalRisteriet.Views
 {
     public partial class EditBookingView : UserControl
     {
+        private Booking _currBooking;
         public int Id { get; set; }
         public int CustomerID { get; set; }
         private BookingViewModel bookingViewModel;
@@ -52,6 +53,11 @@ namespace LokalRisteriet.Views
             
         }
 
+        public Booking CurrBooking{
+            get { return _currBooking; }
+            set { _currBooking = value; }
+        }
+
         // Create a new booking
         private void BtnCreateBooking_OnClick(object sender, RoutedEventArgs e)
         {
@@ -66,8 +72,7 @@ namespace LokalRisteriet.Views
             bool bRoom1 = false;
             bool bRoom2 = false;
             string bType = "";
-            int employeesAdult = 0;
-            int employeesChild = 0;
+            int employee = 0;
             double bDepositum = 0;
 
 
@@ -87,48 +92,6 @@ namespace LokalRisteriet.Views
                 bEmail = txtEmail.Text;
             }
 
-            if (dPDate.SelectedDate != null && tPStart.SelectedTime != null && tPSlut.SelectedTime != null)
-            {
-                bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
-                bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
-            }
-
-            if (txtGuest.Text != null)
-            {
-                bNoOfPeople = int.Parse(txtGuest.Text);
-            }
-
-            if (txtNote.Text != null)
-            {
-                bNote = txtNote.Text;
-            }
-            bRoom1 = cbRoom1.IsChecked.Value;
-            bRoom2 = cbRoom2.IsChecked.Value;
-            if (txtType.Text != null)
-            {
-                bType = txtType.Text;
-            }
-
-            if (dd18.SelectedIndex != -1)
-            {
-                employeesAdult = dd18.SelectedIndex;
-            }
-
-
-            if (ddu18.SelectedIndex != -1)
-            {
-                employeesChild = ddu18.SelectedIndex;
-            }
-
-            if (txtDepositum.Text != null)
-            {
-                bDepositum = double.Parse(txtDepositum.Text);
-            }
-            else
-            {
-                bDepositum = 0;
-            }
-
             // Check if customer already exists based on email provided
             Customer customer = customerViewModel.GetCustomerByEmail(bEmail);
             if (customer == null)
@@ -141,14 +104,48 @@ namespace LokalRisteriet.Views
                 customer = c;
             }
 
-            // Create new booking object based on user input and pass to bookingViewModel
-            Booking booking = new Booking(bType, bNote, rooms(), bTimeStart, bTimeEnd, bNoOfPeople, false);
-            booking.BookingCustomerID = customer.CustomerId;
-            booking.EmployeesAdult = employeesAdult;
-            booking.EmployeesChild = employeesChild;
-            booking.Deposit = bDepositum;
-            booking.BookingID = Id;
-            bookingViewModel.UpdateBooking(booking);
+            if (dPDate.SelectedDate != null && tPStart.SelectedTime != null && tPSlut.SelectedTime != null)
+            {
+                CurrBooking.BookingStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
+                CurrBooking.BookingEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
+            }
+
+            if (txtGuest.Text != null)
+            {
+                CurrBooking.BookingAmountOfGuests = int.Parse(txtGuest.Text);
+            }
+
+            if (txtNote.Text != null)
+            {
+                CurrBooking.BookingNote = txtNote.Text;
+            }
+            bRoom1 = cbRoom1.IsChecked.Value;
+            bRoom2 = cbRoom2.IsChecked.Value;
+            if (txtType.Text != null)
+            {
+                CurrBooking.BookingType = txtType.Text;
+            }
+
+            if (dd18.SelectedIndex != -1)
+            {
+                CurrBooking.Employee = dd18.SelectedIndex;
+            }
+
+
+
+            if (txtDepositum.Text != null)
+            {
+                CurrBooking.Deposit = double.Parse(txtDepositum.Text);
+            }
+            else
+            {
+                CurrBooking.Deposit = 0;
+            }
+
+            
+            CurrBooking.BookingCustomerID = customer.CustomerId;
+            bookingViewModel.UpdateBooking(CurrBooking);
+            bookingViewModel.selectedBooking= CurrBooking;
         }
 
         // Calculate Booking Price
