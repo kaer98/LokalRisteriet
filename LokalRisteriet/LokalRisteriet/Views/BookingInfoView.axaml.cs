@@ -83,13 +83,13 @@ namespace LokalRisteriet.Views
             {
                 productName = txtProductName.Text;
             }
-            if (txtProductAmount.Text != null)
+            if (txtProductAmount.Text != null && int.TryParse(txtProductAmount.Text,out productAmount))
             {
                 productAmount = int.Parse(txtProductAmount.Text);
             }
-            if (txtProductPrice.Text != null)
+            if (txtProductPrice.Text != null && double.TryParse(txtProductPrice.Text,out productPrice))
             {
-                productPrice = Double.Parse(txtProductPrice.Text);
+                productPrice = double.Parse(txtProductPrice.Text);
             }
             else
             {
@@ -161,7 +161,7 @@ namespace LokalRisteriet.Views
             if (CurrBooking != null)
             {
                 CurrBooking.BookingAddOns = addOnViewModel.GetAddOnByBookingID(Id);
-                lblEstPrice.Content = CurrBooking.CalculatePrice().ToString();
+                lblEstPrice.Content = $"Estimerede pris: {CurrBooking.CalculatePrice()} Kr.";
 
             }
                 DataContext = bookingInfoViewVM;

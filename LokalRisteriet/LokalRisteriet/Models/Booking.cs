@@ -68,7 +68,7 @@ namespace LokalRisteriet.Models
                 }
                 else
                 {
-                    return "IKKE Reserveret";
+                    return "Aftalt";
                 }
             }
         }
