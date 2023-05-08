@@ -72,7 +72,9 @@
                                 <!-- Booking Date -->
                                 <StackPanel  Grid.Row="1" Orientation="Horizontal">
                                     <material:MaterialIcon Kind="Calendar" Foreground="Black" />
-                                    <Label   Content="{Binding BookingStart}"/>
+									<Label>Event Dato: </Label>
+
+									<Label   Content="{Binding BookingStart}"/>
 
                                 </StackPanel>
                                 
@@ -91,11 +93,13 @@
                                     
                                 </StackPanel>
 
-								<!-- Booking Start Date -->
+								<!-- Booking Reg Date -->
 								<StackPanel  Grid.Row="3" Orientation="Horizontal">
 
 
 									<material:MaterialIcon  Kind="CalendarArrowRight" Foreground="Black" />
+									<Label>Oprettelses Dato: </Label>
+
 									<Label Content="{Binding RegistrationDate}" Foreground="Black"/>
 
 								</StackPanel>
