@@ -84,6 +84,7 @@ namespace LokalRisteriet.Views
             editBookingView.dPDate.SelectedDate = mainView.bookingViewModel.selectedBooking.BookingStart.Date;
             editBookingView.Id = mainView.bookingViewModel.selectedBooking.BookingID;
             editBookingView.CustomerID = mainView.bookingViewModel.selectedBooking.Customer.CustomerId;
+            editBookingView.cbReserved.IsChecked = mainView.bookingViewModel.selectedBooking.BookingReserved;
             if (mainView.bookingViewModel.selectedBooking.BookingRooms[0] !=null)
                 editBookingView.cbRoom1.IsChecked =true;
             if (mainView.bookingViewModel.selectedBooking.BookingRooms[1] != null)

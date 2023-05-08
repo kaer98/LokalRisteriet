@@ -90,7 +90,7 @@
 				<Button Click="btnCreateBooking">Book</Button>
 
 
-<CheckBox CornerRadius="20">
+<CheckBox Name="cbReserve" CornerRadius="20">
 	Reservering?
 </CheckBox>			</StackPanel>
 

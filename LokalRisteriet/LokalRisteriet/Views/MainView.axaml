@@ -87,7 +87,7 @@
                                     
                                  
                                     <material:MaterialIcon Kind="AlertCircle" Foreground="Black" />
-                                    <Label Content="{Binding BookingReserved}" Foreground="Black"/>
+                                    <Label Content="{Binding BookingReservedText}" Foreground="Black"/>
                                     
                                 </StackPanel>
                                 <!-- </Grid> -->

@@ -54,7 +54,20 @@ namespace LokalRisteriet.Models
             set { _rooms = value; }
         }
 
-
+        public string BookingReservedText
+        {
+            get
+            {
+                if (_reserved)
+                {
+                    return "Reserveret";
+                }
+                else
+                {
+                    return "IKKE Reserveret";
+                }
+            }
+        }
 
         public List<Task> BookingTasks
         {

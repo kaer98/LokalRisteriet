@@ -140,6 +140,8 @@ namespace LokalRisteriet.Views
 
             CurrBooking.BookingRooms = rooms();
             CurrBooking.BookingCustomerID = customer.CustomerId;
+            
+                CurrBooking.BookingReserved = cbReserved.IsChecked.Value;
             bookingViewModel.UpdateBooking(CurrBooking);
             bookingViewModel.selectedBooking= CurrBooking;
         }
