@@ -148,9 +148,9 @@
                             </Label>
 
                             <!--Vælg Dato-->
-                            <Label Grid.Column="0" Grid.Row="9">Dato: </Label>
+                            <Label Grid.Column="0" Grid.Row="9">Dato for oprettelse: </Label>
                             <Label Name="lbldate" Grid.Column="1" Grid.Row="9"
-                                   Content="{Binding SelectedBooking.BookingStart}">
+                                   Content="{Binding SelectedBooking.RegistrationDate}">
                             </Label>
 
 

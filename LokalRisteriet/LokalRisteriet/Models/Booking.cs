@@ -104,7 +104,7 @@ namespace LokalRisteriet.Models
 
         public DateTime RegistrationDate
         {
-            get { return _RegistrationDate; }
+            get { return _RegistrationDate.Date; }
             set { _RegistrationDate = value; }
         }
 
