@@ -105,7 +105,7 @@ namespace LokalRisteriet.Views
                 CurrBooking.BookingEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
             }
 
-            if (txtGuest.Text != null)
+            if (txtGuest.Text != null&& int.TryParse(txtGuest.Text,out bNoOfPeople))
             {
                 CurrBooking.BookingAmountOfGuests = int.Parse(txtGuest.Text);
             }
@@ -129,7 +129,7 @@ namespace LokalRisteriet.Views
 
 
 
-            if (txtDepositum.Text != null)
+            if (txtDepositum.Text != null && double.TryParse(txtDepositum.Text, out bDepositum))
             {
                 CurrBooking.Deposit = double.Parse(txtDepositum.Text);
             }
