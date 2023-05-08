@@ -114,6 +114,9 @@ namespace LokalRisteriet.Persistence
                 cmd.ExecuteNonQuery();
             }
         }
+
+        
+
         // Delete a AddOn from the list and the database
         public void deleteAddOn(AddOn addOn)
         {
@@ -145,5 +148,17 @@ namespace LokalRisteriet.Persistence
         }
         //find a AddOn by ID
         public AddOn GetAddOnByID(int id) => _addOns.Find(a => a.AddOnID == id);
+
+        public List<AddOn> GetAddOnsByBookingID(int id) {
+            List<AddOn> addOns = new List<AddOn>();
+            foreach(AddOn addOn in _addOns)
+            {
+                if (addOn.AddOnBookingID == id)
+                {
+                    addOns.Add(addOn);
+                }
+            }
+            return addOns;
+        }
     }
 }

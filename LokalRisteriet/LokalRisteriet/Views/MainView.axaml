@@ -60,7 +60,7 @@
                         <DataTemplate>
 
 
-                            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*">
+                            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*">
 
                                 <!-- Bookers Name -->
                                 <StackPanel  Grid.Row="0" Orientation="Horizontal">
@@ -80,6 +80,14 @@
                                 <StackPanel  Grid.Row="2" Orientation="Horizontal">
                                     <material:MaterialIcon Kind="ArrowRight" Foreground="Black" />
                                     <Label Content="{Binding BookingType}" Foreground="Black"/>
+                                    
+                                </StackPanel>
+                                <!-- Booking Type -->
+                                <StackPanel  Grid.Row="3" Orientation="Horizontal">
+                                    
+                                 
+                                    <material:MaterialIcon Kind="AlertCircle" Foreground="Black" />
+                                    <Label Content="{Binding BookingReservedText}" Foreground="Black"/>
                                     
                                 </StackPanel>
                                 <!-- </Grid> -->
@@ -140,9 +148,9 @@
                             </Label>
 
                             <!--Vælg Dato-->
-                            <Label Grid.Column="0" Grid.Row="9">Dato: </Label>
+                            <Label Grid.Column="0" Grid.Row="9">Dato for oprettelse: </Label>
                             <Label Name="lbldate" Grid.Column="1" Grid.Row="9"
-                                   Content="{Binding SelectedBooking.BookingStart}">
+                                   Content="{Binding SelectedBooking.RegistrationDate}">
                             </Label>
 
 

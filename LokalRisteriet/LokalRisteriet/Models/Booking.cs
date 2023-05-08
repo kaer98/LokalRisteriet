@@ -54,7 +54,20 @@ namespace LokalRisteriet.Models
             set { _rooms = value; }
         }
 
-
+        public string BookingReservedText
+        {
+            get
+            {
+                if (_reserved)
+                {
+                    return "Reserveret";
+                }
+                else
+                {
+                    return "Aftalt";
+                }
+            }
+        }
 
         public List<Task> BookingTasks
         {
@@ -175,12 +188,12 @@ namespace LokalRisteriet.Models
             // Calculate the price based on the booking duration
             if (BookingDuration.Hours >=6)
             {
-                timePrice = 5000+((BookingDuration.Hours-6) * 1000);
+                timePrice += 5000+((BookingDuration.Hours-6) * 1000);
                 timePrice += Employee * 400*BookingDuration.Hours;
             }
             else 
             { 
-                timePrice = BookingDuration.Hours * 1000;
+                timePrice += BookingDuration.Hours * 1000;
                 timePrice += Employee * 400 * BookingDuration.Hours;
             }
 

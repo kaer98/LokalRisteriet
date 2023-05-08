@@ -13,6 +13,7 @@ namespace LokalRisteriet.Views
         private BookingInfoViewVM bookingInfoViewVM;
         private AddOnViewModel addOnViewModel;
         private TaskViewModel taskViewModel;
+        public Booking CurrBooking { set; get; }
         public int Id { set; get; }
         public BookingInfoView()
         {
@@ -20,6 +21,7 @@ namespace LokalRisteriet.Views
             UpdateDataContext();
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
+            
           //  UpdateEstimatedPrice();
 
         }
@@ -156,8 +158,13 @@ namespace LokalRisteriet.Views
         {
             bookingInfoViewVM = new BookingInfoViewVM();
             bookingInfoViewVM.AddListBoxes(Id);
+            if (CurrBooking != null)
+            {
+                CurrBooking.BookingAddOns = addOnViewModel.GetAddOnByBookingID(Id);
+                lblEstPrice.Content = CurrBooking.CalculatePrice().ToString();
 
-            DataContext = bookingInfoViewVM;
+            }
+                DataContext = bookingInfoViewVM;
         //    UpdateEstimatedPrice();
 
         }

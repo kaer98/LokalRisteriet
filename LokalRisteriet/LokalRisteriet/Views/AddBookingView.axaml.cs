@@ -180,6 +180,9 @@ namespace LokalRisteriet
 
 
             Booking booking = new Booking(bType, bNote, rooms(), bTimeStart, bTimeEnd, bNoOfPeople, false);
+            if (cbReserve.IsChecked.Value == true)
+                booking.BookingReserved = true;
+                
             booking.BookingCustomerID = customer.CustomerId;
             booking.Employee = employee;
             booking.Deposit = bDepositum;
