@@ -39,6 +39,10 @@ namespace LokalRisteriet.ViewModels
             _taskRepo.UpdateTask(task);
         }
 
+        public int GetNextID()
+        {
+            return _taskRepo.nextID;
+        }
         public void AddTaskFromBooking(Booking booking)
         {
             _taskRepo.AddTasksFromBooking(booking);

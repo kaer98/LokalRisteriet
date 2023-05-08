@@ -140,13 +140,17 @@ namespace LokalRisteriet
                 bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
                 bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
             }
-            else
+            else if(dPDate.SelectedDate != null)
             {
                 bTimeStart= dPDate.SelectedDate.Value.DateTime;
                 bTimeEnd = dPDate.SelectedDate.Value.DateTime;
             }
+            else
+            {
+                return;
+            }
 
-            if (txtGuest.Text != null)
+            if (txtGuest.Text != null && int.TryParse(txtGuest.Text, out bNoOfPeople))
             {
                 bNoOfPeople = int.Parse(txtGuest.Text);
             }
@@ -168,7 +172,7 @@ namespace LokalRisteriet
             }
 
 
-            if (txtDepositum.Text != null)
+            if (txtDepositum.Text != null&& double.TryParse(txtDepositum.Text, out bDepositum))
             {
                 bDepositum = double.Parse(txtDepositum.Text);
             }
