@@ -90,6 +90,8 @@ namespace LokalRisteriet.Views
         {
             ColorCal();
             lblError.Content = "";
+            
+            
         }
 
         private void ColorCal()

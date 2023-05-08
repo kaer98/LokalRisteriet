@@ -5,169 +5,221 @@
              xmlns:material="using:Material.Icons.Avalonia"
              xmlns:viewModels="clr-namespace:LokalRisteriet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="810" d:DesignHeight="480"
-             x:Class="LokalRisteriet.Views.MainView"
-			 >
+             x:Class="LokalRisteriet.Views.MainView">
 
-	<Grid  RowDefinitions="*" >
-		<Grid.Background>
-			<LinearGradientBrush  >
-				<GradientStop Color="#e1e5ea"/>
+    <Grid RowDefinitions="*">
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#e1e5ea" />
 
-				<GradientStop Color="#a1a5a9" Offset="1.0"/>
+                <GradientStop Color="#a1a5a9" Offset="1.0" />
 
-			</LinearGradientBrush>
-		</Grid.Background>
-
-
-		<!--Middle (Main) Bar-->
-		<Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="*,50">
-
-			<Grid.Styles>
-				<Style Selector="Calendar:checked">
-					<Setter Property="Background" Value="Red"></Setter>
-				</Style>
-			</Grid.Styles>
+            </LinearGradientBrush>
+        </Grid.Background>
 
 
-			<Grid Grid.Row="0" ColumnDefinitions="Auto,*,*">
-				<Calendar Name="_calcal" CornerRadius="20,20,0,0" BorderBrush="#b3b3b3"  Grid.Column="0" Margin="10,10,0,0" HorizontalAlignment="Center"  Height="400"  VerticalAlignment="Center" SelectionMode="MultipleRange">
-					<Calendar.Background>
-						<LinearGradientBrush>
-							<GradientStop Color="#e1e5ea"/>
+        <!--Middle (Main) Bar-->
+        <Grid Grid.Row="0" Background="#f6f6f6" Grid.RowDefinitions="*,50">
 
-							<GradientStop Color="#a1a5a9" Offset="1.0"/>
-
-						</LinearGradientBrush>
-					</Calendar.Background>
-
-				</Calendar>
-
-				<ListBox Grid.Column="1"  SelectionChanged="BookingList_OnSelectionChanged" x:Name="bookingList" SelectedItem="{Binding SelectedBooking}"  Items="{Binding Bookings}" BorderBrush="#b3b3b3" BorderThickness="1.60"  Margin="20,10,20,10" CornerRadius="20" >
-					<ListBox.Background>
-						<LinearGradientBrush  >
-							<GradientStop Color="#e1e5ea"/>
-
-							<GradientStop Color="#a1a5a9" Offset="1.0"/>
-
-						</LinearGradientBrush>
-					</ListBox.Background>
-
-					<ListBox.ItemTemplate>
-
-						<DataTemplate>
+            <Grid.Styles>
+                <Style Selector="Calendar:checked">
+                    <Setter Property="Background" Value="Red"></Setter>
+                </Style>
+            </Grid.Styles>
 
 
-							<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*">
-								<Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto,*,*">
+                <Calendar Name="_calcal" CornerRadius="20,20,0,0" BorderBrush="#b3b3b3" Grid.Column="0"
+                          Margin="10,10,0,0" HorizontalAlignment="Center" Height="400" VerticalAlignment="Center"
+                          SelectionMode="MultipleRange">
+                    <Calendar.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#e1e5ea" />
 
-								</Grid>
-								<StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
-									<material:MaterialIcon Kind="Calendar" Foreground="Black" />
-									<Label  Content="{Binding BookingType}" Foreground="Black" ></Label>
-									<Label  Content="af" Foreground="Black" ></Label>
-								</StackPanel>
+                            <GradientStop Color="#a1a5a9" Offset="1.0" />
 
+                        </LinearGradientBrush>
+                    </Calendar.Background>
 
-								<Label Grid.Column="1" Grid.Row="1" Content="{Binding Customer.CustomerName}" Foreground="Black"></Label>
-							</Grid>
+                </Calendar>
 
+                <ListBox Grid.Column="1" SelectionChanged="BookingList_OnSelectionChanged" x:Name="bookingList"
+                         SelectedItem="{Binding SelectedBooking}" Items="{Binding Bookings}" BorderBrush="#b3b3b3"
+                         BorderThickness="1.60" Margin="20,10,20,10" CornerRadius="20">
+                    <ListBox.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#e1e5ea" />
 
-						</DataTemplate>
-					</ListBox.ItemTemplate>
+                            <GradientStop Color="#a1a5a9" Offset="1.0" />
 
+                        </LinearGradientBrush>
+                    </ListBox.Background>
 
+                    <ListBox.ItemTemplate>
 
-
-
-				</ListBox>
-
-				<Grid Grid.Column="2" RowDefinitions="260,*" >
-
-
-					<Border Grid.Row="0" BorderThickness="1.60" CornerRadius="20" BorderBrush="#b3b3b3" VerticalAlignment="Top" Margin="10" >
-
-						<Border.Background>
-							<LinearGradientBrush>
-								<GradientStop Color="#e1e5ea"/>
-
-								<GradientStop Color="#a1a5a9" Offset="1.0"/>
-
-							</LinearGradientBrush>
-						</Border.Background>
-						<Grid  ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" VerticalAlignment="Center"  >
+                        <DataTemplate>
 
 
-							<!--Navn-->
+                            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*">
 
-							<Label Grid.Column="0" Grid.Row="0">Navn:</Label>
-							<Label Name="lblName" Grid.Column="1" Grid.Row="0" Content="{Binding SelectedBooking.Customer.CustomerName}" ></Label>
+                                <!-- Bookers Name -->
+                                <StackPanel  Grid.Row="0" Orientation="Horizontal">
+                                    <material:MaterialIcon Kind="User" Foreground="Black" />
+                                    <Label Content="{Binding Customer.CustomerName}" Foreground="Black"/>
 
-							<!--E-Mail-->
-							<Label Grid.Column="0" Grid.Row="1">Email:</Label>
-							<Label Name="lblEmail" Grid.Column="1" Grid.Row="1" Content="{Binding SelectedBooking.Customer.CustomerEmail}">mail@gmail.com</Label>
+                                </StackPanel>
+                                
+                                <!-- Booking Date -->
+                                <StackPanel  Grid.Row="1" Orientation="Horizontal">
+                                    <material:MaterialIcon Kind="Calendar" Foreground="Black" />
+                                    <Label   Content="{Binding BookingStart}"/>
 
-							<!--Vælg Dato-->
-							<Label Grid.Column="0" Grid.Row="9" >Dato: </Label>
-							<Label Name="lbldate" Grid.Column="1" Grid.Row="9" Content="{Binding SelectedBooking.BookingStart}"></Label>
-
-
-							<!--Vælg Start Tidspunkt-->
-							<Label Grid.Column="0" Grid.Row="3">Start Tidspunkt: </Label>
-							<Label Name="lblstart" Grid.Column="1" Grid.Row="3" Content="{Binding SelectedBooking.BookingStart}" ></Label>
-
-							<!--Vælg Slut Tidspunkt-->
-							<Label Grid.Column="0" Grid.Row="4">Slut Tidspunkt: </Label>
-							<Label Name="lblend" Grid.Column="1" Grid.Row="4" Content="{Binding SelectedBooking.BookingEnd}" ></Label>
-
-
-							<!--Vælg Ekstra Personale-->
-							<Label Grid.Column="0" Grid.Row="5">Ekstra Personale:</Label>
-							<Label Name="lbl18" Grid.Column="1" Grid.Row="5" Content="{Binding	SelectedBooking.Employee}" ></Label>
-
-
-							<!--Event Type - Skal være en drop down menu-->
-							<Label Grid.Column="0" Grid.Row="7">Event Type:</Label>
-							<Label Name="lblType" Grid.Column="1" Grid.Row="7"  Content="{Binding SelectedBooking.BookingType}" ></Label>
-
-							<!--Antal Gæster-->
-							<Label Grid.Column="0" Grid.Row="8">Antal Gæster:</Label>
-							<Label Name="lblguest" Grid.Column="1" Grid.Row="8"  Content="{Binding SelectedBooking.BookingAmountOfGuests}" ></Label>
-
-
-
-							<!--Telefonnumer-->
-							<Label Grid.Column="0" Grid.Row="2">Telefon:</Label>
-							<Label Name="lblPhone" Grid.Column="1" Grid.Row="2" Content="{Binding SelectedBooking.Customer.CustomerPhoneNo}"  ></Label>
-
-
-						</Grid>
-					</Border>
-
-					<Border Margin="10" Grid.Column="2" Grid.Row="1" BorderThickness="1.60"   CornerRadius="20" BorderBrush="#b3b3b3" >
-						<Border.Background>
-							<LinearGradientBrush>
-								<GradientStop Color="#e1e5ea"/>
-
-								<GradientStop Color="#a1a5a9" Offset="1.0"/>
-
-							</LinearGradientBrush>
-						</Border.Background>
-						<StackPanel>
-							<Label>Noter:</Label>
-							<Label   VerticalAlignment="Top"  HorizontalAlignment="Left"  >
-
-								<TextBlock TextWrapping="Wrap" Text="{Binding SelectedBooking.BookingNote}"></TextBlock>
-							</Label>
-						</StackPanel>
-					</Border>
-				</Grid>
-			</Grid>
+                                </StackPanel>
+                                
+                                <!-- Booking Type -->
+                                <StackPanel  Grid.Row="2" Orientation="Horizontal">
+                                    <material:MaterialIcon Kind="ArrowRight" Foreground="Black" />
+                                    <Label Content="{Binding BookingType}" Foreground="Black"/>
+                                    
+                                </StackPanel>
+                                <!-- Booking Type -->
+                                <StackPanel  Grid.Row="3" Orientation="Horizontal">
+                                    
+                                 
+                                    <material:MaterialIcon Kind="AlertCircle" Foreground="Black" />
+                                    <Label Content="{Binding BookingReserved}" Foreground="Black"/>
+                                    
+                                </StackPanel>
+                                <!-- </Grid> -->
+                                <!-- <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal"> -->
+                                <!--     <material:MaterialIcon Kind="CalendarAccount" Foreground="Black" /> -->
+                                <!--     <Label Content="{Binding BookingType}" Foreground="Black"></Label> -->
+                                <!--     <material:MaterialIcon Kind="User"></material:MaterialIcon> -->
+                                <!--      -->
+                                <!-- </StackPanel> -->
+                                <!-- -->
+                                <!-- <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical"  > -->
+                                <!--     <material:MaterialIcon Kind="Calendar"></material:MaterialIcon> -->
+                                <!--     <Label Content="{Binding Customer.CustomerName}" -->
+                                <!--            Foreground="Black"> -->
+                                <!-- </Label> -->
+                                <!--     <Label   Content="{Binding BookingStart}"></Label> -->
+                                <!-- </StackPanel> -->
+                            </Grid>
 
 
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
 
 
+                </ListBox>
 
-			<!--<ListBox Grid.Row="0" Background="#e1e5ea" BorderBrush="#121212" BorderThickness="4"  Margin="50,20,50,0" CornerRadius="20">
+                <Grid Grid.Column="2" RowDefinitions="260,*">
+
+
+                    <Border Grid.Row="0" BorderThickness="1.60" CornerRadius="20" BorderBrush="#b3b3b3"
+                            VerticalAlignment="Top" Margin="10">
+
+                        <Border.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#e1e5ea" />
+
+                                <GradientStop Color="#a1a5a9" Offset="1.0" />
+
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid ColumnDefinitions="Auto,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                              VerticalAlignment="Center">
+
+
+                            <!--Navn-->
+
+                            <Label Grid.Column="0" Grid.Row="0">Navn:</Label>
+                            <Label Name="lblName" Grid.Column="1" Grid.Row="0"
+                                   Content="{Binding SelectedBooking.Customer.CustomerName}">
+                            </Label>
+
+                            <!--E-Mail-->
+                            <Label Grid.Column="0" Grid.Row="1">Email:</Label>
+                            <Label Name="lblEmail" Grid.Column="1" Grid.Row="1"
+                                   Content="{Binding SelectedBooking.Customer.CustomerEmail}">
+                                mail@gmail.com
+                            </Label>
+
+                            <!--Vælg Dato-->
+                            <Label Grid.Column="0" Grid.Row="9">Dato: </Label>
+                            <Label Name="lbldate" Grid.Column="1" Grid.Row="9"
+                                   Content="{Binding SelectedBooking.BookingStart}">
+                            </Label>
+
+
+                            <!--Vælg Start Tidspunkt-->
+                            <Label Grid.Column="0" Grid.Row="3">Start Tidspunkt: </Label>
+                            <Label Name="lblstart" Grid.Column="1" Grid.Row="3"
+                                   Content="{Binding SelectedBooking.BookingStart}">
+                            </Label>
+
+                            <!--Vælg Slut Tidspunkt-->
+                            <Label Grid.Column="0" Grid.Row="4">Slut Tidspunkt: </Label>
+                            <Label Name="lblend" Grid.Column="1" Grid.Row="4"
+                                   Content="{Binding SelectedBooking.BookingEnd}">
+                            </Label>
+
+
+                            <!--Vælg Ekstra Personale-->
+                            <Label Grid.Column="0" Grid.Row="5">Ekstra Personale:</Label>
+                            <Label Name="lbl18" Grid.Column="1" Grid.Row="5"
+                                   Content="{Binding	SelectedBooking.Employee}">
+                            </Label>
+
+
+                            <!--Event Type - Skal være en drop down menu-->
+                            <Label Grid.Column="0" Grid.Row="7">Event Type:</Label>
+                            <Label Name="lblType" Grid.Column="1" Grid.Row="7"
+                                   Content="{Binding SelectedBooking.BookingType}">
+                            </Label>
+
+                            <!--Antal Gæster-->
+                            <Label Grid.Column="0" Grid.Row="8">Antal Gæster:</Label>
+                            <Label Name="lblguest" Grid.Column="1" Grid.Row="8"
+                                   Content="{Binding SelectedBooking.BookingAmountOfGuests}">
+                            </Label>
+
+
+                            <!--Telefonnumer-->
+                            <Label Grid.Column="0" Grid.Row="2">Telefon:</Label>
+                            <Label Name="lblPhone" Grid.Column="1" Grid.Row="2"
+                                   Content="{Binding SelectedBooking.Customer.CustomerPhoneNo}">
+                            </Label>
+
+
+                        </Grid>
+                    </Border>
+
+                    <Border Margin="10" Grid.Column="2" Grid.Row="1" BorderThickness="1.60" CornerRadius="20"
+                            BorderBrush="#b3b3b3">
+                        <Border.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#e1e5ea" />
+
+                                <GradientStop Color="#a1a5a9" Offset="1.0" />
+
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel>
+                            <Label>Noter:</Label>
+                            <Label VerticalAlignment="Top" HorizontalAlignment="Left">
+
+                                <TextBlock TextWrapping="Wrap" Text="{Binding SelectedBooking.BookingNote}"></TextBlock>
+                            </Label>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+
+
+            <!--<ListBox Grid.Row="0" Background="#e1e5ea" BorderBrush="#121212" BorderThickness="4"  Margin="50,20,50,0" CornerRadius="20">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -204,37 +256,29 @@
                 </ListBoxItem>
 
             </ListBox>-->
-			<Grid Grid.Row="0" RowDefinitions="*" VerticalAlignment="Bottom"  Height="30" >
-				<Label Grid.Row="0" Name="lblError" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Foreground="Red" FontSize="14" Height="50" ></Label>
+            <Grid Grid.Row="0" RowDefinitions="*" VerticalAlignment="Bottom" Height="30">
+                <Label Grid.Row="0" Name="lblError" Content="" HorizontalAlignment="Center" VerticalAlignment="Top"
+                       Margin="0,20,0,0" Foreground="Red" FontSize="14" Height="50">
+                </Label>
 
-			</Grid>
-			<Grid Grid.Row="1" RowDefinitions="*" VerticalAlignment="Top" >
-				<StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="50,10,50,0" >
-
-
-					<Button Name="btn" Click="Booking_Button2" >Se Booking</Button>
-					<Button Click="AddBookingButton">Tilføj Booking</Button>
-					<Button x:Name="editBookingBtn" Click="EditBookingButton">Rediger Booking</Button>
-					<Button Click="MarkDays">Marker Booking</Button>
-				</StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" RowDefinitions="*" VerticalAlignment="Top">
+                <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal" Spacing="10"
+                            HorizontalAlignment="Center" Margin="50,10,50,0">
 
 
-			</Grid>
-		</Grid>
+                    <Button Name="btn" Click="Booking_Button2">Se Booking</Button>
+                    <Button Click="AddBookingButton">Tilføj Booking</Button>
+                    <Button x:Name="editBookingBtn" Click="EditBookingButton">Rediger Booking</Button>
+                    <Button Click="MarkDays">Marker Booking</Button>
+                </StackPanel>
 
 
-	</Grid>
+            </Grid>
+        </Grid>
 
 
-
-
-
-
-
-
-
-
-
+    </Grid>
 
 
 </UserControl>
