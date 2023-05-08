@@ -60,7 +60,7 @@
                         <DataTemplate>
 
 
-                            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*">
+                            <Grid ColumnDefinitions="*" RowDefinitions="*,*,*,*">
 
                                 <!-- Bookers Name -->
                                 <StackPanel  Grid.Row="0" Orientation="Horizontal">
@@ -80,6 +80,14 @@
                                 <StackPanel  Grid.Row="2" Orientation="Horizontal">
                                     <material:MaterialIcon Kind="ArrowRight" Foreground="Black" />
                                     <Label Content="{Binding BookingType}" Foreground="Black"/>
+                                    
+                                </StackPanel>
+                                <!-- Booking Type -->
+                                <StackPanel  Grid.Row="3" Orientation="Horizontal">
+                                    
+                                 
+                                    <material:MaterialIcon Kind="AlertCircle" Foreground="Black" />
+                                    <Label Content="{Binding BookingReserved}" Foreground="Black"/>
                                     
                                 </StackPanel>
                                 <!-- </Grid> -->
