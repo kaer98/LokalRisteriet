@@ -131,6 +131,7 @@ namespace LokalRisteriet.Views
         // Add Booking View Method
         private void AddBookingView(object sender, EventArgs e)
         {
+            addBookingView = new();
             UserMiddleControl.Content = addBookingView;
             if (UserMiddleControl.Content == addBookingView)
             {
