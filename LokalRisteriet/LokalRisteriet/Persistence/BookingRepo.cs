@@ -259,7 +259,7 @@ namespace LokalRisteriet.Persistence
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Booking WHERE BookingID=@BookingID", connection);
+                SqlCommand cmd = new SqlCommand("DELETE FROM AddOn WHERE AddOnBookingID=@BookingID; DELETE FROM Task WHERE TaskBookingID=@BookingID; DELETE FROM Booking WHERE BookingID=@BookingID;", connection);
                 cmd.Parameters.AddWithValue("@BookingID", booking.BookingID);
                 cmd.ExecuteNonQuery();
             }
