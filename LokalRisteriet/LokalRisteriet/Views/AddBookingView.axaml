@@ -87,8 +87,12 @@
 			</Grid>
 
 			<StackPanel Grid.Row="1" Orientation="Horizontal">
-				<Button Click="btnCreateBooking">Booking</Button>
-			</StackPanel>
+				<Button Click="btnCreateBooking">Aftal Booking</Button>
+
+
+<CheckBox CornerRadius="20">
+	Reservering?
+</CheckBox>			</StackPanel>
 
 		</Grid>
 
