@@ -99,11 +99,18 @@ namespace LokalRisteriet.Views
             // Initialize bookingViewModel
             bookingViewModel = new BookingViewModel();
 
+            bool selectedBookingAdded = false;
+
             // Iterate over bookings and mark those within the current month/year
             foreach (Booking b in bookingViewModel.Bookings1)
             {
                 if (b.BookingStart.Month == _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
                 {
+                    if (selectedBookingAdded)
+                    {
+                        bookingViewModel.SelectedBooking = b;
+                        selectedBookingAdded = true;
+                    }
                     bookingViewModel.MarkBookings(b);
                     _calcal.SelectedDates.Add(b.BookingStart);
                     
