@@ -16,6 +16,7 @@ using MessageBoxSlim.Avalonia;
 using MessageBoxSlim.Avalonia.DTO;
 using MessageBoxSlim.Avalonia.Enums;
 using MessageBoxSlim.Avalonia.Views;
+using Microsoft.IdentityModel.Tokens;
 
 namespace LokalRisteriet.Views
 {
@@ -99,18 +100,11 @@ namespace LokalRisteriet.Views
             // Initialize bookingViewModel
             bookingViewModel = new BookingViewModel();
 
-            bool selectedBookingAdded = false;
-
             // Iterate over bookings and mark those within the current month/year
             foreach (Booking b in bookingViewModel.Bookings1)
             {
                 if (b.BookingStart.Month == _calcal.DisplayDate.Month && b.BookingStart.Year == _calcal.DisplayDate.Year)
                 {
-                    if (selectedBookingAdded)
-                    {
-                        bookingViewModel.SelectedBooking = b;
-                        selectedBookingAdded = true;
-                    }
                     bookingViewModel.MarkBookings(b);
                     _calcal.SelectedDates.Add(b.BookingStart);
                     
@@ -128,7 +122,12 @@ namespace LokalRisteriet.Views
             bookingViewModel = new BookingViewModel();
             foreach (DateTime day in _calcal.SelectedDates)
             {
-                bookingViewModel.AddManyBookings(bookingViewModel.GetBookingByDay(day));
+                ObservableCollection<Booking> bookings = bookingViewModel.GetBookingByDay(day);
+                if (!bookings.IsNullOrEmpty())
+                {
+                    bookingViewModel.SelectedBooking = bookings[0];
+                }
+                bookingViewModel.AddManyBookings(bookings);
             }
             DataContext = null;
             DataContext = bookingViewModel;
