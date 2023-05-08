@@ -27,18 +27,12 @@ namespace LokalRisteriet
             customerViewModel = new CustomerViewModel();
             //Lists for comboboxes when choosing amount of employees both adults and non adults
             dd18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-            ddu18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-
             //updates estimated price when changing time and amount of employees
             tPStart.SelectedTimeChanged += (sender, e) =>
             {
                 txtPrice.Text = CalculatePrice().ToString();
             };
             tPSlut.SelectedTimeChanged += (sender, e) =>
-            {
-                txtPrice.Text = CalculatePrice().ToString();
-            };
-            ddu18.SelectionChanged += (sender, e) =>
             {
                 txtPrice.Text = CalculatePrice().ToString();
             };
@@ -145,6 +139,11 @@ namespace LokalRisteriet
             {
                 bTimeStart = dPDate.SelectedDate.Value.DateTime + tPStart.SelectedTime.Value;
                 bTimeEnd = dPDate.SelectedDate.Value.DateTime + tPSlut.SelectedTime.Value;
+            }
+            else
+            {
+                bTimeStart= dPDate.SelectedDate.Value.DateTime;
+                bTimeEnd = dPDate.SelectedDate.Value.DateTime;
             }
 
             if (txtGuest.Text != null)

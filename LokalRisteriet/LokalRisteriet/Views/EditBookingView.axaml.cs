@@ -25,17 +25,12 @@ namespace LokalRisteriet.Views
             roomViewModel = new RoomViewModel();
             //make lists for comboboxes when choosing amount of employees both adults and non adults
             dd18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-            ddu18.Items = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
             // update estimated price when changing time and amount of employees
             tPStart.SelectedTimeChanged += (sender, e) =>
             {
                 txtPrice.Text = CalculatePrice().ToString();
             };
             tPSlut.SelectedTimeChanged += (sender, e) =>
-            {
-                txtPrice.Text = CalculatePrice().ToString();
-            };
-            ddu18.SelectionChanged += (sender, e) =>
             {
                 txtPrice.Text = CalculatePrice().ToString();
             };
@@ -171,17 +166,12 @@ namespace LokalRisteriet.Views
                 return 0;
             }
             // Adult Employee Count.
-            int employeesAdult = 0;
+            int employee = 0;
             if (dd18.SelectedIndex != -1)
             {
-                employeesAdult = dd18.SelectedIndex;
+                employee = dd18.SelectedIndex;
             }
-            // Child Employee Count.
-            int employeesChild = 0;
-            if (ddu18.SelectedIndex != -1)
-            {
-                employeesChild = ddu18.SelectedIndex;
-            }
+            
             if (bookingDuration.Hours >= 6)
             {
 
@@ -192,7 +182,7 @@ namespace LokalRisteriet.Views
                 timePrice = bookingDuration.Hours * 1000;
             }
             // Price calculation based on number of employees and Duration
-            timePrice += employeesChild * 200*bookingDuration.Hours + employeesAdult * 400*bookingDuration.Hours;
+            timePrice += employee * 400*bookingDuration.Hours;
             return timePrice;
         }
         public List<Room> rooms()
