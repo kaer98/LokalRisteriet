@@ -115,6 +115,7 @@ namespace LokalRisteriet.Views
 
             biv.lblBookingType.Content = mainView.bookingViewModel.selectedBooking.BookingType;
             biv.Id = mainView.bookingViewModel.selectedBooking.BookingID;
+            biv.CurrBooking = mainView.bookingViewModel.selectedBooking;
 
             UserMiddleControl.Content = biv;
             if (UserMiddleControl.Content == biv)

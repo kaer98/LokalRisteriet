@@ -47,5 +47,10 @@ namespace LokalRisteriet.ViewModels
             return _addOnRepo.GetAddOnByID(id);
         }
 
+        public List<AddOn> GetAddOnByBookingID(int bookingID)
+        {
+            return _addOnRepo.GetAddOnsByBookingID(bookingID);
+        }
+
     }
 }
