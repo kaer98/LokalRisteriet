@@ -19,11 +19,11 @@ namespace LokalRisteriet.Views
         public BookingInfoView()
         {
             InitializeComponent();
-            UpdateDataContext();
+            
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
-            
-          //  UpdateEstimatedPrice();
+            UpdateDataContext();
+            //  UpdateEstimatedPrice();
 
         }
 
@@ -100,6 +100,7 @@ namespace LokalRisteriet.Views
             AddOn addOn = new AddOn(productName, productPrice);
             addOn.Amount = productAmount;
             addOn.AddOnBookingID = Id;
+            addOn.AddOnID = addOnViewModel.GetNextID();
             addOnViewModel.AddAddOn(addOn);
             UpdateDataContext();
 

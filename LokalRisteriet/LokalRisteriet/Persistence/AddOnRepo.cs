@@ -14,7 +14,7 @@ namespace LokalRisteriet.Persistence
         //List of AddOns
         private List<AddOn> _addOns;
         //Next available ID for a AddOn
-        private int nextID = 0;
+        public int nextID = 0;
     
         public AddOnRepo()
         {
