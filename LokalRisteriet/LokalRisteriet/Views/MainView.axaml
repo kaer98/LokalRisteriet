@@ -86,7 +86,7 @@
                                 <StackPanel  Grid.Row="3" Orientation="Horizontal">
                                     
                                  
-                                    <material:MaterialIcon Kind="AlertCircle" Foreground="Black" />
+                                    <material:MaterialIcon  Kind="{Binding BookingReservedKind}" Foreground="{Binding BookingReservedColors} " />
                                     <Label Content="{Binding BookingReservedText}" Foreground="Black"/>
                                     
                                 </StackPanel>

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LokalRisteriet.Models;
+using Material.Icons.Avalonia;
+using Material.Icons;
+using Avalonia.Media;
 
 namespace LokalRisteriet.Models
 {
@@ -61,10 +64,45 @@ namespace LokalRisteriet.Models
                 if (_reserved)
                 {
                     return "Reserveret";
+                 
                 }
                 else
                 {
                     return "IKKE Reserveret";
+                }
+            }
+        }
+
+        public MaterialIconKind BookingReservedKind
+        {
+            get
+            {
+                if (_reserved)
+                {
+                    return MaterialIconKind.Verified;
+
+                }
+                else
+                {
+                    return MaterialIconKind.Forbid;
+                        
+                }
+            }
+        }
+
+        public ISolidColorBrush BookingReservedColors
+        {
+            get
+            {
+                if (_reserved)
+                {
+                    return Brushes.Green;
+
+                }
+                else
+                {
+                    return Brushes.Red;
+
                 }
             }
         }
