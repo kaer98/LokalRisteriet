@@ -15,11 +15,10 @@ namespace LokalRisteriet.Models
         private string _bookingtype;
         private string _bookingnote;
         private List<Room> _rooms;
-        private int _employeesAdult, _employeesChild;
+        private int _employee;
         private List<Task> _tasks;
         private List<AddOn> _addOns;
-        private DateTime _startDateTime;
-        private DateTime _endDateTime;
+        private DateTime _startDateTime, _endDateTime, _RegistrationDate;
         private TimeSpan _duration;
         private int _customerID;
         private Customer _customer;
@@ -91,6 +90,11 @@ namespace LokalRisteriet.Models
             set { _duration = value; }
         }
 
+        public DateTime RegistrationDate
+        {
+            get { return _RegistrationDate; }
+            set { _RegistrationDate = value; }
+        }
 
         public int BookingCustomerID
         {
@@ -101,7 +105,7 @@ namespace LokalRisteriet.Models
 
         public double BookingPrice
         {
-            get { return _price; }
+            get { return CalculatePrice(); }
             set { _price = value; }
         }
 
@@ -117,8 +121,7 @@ namespace LokalRisteriet.Models
             set { _reserved = value; }
         }
 
-        public int EmployeesAdult { get => _employeesAdult; set => _employeesAdult = value; }
-        public int EmployeesChild { get => _employeesChild; set => _employeesChild = value; }
+        public int Employee { get => _employee; set => _employee = value; }
         public Customer Customer { get => _customer; set => _customer = value; }
         
         public Task Task {get => _task;
@@ -142,6 +145,7 @@ namespace LokalRisteriet.Models
         public Booking(string bookingtype, string bookingnote , List<Room> rooms, DateTime startDateTime, DateTime endDateTime, double amountOfGuests, bool reserved)
         {
             // Set booking properties
+            _RegistrationDate = DateTime.Now;
             _bookingtype = bookingtype;
             _bookingnote = bookingnote;
             _rooms = rooms;
@@ -177,21 +181,19 @@ namespace LokalRisteriet.Models
             // Add up the prices of all add-ons
             foreach (AddOn addOn in _addOns)
             {
-                timePrice += addOn.Price;
+                timePrice += addOn.TotalPrice;
             }
 
             // Calculate the price based on the booking duration
             if (BookingDuration.Hours >=6)
             {
                 timePrice = 5000+((BookingDuration.Hours-6) * 1000);
-                timePrice += EmployeesAdult * 400*BookingDuration.Hours;
-                timePrice += EmployeesChild * 200*BookingDuration.Hours;
+                timePrice += Employee * 400*BookingDuration.Hours;
             }
             else 
             { 
                 timePrice = BookingDuration.Hours * 1000;
-                timePrice += EmployeesAdult * 400 * BookingDuration.Hours;
-                timePrice += EmployeesChild * 200 * BookingDuration.Hours;
+                timePrice += Employee * 400 * BookingDuration.Hours;
             }
 
             // Store the calculated price and return it

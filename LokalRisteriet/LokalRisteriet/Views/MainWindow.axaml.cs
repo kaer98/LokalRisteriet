@@ -46,7 +46,7 @@ namespace LokalRisteriet.Views
         // This method is triggered when the "Edit" button is clicked in the main view. It loads the selected booking details into the EditBookingView for editing.
         private void MainView_EditBookingViewEvent(object? sender, EventArgs e)
         {
-
+            editBookingView.CurrBooking = mainView.bookingViewModel.selectedBooking;
             try
             {
                 editBookingView.txtName.Text = mainView.bookingViewModel.selectedBooking.Customer.CustomerName;
@@ -77,8 +77,7 @@ namespace LokalRisteriet.Views
 
             editBookingView.tPStart.SelectedTime = mainView.bookingViewModel.selectedBooking.BookingStart.TimeOfDay;
             editBookingView.tPSlut.SelectedTime = mainView.bookingViewModel.selectedBooking.BookingEnd.TimeOfDay;
-            editBookingView.dd18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesAdult;
-            editBookingView.ddu18.SelectedIndex = mainView.bookingViewModel.selectedBooking.EmployeesChild;
+            editBookingView.dd18.SelectedIndex = mainView.bookingViewModel.selectedBooking.Employee;
             editBookingView.txtType.Text = mainView.bookingViewModel.selectedBooking.BookingType;
             editBookingView.txtNote.Text = mainView.bookingViewModel.selectedBooking.BookingNote;
             editBookingView.txtGuest.Text = mainView.bookingViewModel.selectedBooking.BookingAmountOfGuests.ToString();
@@ -149,6 +148,7 @@ namespace LokalRisteriet.Views
         //method for going back to main view
         private void MainView_Button(object sender, RoutedEventArgs e)
         {
+            
             UserMiddleControl.Content = mainView;
             if (UserMiddleControl.Content == mainView)
             {

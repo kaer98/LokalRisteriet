@@ -122,6 +122,7 @@
 			<Label x:Name="lblBookingType"></Label>
 			<Label> af</Label>
 			<Label x:Name="choosenBookingName"></Label>
+			<Label Name="lblEstPrice" Content="" Margin="300,0,0,0"></Label>
 			<!-- <Popup x:Name="info_Popup" Height="100" Width="100"  Opened="Popup_OnOpened"> -->
 			<!-- 	<Grid Background="Blue"> -->
 			<!-- 		 -->

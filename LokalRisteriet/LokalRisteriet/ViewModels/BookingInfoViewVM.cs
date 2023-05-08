@@ -18,6 +18,7 @@ public class BookingInfoViewVM : INotifyPropertyChanged
     // Fields
     public TaskRepo taskRepository = new();
     public AddOnRepo addOnRepository = new();
+    public BookingRepo bookingRepository = new();
     public ObservableCollection<Task> Tasks { get; set; }
     public ObservableCollection<AddOn> AddOns { get; set; } = new();
     public int Id { get; set; }
@@ -46,6 +47,11 @@ public class BookingInfoViewVM : INotifyPropertyChanged
                 Tasks.Add(task);
             }
         }
+    }
+
+    public Booking GetBookingByID(int id)
+    {
+        return bookingRepository.GetBookingByID(id);
     }
 
     // function that adds add-ons from the current booking by ID.
