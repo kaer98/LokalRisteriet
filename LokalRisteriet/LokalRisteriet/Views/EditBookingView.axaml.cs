@@ -48,7 +48,7 @@ namespace LokalRisteriet.Views
         // Delete Booking by ID Function
         private void btnDelete(object sender, RoutedEventArgs e)
         {
-            bookingViewModel.DeleteBookingByID(Id);
+            bookingViewModel.DeleteBooking(bookingViewModel.SelectedBooking);
             
         }
 
