@@ -12,7 +12,7 @@ namespace LokalRisteriet.Persistence
         // Fields
         private string _connectionString = "Server=10.56.8.36; database=P3_DB_2023_04; user id=P3_PROJECT_USER_04; password=OPENDB_04; TrustServerCertificate=True;";
         private List<Task> _tasks;
-        private int nextID = 0;
+        public int nextID = 0;
 
         // Constructor
         public TaskRepo()

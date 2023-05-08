@@ -46,6 +46,7 @@ namespace LokalRisteriet.Views
 
                 Task task = new Task(taskName);
                 task.TaskBookingID = Id;
+                task.TaskID = taskViewModel.GetNextID();
                 taskViewModel.AddTask(task);
                 txtTask.Text = string.Empty;
                 UpdateDataContext();
