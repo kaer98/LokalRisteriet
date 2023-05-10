@@ -4,6 +4,7 @@ using LokalRisteriet.Models;
 using LokalRisteriet.ViewModels;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 
@@ -23,7 +24,7 @@ namespace LokalRisteriet.Views
         public BookingInfoView()
         {
             InitializeComponent();
-            
+            bookingInfoViewVM = new BookingInfoViewVM();
             addOnViewModel = new AddOnViewModel();
             taskViewModel = new TaskViewModel();
             UpdateDataContext();
@@ -134,7 +135,9 @@ namespace LokalRisteriet.Views
         {
             if (bookingInfoViewVM.SelectedAddOn != null)
             {
+                
                 addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
+                CurrBooking.BookingAddOns.Remove(addOnViewModel.GetAddOnByID(bookingInfoViewVM.selectedAddOn.AddOnID));
                 UpdateDataContext();
                 lblErroraddOn.Content = "";
             }
@@ -168,7 +171,7 @@ namespace LokalRisteriet.Views
             if (CurrBooking != null)
             {
                 CurrBooking.BookingAddOns = addOnViewModel.GetAddOnByBookingID(Id);
-                lblEstPrice.Content = $"Estimerede pris: {CurrBooking.CalculatePrice()} Kr.";
+                lblEstPrice.Content = $"Estimerede pris: {CurrBooking.BookingPrice} Kr.";
 
             }
                 DataContext = bookingInfoViewVM;

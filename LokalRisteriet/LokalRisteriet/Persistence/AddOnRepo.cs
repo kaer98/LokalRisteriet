@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using LokalRisteriet.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 
 namespace LokalRisteriet.Persistence
 {
@@ -14,30 +15,14 @@ namespace LokalRisteriet.Persistence
         //List of AddOns
         private List<AddOn> _addOns;
         //Next available ID for a AddOn
-        public int nextID = 0;
+        public int nextID { get; set; }
     
         public AddOnRepo()
         {
             // Initialize the list of AddOns
             _addOns = new List<AddOn>();
-            // Get the next available ID for a AddOn from the database
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('AddOn') + IDENT_INCR('AddOn') AS NextID", connection);
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        int id = int.Parse(dr["NextID"].ToString());
-                        if (id > nextID)
-                        {
-                            nextID = id;
-                        }
-                    }
-                }
-
-            }
+            
+           nextID = GetNextID();
             // Get all the AddOns from the database and add them to the list
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -97,6 +82,7 @@ namespace LokalRisteriet.Persistence
                     cmd.ExecuteNonQuery();
                 }
             }
+            nextID = GetNextID();
         }
         // Get all the AddOns
         public List<AddOn> GetAllAddOns() => _addOns;
@@ -115,19 +101,42 @@ namespace LokalRisteriet.Persistence
             }
         }
 
-        
+        private int GetNextID()
+        {
+            // Get the next available ID for a AddOn from the database
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('AddOn') + IDENT_INCR('AddOn') AS NextID", connection);
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        int id = int.Parse(dr["NextID"].ToString());
+                        if (id > nextID)
+                        {
+                            nextID = id;
+                        }
+                    }
+                }
+
+            }
+            return nextID;
+        }
 
         // Delete a AddOn from the list and the database
         public void deleteAddOn(AddOn addOn)
         {
-            _addOns.Remove(addOn);
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+           
+           _addOns.Remove(addOn);
+           using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("DELETE FROM AddOn WHERE AddOnId = @id", connection);
                 cmd.Parameters.AddWithValue("@id", addOn.AddOnID);
                 cmd.ExecuteNonQuery();
             }
+            nextID = GetNextID();
         }
         // Update a AddOn in the list and the database
         public void updateAddOn(AddOn addOn)
@@ -147,8 +156,19 @@ namespace LokalRisteriet.Persistence
             }
         }
         //find a AddOn by ID
-        public AddOn GetAddOnByID(int id) => _addOns.Find(a => a.AddOnID == id);
-
+       // public AddOn GetAddOnByID(int id) => _addOns.Find(a => a.AddOnID == id);
+       public AddOn GetAddOnByID(int id)
+       {
+           AddOn aa = null;
+           foreach (AddOn a in _addOns)
+           {
+               if (a.AddOnID == id)
+               {
+                   aa= a;
+               }
+           }
+           return aa;
+       }
         public List<AddOn> GetAddOnsByBookingID(int id) {
             List<AddOn> addOns = new List<AddOn>();
             foreach(AddOn addOn in _addOns)

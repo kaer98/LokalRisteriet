@@ -252,6 +252,11 @@ namespace LokalRisteriet.Models
             }
 
         }
+
+        public void RemoveAddOnById(int id)
+        {
+            _addOns.RemoveAll(x => x.AddOnID == id);
+        }
         
     }
 }
