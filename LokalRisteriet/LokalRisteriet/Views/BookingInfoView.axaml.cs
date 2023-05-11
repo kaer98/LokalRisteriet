@@ -137,7 +137,7 @@ namespace LokalRisteriet.Views
             {
                 
                 addOnViewModel.DeleteAddOn(bookingInfoViewVM.SelectedAddOn);
-                CurrBooking.BookingAddOns.Remove(addOnViewModel.GetAddOnByID(bookingInfoViewVM.selectedAddOn.AddOnID));
+                CurrBooking.BookingAddOns.RemoveAll(x=>x.AddOnID==bookingInfoViewVM.SelectedAddOn.AddOnID);
                 UpdateDataContext();
                 lblErroraddOn.Content = "";
             }

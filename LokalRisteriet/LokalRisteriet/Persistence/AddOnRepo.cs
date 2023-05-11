@@ -128,7 +128,7 @@ namespace LokalRisteriet.Persistence
         public void deleteAddOn(AddOn addOn)
         {
            
-           _addOns.Remove(addOn);
+           _addOns.RemoveAll(a=>a.AddOnID==addOn.AddOnID);
            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
