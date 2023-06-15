@@ -190,6 +190,7 @@ namespace LokalRisteriet
             booking.BookingCustomerID = customer.CustomerId;
             booking.Employee = employee;
             booking.Deposit = bDepositum;
+            booking.BookingID = bookingViewModel.GetNextBookingID();
             bookingViewModel.AddBooking(booking);
 
             BackToMain?.Invoke(this, EventArgs.Empty);
@@ -269,6 +270,7 @@ namespace LokalRisteriet
             booking.BookingCustomerID = customer.CustomerId;
             booking.Employee = employee;
             booking.Deposit = bDepositum;
+            booking.BookingID = bookingViewModel.GetNextBookingID();
             bookingViewModel.AddBooking(booking);
         }
 

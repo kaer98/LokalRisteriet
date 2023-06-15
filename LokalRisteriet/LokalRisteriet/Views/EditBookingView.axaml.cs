@@ -59,6 +59,7 @@ namespace LokalRisteriet.Views
         // Create a new booking
         private void BtnCreateBooking_OnClick(object sender, RoutedEventArgs e)
         {
+            bookingViewModel = new BookingViewModel();
             // Initialize variables to store user input
             string bName = "";
             string bPhone = "";

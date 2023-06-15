@@ -136,6 +136,10 @@ namespace LokalRisteriet.Persistence
 
         }
 
+        public int getID()
+        {
+            return nextID;
+        }
         //This method allows us to get all bookings.
         //In this way we can add them to a List<> or ObservableCollection (and more!)
         public List<Booking> GetAllBookings() => _bookings;
@@ -149,7 +153,6 @@ namespace LokalRisteriet.Persistence
                 booking.BookingRooms.Add(null);
             }
 
-            
             _bookings.Add(booking);
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -190,7 +193,7 @@ namespace LokalRisteriet.Persistence
                 cmd.Parameters.AddWithValue("@BookingDeposit", booking.Deposit);
                 cmd.ExecuteNonQuery();
             }
-            booking.BookingID = nextID++;
+   //         booking.BookingID = nextID++;
             return booking;
         }
 

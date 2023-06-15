@@ -78,6 +78,11 @@ namespace LokalRisteriet.ViewModels
             _bookingRepo.UpdateBooking(booking);
         }
 
+        public int GetNextBookingID()
+        {
+            return _bookingRepo.getID();
+        }
+
         // AddCustomers method - Assign customers to bookings
         public void AddCustomers()
         {
